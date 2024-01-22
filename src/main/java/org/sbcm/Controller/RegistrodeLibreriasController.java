@@ -49,6 +49,7 @@ public class RegistrodeLibreriasController implements Initializable {
     @FXML private Button deleteRegisterRA;
     @FXML private Button upDateRegisterRA;
     @FXML private Button findRegisterRA;
+    //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
 
     @FXML private void buttonAction(ActionEvent e){
         System.out.println("Hola mundo");
@@ -72,7 +73,7 @@ public class RegistrodeLibreriasController implements Initializable {
     @FXML private Button upDateRegisterRI;
     @FXML private Button findRegisterRI;
 
-
+    //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
     @FXML private  void buttonActionInfantil(ActionEvent e){
         System.out.println("hola");
     }
@@ -97,6 +98,7 @@ public class RegistrodeLibreriasController implements Initializable {
     private TableColumn<Adult, Integer>nVisitasC;
     @FXML
     private TableColumn<Adult, String> tipoDeVisitanteC;
+    //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
 
     @FXML private void deleteRegisterRAAction(ActionEvent e){
         System.out.println("hi");
@@ -128,6 +130,7 @@ public class RegistrodeLibreriasController implements Initializable {
     private TableColumn<Kid, Integer>nVisitasKC;
     @FXML
     private TableColumn<Kid, String> tipoDeVisitanteKC;
+    //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
 
     @FXML private void deleteRegisterRIaction(ActionEvent event){
         System.out.println("hiiii");
@@ -156,6 +159,7 @@ public class RegistrodeLibreriasController implements Initializable {
     //Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones
     @FXML private TextField numberAdult;
     @FXML private Button buttonGA;
+    //este botón muestra un número aleatorio los cuales se usaran para poder registrar a los usuarios en la base de datos.
 
     @FXML private void buttonActionbuttonGA(ActionEvent event){
         long rand;
@@ -164,6 +168,7 @@ public class RegistrodeLibreriasController implements Initializable {
         }while (rand % 2 != 1);
         this.numberAdult.setText(rand+"");
     }
+    //En esta línea de código se van a determinar todas las variables que van a aparecer en la interfaz o estas son todas las variables que vera el usuario en el servidor.
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -205,6 +210,7 @@ public class RegistrodeLibreriasController implements Initializable {
             throw new RuntimeException();
         }
     }
+    //Este código determina lo que los ComboBox van a hacer en el servidor.
     @FXML
     void addInputToComboBox(ActionEvent event){
         generoRI.getItems().add(textInput.getText());
