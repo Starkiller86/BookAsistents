@@ -24,6 +24,9 @@ public class RegistrodeLibreriasController implements Initializable {
     //en varios archivos cada uno debe tener su propia instancia de Dao que necesite
 
     CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
+    /**
+     * Prueba de GitHub
+     */
     CRUD<Kid> kidCRUD = new KidRegisterdaoImp();
 
     //Tab AdultRegister
