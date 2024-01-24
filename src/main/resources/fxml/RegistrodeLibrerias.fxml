@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -61,7 +62,6 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="generoRA" layoutX="399.0" layoutY="208.0" prefHeight="30.0" prefWidth="186.0" />
                         <Label layoutX="257.0" layoutY="277.0" text="Discapacidad:">
                            <font>
                               <Font size="20.0" />
@@ -74,7 +74,7 @@
                            </font>
                         </Label>
                         <ComboBox fx:id="escolaridadRA" layoutX="398.0" layoutY="337.0" prefHeight="31.0" prefWidth="185.0" />
-                        <Button fx:id="buttonRA" layoutX="411.0" layoutY="510.0" mnemonicParsing="false" onAction="#buttonAction" prefHeight="28.0" prefWidth="147.0" text="Registrar" />
+                        <Button fx:id="buttonRA" layoutX="420.0" layoutY="520.0" mnemonicParsing="false" onAction="#buttonAction" prefHeight="28.0" prefWidth="147.0" text="Registrar" />
                         <TextField fx:id="nVisitasRA" layoutX="399.0" layoutY="466.0" prefHeight="34.0" prefWidth="183.0" />
                         <Label layoutX="206.0" layoutY="468.0" text="Número de Visitas :">
                            <font>
@@ -87,6 +87,8 @@
                            </font>
                         </Label>
                         <ComboBox fx:id="ocupacionRA" layoutX="399.0" layoutY="404.0" prefHeight="31.0" prefWidth="183.0" />
+                        <RadioButton fx:id="femRA" layoutX="399.0" layoutY="220.0" mnemonicParsing="false" text="Femenino" />
+                        <RadioButton fx:id="masRA" layoutX="494.0" layoutY="220.0" mnemonicParsing="false" text="Masculino" />
                      </children>
                   </AnchorPane>
                </content>

@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.sbcm.Dao.AdultRegisterdaoImp;
 import org.sbcm.Dao.CRUD;
@@ -12,11 +14,21 @@ import org.sbcm.Dao.KidRegisterdaoImp;
 import org.sbcm.Model.Adult;
 import org.sbcm.Model.Kid;
 
+import java.awt.*;
 import java.net.URL;
 import java.nio.file.SecureDirectoryStream;
 import java.util.ResourceBundle;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
-public class RegistrodeLibreriasController implements Initializable {
+public class RegistrodeLibreriasController extends Component implements Initializable {
     //Vamos a declarar todos los nodos que tenemos en esa interfaz, de momento vamos a hacer un codigo spagueti donde solo nos enfoquemos en que funcione
     //Pero vamos a tratar de organizar lo mayor posible para despues dividorlo en varios controladores e interfaces,
 
@@ -35,7 +47,8 @@ public class RegistrodeLibreriasController implements Initializable {
 
     @FXML private TextField nRegistroRA;
     @FXML private TextField edadRA;
-    @FXML private ComboBox generoRA;
+    @FXML private RadioButton femRA;
+    @FXML private RadioButton masRA;
     @FXML private TextField textInputgeneroRA;
     @FXML private ComboBox discapacidadRA;
     @FXML private TextField textInputdiscapacidadRA;
@@ -52,7 +65,28 @@ public class RegistrodeLibreriasController implements Initializable {
     //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
 
     @FXML private void buttonAction(ActionEvent e){
-        System.out.println("Hola mundo");
+        try{
+            String edad = edadRA.getText();
+            String discapcidad = discapacidadRA.getItems().toString();
+            String escolaridad = escolaridadRA.getItems().toString();
+            String ocupacion = ocupacionRA.getItems().toString();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost/registrolibrerias","root","");
+            PreparedStatement ps=con.prepareStatement("insert into registroaduls(edad,genero,discapacidad,escolaridad,ocupacion)values(?,?,?,?,?)");
+            ps.setString(1, edad);
+            ps.setString(3, discapcidad);
+            ps.setString(4,escolaridad);
+            ps.setString(5,ocupacion);
+            if (femRA.isSelected()){
+                ps.setString(2,femRA.getText());
+            }
+            else
+                ps.setString(2,masRA.getText());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this,"Insert Successful");
+        }catch (Exception ex){
+            Logger.getLogger(RegistrodeLibreriasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     //Tab KidRegister
@@ -175,7 +209,7 @@ public class RegistrodeLibreriasController implements Initializable {
         idC.setCellValueFactory(new PropertyValueFactory<>("id"));
         edadC.setCellValueFactory(new PropertyValueFactory<>("edad"));
         generoC.setCellValueFactory(new PropertyValueFactory<>("genero"));
-        generoRA.setItems(FXCollections.observableArrayList("Mujer", "Hombre"));
+        //genero
         discapacidadC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));
         discapacidadRA.setItems(FXCollections.observableArrayList("Si", "No"));
         escolaridadC.setCellValueFactory(new PropertyValueFactory<>("escolaridad"));
@@ -230,11 +264,6 @@ public class RegistrodeLibreriasController implements Initializable {
     void addInputComboBoxocupacion(ActionEvent event){
         ocupacionRI.getItems().add(textInputRI.getText());
         textInputRI.clear();
-    }
-    @FXML
-    void addInputToComboBoxgenero(ActionEvent event){
-        generoRA.getItems().add(textInputgeneroRA.getText());
-        textInputgeneroRA.clear();
     }
     @FXML
     void addInputComboBoxdiscapacidadRA(ActionEvent event){
