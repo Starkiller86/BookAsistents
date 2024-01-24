@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.RegistrodeLibreriasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.RegistrodeLibreriasController">
    <children>
     <AnchorPane layoutX="46.0" layoutY="30.0" minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="805.0">
          <children>
@@ -141,19 +140,16 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="268.0" layoutY="233.0" text="Discapacidad:">
+                        <Label layoutX="268.0" layoutY="241.0" text="Discapacidad:">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="generoRI" layoutX="413.0" layoutY="189.0" prefHeight="30.0" prefWidth="187.0" />
-                        <ComboBox fx:id="discapacidadRI" layoutX="412.0" layoutY="233.0" prefHeight="27.0" prefWidth="187.0" />
                         <Label layoutX="285.0" layoutY="297.0" text="Escolaridad:">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="escolaridadRI" layoutX="411.0" layoutY="295.0" prefHeight="28.0" prefWidth="189.0" />
                         <Label layoutX="223.0" layoutY="431.0" text="Número de Visitas:">
                            <font>
                               <Font size="20.0" />
@@ -165,8 +161,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="ocupacionRI" layoutX="410.0" layoutY="364.0" prefHeight="27.0" prefWidth="189.0" />
                         <Button fx:id="buttonRI" layoutX="412.0" layoutY="490.0" mnemonicParsing="false" onAction="#buttonActionInfantil" prefHeight="37.0" prefWidth="140.0" text="Registrar" />
+                        <RadioButton fx:id="femRI" layoutX="413.0" layoutY="198.0" mnemonicParsing="false" text="Masculino" />
+                        <RadioButton fx:id="masRI" layoutX="514.0" layoutY="198.0" mnemonicParsing="false" text="Femenino" />
+                        <RadioButton fx:id="siRI" layoutX="413.0" layoutY="248.0" mnemonicParsing="false" text="Si" />
+                        <RadioButton fx:id="noRI" layoutX="515.0" layoutY="248.0" mnemonicParsing="false" text="No" />
+                        <RadioButton fx:id="preRI" layoutX="413.0" layoutY="289.0" mnemonicParsing="false" text="Prescolar" />
+                        <RadioButton fx:id="priRI" layoutX="516.0" layoutY="289.0" mnemonicParsing="false" text="Primaria" />
+                        <RadioButton fx:id="secuRI" layoutX="627.0" layoutY="289.0" mnemonicParsing="false" text="Secundaria" />
+                        <RadioButton fx:id="bachoRI" layoutX="413.0" layoutY="319.0" mnemonicParsing="false" text="Bachillerato" />
+                        <RadioButton fx:id="licRI" layoutX="515.0" layoutY="319.0" mnemonicParsing="false" text="Licenciatura " />
+                        <RadioButton fx:id="posRI" layoutX="629.0" layoutY="319.0" mnemonicParsing="false" text="Posgrado" />
+                        <RadioButton fx:id="hogRI" layoutX="413.0" layoutY="369.0" mnemonicParsing="false" text="Hogar" />
+                        <RadioButton fx:id="estRI" layoutX="517.0" layoutY="369.0" mnemonicParsing="false" text="Estudiante" />
+                        <RadioButton fx:id="emploRI" layoutX="631.0" layoutY="369.0" mnemonicParsing="false" text="Empleado" />
+                        <RadioButton fx:id="desRI" layoutX="742.0" layoutY="369.0" mnemonicParsing="false" text="Desocupado" />
                      </children>
                   </AnchorPane>
             </content>

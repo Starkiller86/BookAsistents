@@ -130,7 +130,6 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
             }
             connection.disconnect();
         }
-
     }
 
     /***
@@ -143,6 +142,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
      * @return adult es lo que va a retornar, dando como resultado el registro que se indico en este método
      * @throws Exception es lo que se retornara cuando la coneccion sea distinta a 200, de otro modo continua el código
      */
+
     @Override
     public Adult getOneResourceById(int id) throws Exception {
             uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults"+id);
@@ -168,8 +168,6 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
             ObjectMapper objectMapper = new ObjectMapper();
             Adult adult = objectMapper.readValue(jsonAdult.toString(),Adult.class);
             connection.disconnect();
-
-
         return adult;
     }
 
@@ -223,9 +221,9 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
         connection.disconnect();
 
     }
+
     @Override
     public void setConnection(HttpURLConnection connection) {
-
     }
 
     @Override

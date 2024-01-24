@@ -34,13 +34,11 @@ public class RegistrodeLibreriasController extends Component implements Initiali
 
     //Para poder acceder a las funcionalidades de la base de datos y el servidor necesitamos el DAO, lo voy a declarar en la parte superior, pero cuando dividamos
     //en varios archivos cada uno debe tener su propia instancia de Dao que necesite
-
     CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
     /**
      * Prueba de GitHub
      */
     CRUD<Kid> kidCRUD = new KidRegisterdaoImp();
-
     //Tab AdultRegister
     //Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones.
     //Para darle una accion a un botón es necesario indicar desde la interfaz a que funcion va a desencadenar la acción
@@ -145,10 +143,67 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private Button deleteRegisterRI;
     @FXML private Button upDateRegisterRI;
     @FXML private Button findRegisterRI;
+    @FXML private RadioButton femRI;
+    @FXML private RadioButton masRI;
+    @FXML private RadioButton siRI;
+    @FXML private RadioButton noRI;
+    @FXML private RadioButton preRI;
+    @FXML private RadioButton priRI;
+    @FXML private RadioButton secuRI;
+    @FXML private RadioButton bachoRI;
+    @FXML private RadioButton licRI;
+    @FXML private RadioButton posRI;
+    @FXML private RadioButton hogRI;
+    @FXML private RadioButton estRI;
+    @FXML private RadioButton emploRI;
+    @FXML private RadioButton desRI;
 
     //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
     @FXML private  void buttonActionInfantil(ActionEvent e){
-        System.out.println("hola");
+        try {
+            String nRegistro = nRegistroRI.getText();
+            String edad = edadRI.getText();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/registrolibrerias", "root", "");
+            PreparedStatement ps = con.prepareStatement("insert into registroaduls(id,edad,genero,discapacidad,escolaridad,escolaridad, ocupacion)values(?,?,?,?,?,?))");
+            ps.setString(1, nRegistro);
+            ps.setString(2, edad);
+            /**Genero**/
+            if (femRI.isSelected()) {
+                ps.setString(3, femRI.getText());
+            } else
+                ps.setString(3, masRI.getText());
+            if (siRI.isSelected()) {
+                ps.setString(4, siRI.getText());
+            } else
+                ps.setString(4, noRI.getText());
+            /**Escolaridad**/
+            if (preRI.isSelected()) {
+                ps.setString(5, preRI.getText());
+            } else if (priRI.isSelected()) {
+                ps.setString(5, priRI.getText());
+            } else if (secuRI.isSelected()) {
+                ps.setString(5, secuRI.getText());
+            } else if (bachoRI.isSelected()) {
+                ps.setString(5, bachoRI.getText());
+            } else if (licRI.isSelected()) {
+                ps.setString(5, licRI.getText());
+            } else
+                ps.setString(5, posRI.getText());
+            /**Ocupacion**/
+            if (hogRI.isSelected()) {
+                ps.setString(6, hogRA.getText());
+            } else if (estRI.isSelected()) {
+                ps.setString(6, estRI.getText());
+            } else if (emploRI.isSelected()) {
+                ps.setString(6, emploRI.getText());
+            } else if (desRI.isSelected()) {
+                ps.executeUpdate();
+            }
+        }
+        catch (Exception exception){
+            Logger.getLogger(RegistrodeLibreriasController.class.getName()).log(Level.SEVERE, null, exception);
+        }
     }
 
     //Tab AdultList
@@ -174,10 +229,22 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
 
     @FXML private void deleteRegisterRAAction(ActionEvent e){
-        System.out.println("hi");
+        try{
+            String id =nRegistroRA.getText();
+            String age = edadRA.getText();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/registrolibrerias","root","");
+            PreparedStatement ps = con.prepareStatement("DELETE from student where id= ?");
+            ps.setString(1, id);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "DELETE Succesfully");
+        }
+        catch (Exception exception){
+            Logger.getLogger(RegistrodeLibreriasController.class.getName()).log(Level.SEVERE,null,exception);
+        }
     }
     @FXML private void upDateRegisterRAaction(ActionEvent event){
-        System.out.println("hii");
+
     }
     @FXML private void findRegisterRAaction(ActionEvent event){
         System.out.println("hiii");
@@ -262,7 +329,6 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         } catch (Exception e) {
             throw new RuntimeException();
         }
-
         idKC.setCellValueFactory(new PropertyValueFactory<>("id"));
         edadKC.setCellValueFactory(new PropertyValueFactory<>("edad"));
         generoKC.setCellValueFactory(new PropertyValueFactory<>("genero"));
