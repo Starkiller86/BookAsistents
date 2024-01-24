@@ -14,30 +14,10 @@ public class Adult {
     private String genero;
     @JsonProperty("escolaridad")
     private  String escolaridad;
-    @JsonProperty("idKidsRegister")
-    private long idKidsRegister;
     @JsonProperty("discapacidad")
     private String discapacidad;
     @JsonProperty("ocupacion")
     private String ocupacion;
-    @JsonProperty("id_KidsRegister")
-    private int id_KidsRegister;
-
-    public long getIdKidsRegister() {
-        return idKidsRegister;
-    }
-
-    public void setIdKidsRegister(long idKidsRegister) {
-        this.idKidsRegister = idKidsRegister;
-    }
-
-    public int getId_KidsRegister() {
-        return id_KidsRegister;
-    }
-
-    public void setId_KidsRegister(int id_KidsRegister) {
-        this.id_KidsRegister = id_KidsRegister;
-    }
 
     public int getId() {
         return id;

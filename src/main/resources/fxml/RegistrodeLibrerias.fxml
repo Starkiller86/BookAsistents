@@ -62,18 +62,16 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="257.0" layoutY="277.0" text="Discapacidad:">
+                        <Label layoutX="257.0" layoutY="265.0" text="Discapacidad:">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="discapacidadRA" layoutX="399.0" layoutY="272.0" prefHeight="32.0" prefWidth="185.0" />
-                        <Label layoutX="275.0" layoutY="345.0" text="Escolaridad:">
+                        <Label layoutX="275.0" layoutY="338.0" text="Escolaridad:">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="escolaridadRA" layoutX="398.0" layoutY="337.0" prefHeight="31.0" prefWidth="185.0" />
                         <Button fx:id="buttonRA" layoutX="420.0" layoutY="520.0" mnemonicParsing="false" onAction="#buttonAction" prefHeight="28.0" prefWidth="147.0" text="Registrar" />
                         <TextField fx:id="nVisitasRA" layoutX="399.0" layoutY="466.0" prefHeight="34.0" prefWidth="183.0" />
                         <Label layoutX="206.0" layoutY="468.0" text="Número de Visitas :">
@@ -86,9 +84,20 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="ocupacionRA" layoutX="399.0" layoutY="404.0" prefHeight="31.0" prefWidth="183.0" />
-                        <RadioButton fx:id="femRA" layoutX="399.0" layoutY="220.0" mnemonicParsing="false" text="Femenino" />
-                        <RadioButton fx:id="masRA" layoutX="494.0" layoutY="220.0" mnemonicParsing="false" text="Masculino" />
+                        <RadioButton fx:id="femRA" layoutX="399.0" layoutY="220.0" mnemonicParsing="false" text="Mujer" />
+                        <RadioButton fx:id="masRA" layoutX="461.0" layoutY="220.0" mnemonicParsing="false" text="Hombre" />
+                        <RadioButton fx:id="siRA" layoutX="398.0" layoutY="271.0" mnemonicParsing="false" text="Si" />
+                        <RadioButton fx:id="noRA" layoutX="461.0" layoutY="271.0" mnemonicParsing="false" text="No" />
+                        <RadioButton fx:id="preRA" layoutX="399.0" layoutY="327.0" mnemonicParsing="false" text="Preescolar" />
+                        <RadioButton fx:id="priRA" layoutX="493.0" layoutY="327.0" mnemonicParsing="false" text="Primaria" />
+                        <RadioButton fx:id="secuRA" layoutX="584.0" layoutY="327.0" mnemonicParsing="false" text="Secundaria" />
+                        <RadioButton fx:id="bachoRA" layoutX="399.0" layoutY="360.0" mnemonicParsing="false" text="Bachillerato" />
+                        <RadioButton fx:id="licRA" layoutX="493.0" layoutY="360.0" mnemonicParsing="false" text="Licenciatura" />
+                        <RadioButton fx:id="posRA" layoutX="585.0" layoutY="360.0" mnemonicParsing="false" text="Posgrado" />
+                        <RadioButton fx:id="hogRA" layoutX="401.0" layoutY="415.0" mnemonicParsing="false" text="Hogar" />
+                        <RadioButton fx:id="estRA" layoutX="466.0" layoutY="415.0" mnemonicParsing="false" text="Estudiante" />
+                        <RadioButton fx:id="emploRA" layoutX="558.0" layoutY="415.0" mnemonicParsing="false" text="Empleado" />
+                        <RadioButton fx:id="desRA" layoutX="642.0" layoutY="415.0" mnemonicParsing="false" text="Desocupado" />
                      </children>
                   </AnchorPane>
                </content>
@@ -166,7 +175,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="ListKid" layoutY="-3.0" prefHeight="481.0" prefWidth="900.0">
+                        <TableView fx:id="ListKid" layoutY="-3.0" prefHeight="502.0" prefWidth="900.0">
                           <columns>
                             <TableColumn fx:id="idKC" prefWidth="87.99996948242188" text="id" />
                             <TableColumn fx:id="edadKC" prefWidth="77.99996948242188" text="edad" />
@@ -178,9 +187,9 @@
                               <TableColumn fx:id="tipoDeVisitanteKC" prefWidth="151.0" text="tipoDeVisitante" />
                           </columns>
                         </TableView>
-                        <Button fx:id="deleteRegisterRI" layoutX="105.0" layoutY="488.0" mnemonicParsing="false" onAction="#deleteRegisterRIaction" text="Eliminar Registro " />
-                        <Button fx:id="upDateRegisterRI" layoutX="417.0" layoutY="488.0" mnemonicParsing="false" onAction="#upDateRegisterRIaction" text="Actualizar Registro" />
-                        <Button fx:id="findRegisterRI" layoutX="710.0" layoutY="488.0" mnemonicParsing="false" onAction="#findRegisterRIaction" text="Buscar Registro " />
+                        <Button fx:id="deleteRegisterRI" layoutX="83.0" layoutY="513.0" mnemonicParsing="false" onAction="#deleteRegisterRIaction" text="Eliminar Registro " />
+                        <Button fx:id="upDateRegisterRI" layoutX="407.0" layoutY="513.0" mnemonicParsing="false" onAction="#upDateRegisterRIaction" text="Actualizar Registro" />
+                        <Button fx:id="findRegisterRI" layoutX="708.0" layoutY="513.0" mnemonicParsing="false" onAction="#findRegisterRIaction" text="Buscar Registro " />
                      </children>
                   </AnchorPane>
               </content>
@@ -201,9 +210,9 @@
                               <TableColumn fx:id="tipoDeVisitanteC" prefWidth="128.0" text="tipoDeVisitante" />
                           </columns>
                         </TableView>
-                        <Button fx:id="deleteRegisterRA" layoutX="96.0" layoutY="496.0" mnemonicParsing="false" onAction="#deleteRegisterRAAction" text="Eliminar Registro " />
-                        <Button fx:id="upDateRegisterRA" layoutX="425.0" layoutY="496.0" mnemonicParsing="false" onAction="#upDateRegisterRAaction" text="Actualizar Registro " />
-                        <Button fx:id="findRegisterRA" layoutX="693.0" layoutY="496.0" mnemonicParsing="false" onAction="#findRegisterRAaction" text="Buscar Registro " />
+                        <Button fx:id="deleteRegisterRA" layoutX="94.0" layoutY="508.0" mnemonicParsing="false" onAction="#deleteRegisterRAAction" text="Eliminar Registro " />
+                        <Button fx:id="upDateRegisterRA" layoutX="407.0" layoutY="508.0" mnemonicParsing="false" onAction="#upDateRegisterRAaction" text="Actualizar Registro " />
+                        <Button fx:id="findRegisterRA" layoutX="695.0" layoutY="508.0" mnemonicParsing="false" onAction="#findRegisterRAaction" text="Buscar Registro " />
                      </children>
                   </AnchorPane>
                </content>

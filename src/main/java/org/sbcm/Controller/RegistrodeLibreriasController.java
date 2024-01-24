@@ -49,12 +49,21 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private TextField edadRA;
     @FXML private RadioButton femRA;
     @FXML private RadioButton masRA;
+    @FXML private RadioButton siRA;
+    @FXML private RadioButton noRA;
+    @FXML private RadioButton preRA;
+    @FXML private RadioButton priRA;
+    @FXML private RadioButton secuRA;
+    @FXML private RadioButton bachoRA;
+    @FXML private RadioButton licRA;
+    @FXML private RadioButton posRA;
+    @FXML private RadioButton hogRA;
+    @FXML private RadioButton estRA;
+    @FXML private RadioButton emploRA;
+    @FXML private RadioButton desRA;
     @FXML private TextField textInputgeneroRA;
-    @FXML private ComboBox discapacidadRA;
     @FXML private TextField textInputdiscapacidadRA;
-    @FXML private ComboBox escolaridadRA;
     @FXML private TextField textInputescolaridadRA;
-    @FXML private ComboBox ocupacionRA;
     @FXML private TextField textInputocupacionRA;
     @FXML private TextField nVisitasRA;
     @FXML private Button buttonRA;
@@ -66,24 +75,58 @@ public class RegistrodeLibreriasController extends Component implements Initiali
 
     @FXML private void buttonAction(ActionEvent e){
         try{
+            String nRegistro = nRegistroRA.getText();
             String edad = edadRA.getText();
-            String discapcidad = discapacidadRA.getItems().toString();
-            String escolaridad = escolaridadRA.getItems().toString();
-            String ocupacion = ocupacionRA.getItems().toString();
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost/registrolibrerias","root","");
-            PreparedStatement ps=con.prepareStatement("insert into registroaduls(edad,genero,discapacidad,escolaridad,ocupacion)values(?,?,?,?,?)");
-            ps.setString(1, edad);
-            ps.setString(3, discapcidad);
-            ps.setString(4,escolaridad);
-            ps.setString(5,ocupacion);
+            PreparedStatement ps=con.prepareStatement("insert into registroaduls(id,edad,genero,discapacidad,escolaridad,ocupacion)values(?,?,?,?,?,?)");
+            ps.setString(1, nRegistro);
+            ps.setString(2, edad);
+            /**
+             * Genero
+             */
             if (femRA.isSelected()){
-                ps.setString(2,femRA.getText());
+                ps.setString(3,femRA.getText());
             }
             else
-                ps.setString(2,masRA.getText());
+                ps.setString(3,masRA.getText());
+            /**
+             * Discapacidad
+             */
+            if (siRA.isSelected()){
+                ps.setString(4,siRA.getText());
+            }
+            else
+                ps.setString(4,noRA.getText());
+            /**
+             * Escolaridad
+             */
+
+            if (preRA.isSelected()){
+                ps.setString(5,preRA.getText());
+            } else if (priRA.isSelected()) {
+                ps.setString(5,priRA.getText());
+            } else if (secuRA.isSelected()) {
+                ps.setString(5,secuRA.getText());
+            } else if (bachoRA.isSelected()) {
+                ps.setString(5,bachoRA.getText());
+            } else if (licRA.isSelected()) {
+                ps.setString(5,licRA.getText());
+            }
+            else
+                ps.setString(5,posRA.getText());
+            /**
+             * Ocupación
+             */
+            if (hogRA.isSelected()){
+                ps.setString(6,hogRA.getText());
+            } else if (estRA.isSelected()) {
+                ps.setString(6,estRA.getText());
+            } else if (emploRA.isSelected()) {
+                ps.setString(6, emploRA.getText());
+            }else
+                ps.setString(6,desRA.getText());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Insert Successful");
         }catch (Exception ex){
             Logger.getLogger(RegistrodeLibreriasController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,13 +136,9 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     //Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones
     @FXML private TextField nRegistroRI;
     @FXML private TextField edadRI;
-    @FXML private ComboBox <String> generoRI;
     @FXML private TextField textInput;
-    @FXML private ComboBox discapacidadRI;
     @FXML private TextField TextInput;
-    @FXML private ComboBox escolaridadRI;
     @FXML private TextField TextInputRI;
-    @FXML private ComboBox ocupacionRI;
     @FXML private TextField textInputRI;
     @FXML private TextField nVisitasRI;
     @FXML private Button buttonRI;
@@ -211,78 +250,36 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         generoC.setCellValueFactory(new PropertyValueFactory<>("genero"));
         //genero
         discapacidadC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));
-        discapacidadRA.setItems(FXCollections.observableArrayList("Si", "No"));
+
         escolaridadC.setCellValueFactory(new PropertyValueFactory<>("escolaridad"));
-        escolaridadRA.setItems(FXCollections.observableArrayList("Prescolar", "Primaria", "Secundaria", "Bachillerato/Preparatoria", "Licenciatura", "Posgrado"));
+
         ocupacionC.setCellValueFactory(new PropertyValueFactory<>("ocupacion"));
-        ocupacionRA.setItems(FXCollections.observableArrayList("Hogar", "Estudiante", "Empleado o Trabajador", "Desocupado"));
+
         nVisitasC.setCellValueFactory(new PropertyValueFactory<>("nVisitas"));
         tipoDeVisitanteC.setCellValueFactory(new PropertyValueFactory<>("tipoDeVisitas"));
-        try{
+        try {
             ListAdult.setItems(adultCRUD.getAllResource());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException();
         }
 
         idKC.setCellValueFactory(new PropertyValueFactory<>("id"));
         edadKC.setCellValueFactory(new PropertyValueFactory<>("edad"));
         generoKC.setCellValueFactory(new PropertyValueFactory<>("genero"));
-        generoRI.setItems(FXCollections.observableArrayList("Mujer", "Hombre"));
+
         discapacidadKC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));
-        discapacidadRI.setItems(FXCollections.observableArrayList("Si", "No"));
+
         escolaridadKC.setCellValueFactory(new PropertyValueFactory<>("escolaridad"));
-        escolaridadRI.setItems(FXCollections.observableArrayList("Prescolar", "Primaria", "Secundaria", "Bachillerato/Preparatoria", "Licenciatura", "Posgrado"));
+
         ocupacionKC.setCellValueFactory(new PropertyValueFactory<>("ocupacion"));
-        ocupacionRI.setItems(FXCollections.observableArrayList("Hogar", "Estudiante", "Empleado o Trabajador", "Desocupado"));
+
         nVisitasKC.setCellValueFactory(new PropertyValueFactory<>("nVisitas"));
         tipoDeVisitanteKC.setCellValueFactory(new PropertyValueFactory<>("tipoDeVisitante"));
 
         try {
             ListKid.setItems(kidCRUD.getAllResource());
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException();
         }
     }
-    //Este código determina lo que los ComboBox van a hacer en el servidor.
-    @FXML
-    void addInputToComboBox(ActionEvent event){
-        generoRI.getItems().add(textInput.getText());
-        textInput.clear();
-    }
-    @FXML
-    void addInputComboBoxdiscapacidad(ActionEvent event){
-        discapacidadRI.getItems().add(TextInput.getText());
-        TextInput.clear();
-    }
-    @FXML
-    void addInputComboBoxescolaridad(ActionEvent event){
-        escolaridadRI.getItems().add(TextInputRI.getText());
-        TextInputRI.clear();
-    }
-    @FXML
-    void addInputComboBoxocupacion(ActionEvent event){
-        ocupacionRI.getItems().add(textInputRI.getText());
-        textInputRI.clear();
-    }
-    @FXML
-    void addInputComboBoxdiscapacidadRA(ActionEvent event){
-        discapacidadRA.getItems().add(textInputdiscapacidadRA.getText());
-        textInputdiscapacidadRA.clear();
-    }
-    @FXML
-    void addInputComboBoxescolaridadRA(ActionEvent event){
-        escolaridadRA.getItems().add(textInputescolaridadRA.getText());
-        textInputescolaridadRA.clear();
-    }
-    @FXML
-    void addInputComboBoxocupacionRA(ActionEvent event){
-        ocupacionRA.getItems().add(textInputocupacionRA.getText());
-        textInputocupacionRA.clear();
-    }
-    @FXML
-    void getComboBox(ActionEvent event){
-        System.out.println(generoRI.getValue());
-    }
-
 }
