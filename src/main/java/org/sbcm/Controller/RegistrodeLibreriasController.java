@@ -165,7 +165,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
             String edad = edadRI.getText();
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/registrolibrerias", "root", "");
-            PreparedStatement ps = con.prepareStatement("insert into registroaduls(id,edad,genero,discapacidad,escolaridad,escolaridad, ocupacion)values(?,?,?,?,?,?))");
+            PreparedStatement ps = con.prepareStatement("insert into kidsregister(id,edad,genero,escolaridad,discapacidad,ocupacion)values(?,?,?,?,?,?))");
             ps.setString(1, nRegistro);
             ps.setString(2, edad);
             /**Genero**/
@@ -173,35 +173,38 @@ public class RegistrodeLibreriasController extends Component implements Initiali
                 ps.setString(3, femRI.getText());
             } else
                 ps.setString(3, masRI.getText());
-            if (siRI.isSelected()) {
-                ps.setString(4, siRI.getText());
-            } else
-                ps.setString(4, noRI.getText());
+
             /**Escolaridad**/
             if (preRI.isSelected()) {
-                ps.setString(5, preRI.getText());
+                ps.setString(4, preRI.getText());
             } else if (priRI.isSelected()) {
-                ps.setString(5, priRI.getText());
+                ps.setString(4, priRI.getText());
             } else if (secuRI.isSelected()) {
-                ps.setString(5, secuRI.getText());
+                ps.setString(4, secuRI.getText());
             } else if (bachoRI.isSelected()) {
-                ps.setString(5, bachoRI.getText());
+                ps.setString(4, bachoRI.getText());
             } else if (licRI.isSelected()) {
-                ps.setString(5, licRI.getText());
+                ps.setString(4, licRI.getText());
             } else
-                ps.setString(5, posRI.getText());
+                ps.setString(4, posRI.getText());
+            /**
+             * Discapacidad
+             */
+            if (siRI.isSelected()) {
+                ps.setString(5, siRI.getText());
+            } else
+                ps.setString(5, noRI.getText());
             /**Ocupacion**/
             if (hogRI.isSelected()) {
-                ps.setString(6, hogRA.getText());
+                ps.setString(6, hogRI.getText());
             } else if (estRI.isSelected()) {
                 ps.setString(6, estRI.getText());
             } else if (emploRI.isSelected()) {
                 ps.setString(6, emploRI.getText());
-            } else if (desRI.isSelected()) {
-                ps.executeUpdate();
-            }
-        }
-        catch (Exception exception){
+            } else
+                ps.setString(6,desRI.getText());
+            ps.executeUpdate();
+        } catch (Exception exception){
             Logger.getLogger(RegistrodeLibreriasController.class.getName()).log(Level.SEVERE, null, exception);
         }
     }
@@ -229,19 +232,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
 
     @FXML private void deleteRegisterRAAction(ActionEvent e){
-        try{
-            String id =nRegistroRA.getText();
-            String age = edadRA.getText();
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/registrolibrerias","root","");
-            PreparedStatement ps = con.prepareStatement("DELETE from student where id= ?");
-            ps.setString(1, id);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this, "DELETE Succesfully");
-        }
-        catch (Exception exception){
-            Logger.getLogger(RegistrodeLibreriasController.class.getName()).log(Level.SEVERE,null,exception);
-        }
+        String nRegistroRA = JOptionPane.showInputDialog(null,"Ingrese el ID del registro que desea eliminar: ");
     }
     @FXML private void upDateRegisterRAaction(ActionEvent event){
 
