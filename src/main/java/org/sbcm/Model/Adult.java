@@ -19,6 +19,27 @@ public class Adult {
     @JsonProperty("ocupacion")
     private String ocupacion;
 
+    @JsonProperty("nVisitas")
+    private int nVisitas;
+    @JsonProperty("tipoDeVisitante")
+    private String tipoDeVisitante;
+
+    public int getNVisitas() {
+        return nVisitas;
+    }
+
+    public void setNVisitas(int nVisitas) {
+        this.nVisitas = nVisitas;
+    }
+
+    public String getTipoDeVisitante() {
+        return tipoDeVisitante;
+    }
+
+    public void setTipoDeVisitante(String tipoDeVisitante) {
+        this.tipoDeVisitante = tipoDeVisitante;
+    }
+
     public int getId() {
         return id;
     }

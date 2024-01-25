@@ -113,7 +113,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
     public void postResourse(Adult adult) throws Exception {
         {
             uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults");
-            if(!usingTest)
+
                 connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");

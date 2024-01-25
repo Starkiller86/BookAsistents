@@ -9,10 +9,10 @@ module org.sbcm {
     requires org.json;
     requires java.sql;
     requires java.desktop;
-    requires mysql.connector.java;
+
     opens org.sbcm.Controller to javafx.fxml;
     opens org.sbcm.Dao to com.fasterxml.jackson.databind, com.fasterxml.jackson.annotation;
-    opens org.sbcm.Model to com.fasterxml.jackson.annotation;
+    opens org.sbcm.Model to com.fasterxml.jackson.annotation, com.fasterxml.jackson.databind;
 
     exports org.sbcm.Dao;
     exports org.sbcm.Model;

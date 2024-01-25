@@ -45,20 +45,28 @@ public class RegistrodeLibreriasController extends Component implements Initiali
 
     @FXML private TextField nRegistroRA;
     @FXML private TextField edadRA;
+    //Grupo Genero
+    final ToggleGroup grupoGeneroRA = new ToggleGroup();
     @FXML private RadioButton femRA;
     @FXML private RadioButton masRA;
+    //Grupo discapacidad
     @FXML private RadioButton siRA;
     @FXML private RadioButton noRA;
+    final ToggleGroup grupodiscapacidad = new ToggleGroup();
+    //grupo escolaridad
     @FXML private RadioButton preRA;
     @FXML private RadioButton priRA;
     @FXML private RadioButton secuRA;
     @FXML private RadioButton bachoRA;
     @FXML private RadioButton licRA;
     @FXML private RadioButton posRA;
+    final ToggleGroup grupoescolaridad = new ToggleGroup();
+    //grupo ocupación
     @FXML private RadioButton hogRA;
     @FXML private RadioButton estRA;
     @FXML private RadioButton emploRA;
     @FXML private RadioButton desRA;
+    final ToggleGroup grupoocupacion = new ToggleGroup();
     @FXML private TextField textInputgeneroRA;
     @FXML private TextField textInputdiscapacidadRA;
     @FXML private TextField textInputescolaridadRA;
@@ -71,7 +79,31 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private Button findRegisterRA;
     //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
 
-    @FXML private void buttonAction(ActionEvent e){
+    @FXML private void buttonRegisterAdult(ActionEvent event) throws Exception{
+        //Primero vamos a crear el objeto en el que vamos a colocar toda la info de la interfaz
+        Adult adulto = new Adult();
+        //Le asigno el valor de sus atributos con base a lo que obtenga de la interfaz
+        //adulto.setId(Integer.parseInt(nRegistroRA.getText()));
+        adulto.setEdad(Integer.parseInt(edadRA.getText()));
+        adulto.setGenero(((RadioButton) grupoGeneroRA.getSelectedToggle()).getText());
+        adulto.setDiscapacidad(((RadioButton) grupodiscapacidad.getSelectedToggle()).getText());
+        adulto.setEscolaridad(((RadioButton) grupoescolaridad.getSelectedToggle()).getText());
+        adulto.setOcupacion(((RadioButton) grupoocupacion.getSelectedToggle()).getText());
+        adulto.setTipoDeVisitante("Adulto");
+        adulto.setNVisitas(Integer.parseInt(nVisitasRA.getText()));
+
+        //ahora solo llamaremos la función del crud que se encarga de subir datos mediante el servidor a la base de datos
+
+        try{
+            adultCRUD.postResourse(adulto);
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+
+
+
+
+        /*CODIGO LEGACY
         try{
             String nRegistro = nRegistroRA.getText();
             String edad = edadRA.getText();
@@ -82,7 +114,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
             ps.setString(2, edad);
             /**
              * Genero
-             */
+             *//*
             if (femRA.isSelected()){
                 ps.setString(3,femRA.getText());
             }
@@ -90,7 +122,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
                 ps.setString(3,masRA.getText());
             /**
              * Discapacidad
-             */
+             *//*
             if (siRA.isSelected()){
                 ps.setString(4,siRA.getText());
             }
@@ -98,7 +130,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
                 ps.setString(4,noRA.getText());
             /**
              * Escolaridad
-             */
+             *//*
 
             if (preRA.isSelected()){
                 ps.setString(5,preRA.getText());
@@ -115,7 +147,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
                 ps.setString(5,posRA.getText());
             /**
              * Ocupación
-             */
+             *//*
             if (hogRA.isSelected()){
                 ps.setString(6,hogRA.getText());
             } else if (estRA.isSelected()) {
@@ -127,7 +159,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
             ps.executeUpdate();
         }catch (Exception ex){
             Logger.getLogger(RegistrodeLibreriasController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
 
     //Tab KidRegister
@@ -143,20 +175,28 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private Button deleteRegisterRI;
     @FXML private Button upDateRegisterRI;
     @FXML private Button findRegisterRI;
+    //grupo genero
     @FXML private RadioButton femRI;
     @FXML private RadioButton masRI;
+    final ToggleGroup grupogeneroK = new ToggleGroup();
+    //grupo discapacidad
     @FXML private RadioButton siRI;
     @FXML private RadioButton noRI;
+    final ToggleGroup grupodiscapacidadK = new ToggleGroup();
+    //frupo escolaridad
     @FXML private RadioButton preRI;
     @FXML private RadioButton priRI;
     @FXML private RadioButton secuRI;
     @FXML private RadioButton bachoRI;
     @FXML private RadioButton licRI;
     @FXML private RadioButton posRI;
+    final ToggleGroup grupoescolaridadK = new ToggleGroup();
+    //grupo ocupación
     @FXML private RadioButton hogRI;
     @FXML private RadioButton estRI;
     @FXML private RadioButton emploRI;
     @FXML private RadioButton desRI;
+    final  ToggleGroup grupoocupacionK = new ToggleGroup();
 
     //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
     @FXML private  void buttonActionInfantil(ActionEvent e){
@@ -303,6 +343,20 @@ public class RegistrodeLibreriasController extends Component implements Initiali
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        masRA.setToggleGroup(grupoGeneroRA);
+        femRA.setToggleGroup(grupoGeneroRA);
+        siRA.setToggleGroup(grupodiscapacidad);
+        noRA.setToggleGroup(grupodiscapacidad);
+        preRA.setToggleGroup(grupoescolaridad);
+        priRA.setToggleGroup(grupoescolaridad);
+        secuRA.setToggleGroup(grupoescolaridad);
+        bachoRA.setToggleGroup(grupoescolaridad);
+        licRA.setToggleGroup(grupoescolaridad);
+        posRA.setToggleGroup(grupoescolaridad);
+        hogRA.setToggleGroup(grupoocupacion);
+        estRA.setToggleGroup(grupoocupacion);
+        emploRA.setToggleGroup(grupoocupacion);
+        desRA.setToggleGroup(grupoocupacion);
         idC.setCellValueFactory(new PropertyValueFactory<>("id"));
         edadC.setCellValueFactory(new PropertyValueFactory<>("edad"));
         generoC.setCellValueFactory(new PropertyValueFactory<>("genero"));
@@ -314,12 +368,26 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         ocupacionC.setCellValueFactory(new PropertyValueFactory<>("ocupacion"));
 
         nVisitasC.setCellValueFactory(new PropertyValueFactory<>("nVisitas"));
-        tipoDeVisitanteC.setCellValueFactory(new PropertyValueFactory<>("tipoDeVisitas"));
+        tipoDeVisitanteC.setCellValueFactory(new PropertyValueFactory<>("tipoDeVisitante"));
         try {
             ListAdult.setItems(adultCRUD.getAllResource());
         } catch (Exception e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
+        masRI.setToggleGroup(grupogeneroK);
+        femRI.setToggleGroup(grupogeneroK);
+        siRI.setToggleGroup(grupodiscapacidadK);
+        noRI.setToggleGroup(grupodiscapacidadK);
+        preRI.setToggleGroup(grupoescolaridadK);
+        priRI.setToggleGroup(grupoescolaridadK);
+        secuRI.setToggleGroup(grupoescolaridadK);
+        bachoRI.setToggleGroup(grupoescolaridadK);
+        licRI.setToggleGroup(grupoescolaridadK);
+        posRI.setToggleGroup(grupoescolaridadK);
+        hogRI.setToggleGroup(grupoocupacionK);
+        estRI.setToggleGroup(grupoocupacionK);
+        emploRI.setToggleGroup(grupoocupacionK);
+        desRI.setToggleGroup(grupoocupacionK);
         idKC.setCellValueFactory(new PropertyValueFactory<>("id"));
         edadKC.setCellValueFactory(new PropertyValueFactory<>("edad"));
         generoKC.setCellValueFactory(new PropertyValueFactory<>("genero"));
@@ -336,7 +404,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         try {
             ListKid.setItems(kidCRUD.getAllResource());
         } catch (Exception e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 }
