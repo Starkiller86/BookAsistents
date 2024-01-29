@@ -181,7 +181,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private RadioButton siRI;
     @FXML private RadioButton noRI;
     final ToggleGroup grupodiscapacidadK = new ToggleGroup();
-    //frupo escolaridad
+    //grupo escolaridad
     @FXML private RadioButton preRI;
     @FXML private RadioButton priRI;
     @FXML private RadioButton secuRI;
