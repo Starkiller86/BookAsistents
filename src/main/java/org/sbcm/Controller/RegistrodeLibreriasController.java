@@ -91,9 +91,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         adulto.setOcupacion(((RadioButton) grupoocupacion.getSelectedToggle()).getText());
         adulto.setTipoDeVisitante("Adulto");
         adulto.setNVisitas(Integer.parseInt(nVisitasRA.getText()));
-
         //ahora solo llamaremos la función del crud que se encarga de subir datos mediante el servidor a la base de datos
-
         try{
             adultCRUD.postResourse(adulto);
         }catch (Exception e){
