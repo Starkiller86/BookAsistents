@@ -1,6 +1,5 @@
 package org.sbcm.Controller;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,17 +15,7 @@ import org.sbcm.Model.Kid;
 
 import java.awt.*;
 import java.net.URL;
-import java.nio.file.SecureDirectoryStream;
 import java.util.ResourceBundle;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 public class RegistrodeLibreriasController extends Component implements Initializable {
     //Vamos a declarar todos los nodos que tenemos en esa interfaz, de momento vamos a hacer un codigo spagueti donde solo nos enfoquemos en que funcione
@@ -74,9 +63,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private TextField nVisitasRA;
     @FXML private Button buttonRA;
 
-    @FXML private Button deleteRegisterRA;
-    @FXML private Button upDateRegisterRA;
-    @FXML private Button findRegisterRA;
+
     //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
 
     @FXML private void buttonRegisterAdult(ActionEvent event) throws Exception{
@@ -99,67 +86,6 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         }catch (Exception e){
             throw new Exception(e);
         }
-
-
-
-
-        /*CODIGO LEGACY
-        try{
-            String nRegistro = nRegistroRA.getText();
-            String edad = edadRA.getText();
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost/registrolibrerias","root","");
-            PreparedStatement ps=con.prepareStatement("insert into registroaduls(id,edad,genero,discapacidad,escolaridad,ocupacion)values(?,?,?,?,?,?)");
-            ps.setString(1, nRegistro);
-            ps.setString(2, edad);
-            /**
-             * Genero
-             *//*
-            if (femRA.isSelected()){
-                ps.setString(3,femRA.getText());
-            }
-            else
-                ps.setString(3,masRA.getText());
-            /**
-             * Discapacidad
-             *//*
-            if (siRA.isSelected()){
-                ps.setString(4,siRA.getText());
-            }
-            else
-                ps.setString(4,noRA.getText());
-            /**
-             * Escolaridad
-             *//*
-
-            if (preRA.isSelected()){
-                ps.setString(5,preRA.getText());
-            } else if (priRA.isSelected()) {
-                ps.setString(5,priRA.getText());
-            } else if (secuRA.isSelected()) {
-                ps.setString(5,secuRA.getText());
-            } else if (bachoRA.isSelected()) {
-                ps.setString(5,bachoRA.getText());
-            } else if (licRA.isSelected()) {
-                ps.setString(5,licRA.getText());
-            }
-            else
-                ps.setString(5,posRA.getText());
-            /**
-             * Ocupación
-             *//*
-            if (hogRA.isSelected()){
-                ps.setString(6,hogRA.getText());
-            } else if (estRA.isSelected()) {
-                ps.setString(6,estRA.getText());
-            } else if (emploRA.isSelected()) {
-                ps.setString(6, emploRA.getText());
-            }else
-                ps.setString(6,desRA.getText());
-            ps.executeUpdate();
-        }catch (Exception ex){
-            Logger.getLogger(RegistrodeLibreriasController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
     }
 
     //Tab KidRegister
@@ -172,9 +98,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private TextField textInputRI;
     @FXML private TextField nVisitasRI;
     @FXML private Button buttonRI;
-    @FXML private Button deleteRegisterRI;
-    @FXML private Button upDateRegisterRI;
-    @FXML private Button findRegisterRI;
+
     //grupo genero
     @FXML private RadioButton femRI;
     @FXML private RadioButton masRI;
@@ -199,54 +123,22 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     final  ToggleGroup grupoocupacionK = new ToggleGroup();
 
     //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
-    @FXML private  void buttonActionInfantil(ActionEvent e){
+    @FXML private  void buttonActionInfantil(ActionEvent e)throws Exception{
+        Kid kid = new Kid();
+        kid.setEdad(Integer.parseInt(edadRI.getText()));
+        kid.setGenero(((RadioButton)grupogeneroK.getSelectedToggle()).getText());
+        kid.setDiscapacidad(((RadioButton)grupodiscapacidadK.getSelectedToggle()).getText());
+        kid.setEscolaridad(((RadioButton)grupoescolaridadK.getSelectedToggle()).getText());
+        kid.setOcupacion(((RadioButton)grupoocupacionK.getSelectedToggle()).getText());
+        kid.setTipoDeVisitante("Kid");
+        kid.setNVisitas(Integer.parseInt(nVisitasRI.getText()));
         try {
-            String nRegistro = nRegistroRI.getText();
-            String edad = edadRI.getText();
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/registrolibrerias", "root", "");
-            PreparedStatement ps = con.prepareStatement("insert into kidsregister(id,edad,genero,escolaridad,discapacidad,ocupacion)values(?,?,?,?,?,?))");
-            ps.setString(1, nRegistro);
-            ps.setString(2, edad);
-            /**Genero**/
-            if (femRI.isSelected()) {
-                ps.setString(3, femRI.getText());
-            } else
-                ps.setString(3, masRI.getText());
-
-            /**Escolaridad**/
-            if (preRI.isSelected()) {
-                ps.setString(4, preRI.getText());
-            } else if (priRI.isSelected()) {
-                ps.setString(4, priRI.getText());
-            } else if (secuRI.isSelected()) {
-                ps.setString(4, secuRI.getText());
-            } else if (bachoRI.isSelected()) {
-                ps.setString(4, bachoRI.getText());
-            } else if (licRI.isSelected()) {
-                ps.setString(4, licRI.getText());
-            } else
-                ps.setString(4, posRI.getText());
-            /**
-             * Discapacidad
-             */
-            if (siRI.isSelected()) {
-                ps.setString(5, siRI.getText());
-            } else
-                ps.setString(5, noRI.getText());
-            /**Ocupacion**/
-            if (hogRI.isSelected()) {
-                ps.setString(6, hogRI.getText());
-            } else if (estRI.isSelected()) {
-                ps.setString(6, estRI.getText());
-            } else if (emploRI.isSelected()) {
-                ps.setString(6, emploRI.getText());
-            } else
-                ps.setString(6,desRI.getText());
-            ps.executeUpdate();
-        } catch (Exception exception){
-            Logger.getLogger(RegistrodeLibreriasController.class.getName()).log(Level.SEVERE, null, exception);
+            kidCRUD.postResourse(kid);
+        }catch (Exception exception){
+            throw new Exception(exception);
         }
+
+
     }
 
     //Tab AdultList
@@ -269,10 +161,40 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     private TableColumn<Adult, Integer>nVisitasC;
     @FXML
     private TableColumn<Adult, String> tipoDeVisitanteC;
+
+    @FXML private Button deleteRegisterRA;
+    @FXML private Button upDateRegisterRA;
+    @FXML private Button findRegisterRA;
     //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
 
-    @FXML private void deleteRegisterRAAction(ActionEvent e){
-        String nRegistroRA = JOptionPane.showInputDialog(null,"Ingrese el ID del registro que desea eliminar: ");
+    @FXML private void deleteRegisterRAAction(ActionEvent event) throws Exception{
+        Alert alert;
+        Adult selectadult = ListAdult.getSelectionModel().getSelectedItem();
+        if(selectadult!=null){
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText("¿Deseas eliminar este registro?");
+            alert.setContentText("Registro: \n ID : " + selectadult.getId());
+            ButtonType respuesta = alert.showAndWait().orElse(ButtonType.CANCEL);
+            if(respuesta == ButtonType.OK){
+                try {
+                    adultCRUD.deleteResource(selectadult.getId());
+                    ListAdult.setItems(adultCRUD.getAllResources());
+                    alert.setTitle("operacion Exitosa");
+                    alert.setHeaderText("El siguiente registro ha sido eliminado con exito");
+                    alert.setContentText("Registro: \n ID : " + selectadult.getId());
+                    alert.showAndWait();
+                }catch (Exception e){
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("ERROR");
+                    alert.setHeaderText("Ha ocurrido un error en el sistema");
+                    alert.setContentText("Favor de comunicarse al ########");
+                    alert.showAndWait();
+                    throw new Exception(e);
+                }
+            }
+        }
+
     }
     @FXML private void upDateRegisterRAaction(ActionEvent event){
 
@@ -301,10 +223,74 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     private TableColumn<Kid, Integer>nVisitasKC;
     @FXML
     private TableColumn<Kid, String> tipoDeVisitanteKC;
+    @FXML private Button deleteRegisterRI;
+    @FXML private Button upDateRegisterRI;
+    @FXML private Button findRegisterRI;
+
     //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
 
-    @FXML private void deleteRegisterRIaction(ActionEvent event){
-        System.out.println("hiiii");
+    @FXML private void deleteRegisterRIaction(ActionEvent event) throws Exception{
+        //Creamos un alert para brindar confirmación al usuario
+        Alert alert;
+        //Extraemos el modelo seleccionado de la tabla
+        Kid selectedKid = ListKid.getSelectionModel().getSelectedItem();
+        //Verificamos que el valor no sea nulo, si no es nulo mandamos el mensaje de confirmación
+        if (selectedKid!=null){
+            //Creamos el mensaje de confirmacion
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText("¿Realmente desea eliminar el registro?");
+            alert.setContentText("Registro: \n ID: " + selectedKid.getId() +
+                    "\n Edad: " + selectedKid.getEdad() +
+                    "\n Genero: " + selectedKid.getGenero() +
+                    "\n Escolaridad: " + selectedKid.getEscolaridad() +
+                     "etc");
+            //Mostramos y Extraemos la respuesta y la guardamos en un ButtonType
+            ButtonType respuesta = alert.showAndWait().orElse(ButtonType.CANCEL);
+            //Verificamos que decidió el usuario
+            if(respuesta == ButtonType.OK){
+                //Si la respuesta es OK realizamos la operación delete y actualizamos la lista en la tabla
+                //Para ello necesitamos un try catch para la comunicación en servidor y verificar si se realizó correctamente
+                try {
+                    //Colocamos el id del kid seleccionado en la tabla
+                    kidCRUD.deleteResource(selectedKid.getId());
+                    //Actualizamos la tabla
+                    ListKid.setItems(kidCRUD.getAllResources());
+                    //Si en este punto no ha pasado al catch, las operaciones fueron exitosas, por lo tanto se lo haremos saber al usuario con un alert
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Operación Exitosa");
+                    alert.setHeaderText("El siguiente registro ha sido eliminado con exito!");
+                    alert.setContentText("Registro: \n ID: " + selectedKid.getId() +
+                            "\n Edad: " + selectedKid.getEdad() +
+                            "\n Genero: " + selectedKid.getGenero() +
+                            "\n Escolaridad: " + selectedKid.getEscolaridad() +
+                            "etc");
+                    alert.showAndWait();
+                }catch (Exception e){
+                    //En caso de surgir algún error durante el try se ejecutará el catch, de lo contrario solo se omite en la ejecución
+                    //Mostraremos un mensaje al usuario indicando que hubo un error y debe comunicarse con soporte
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("ERROR");
+                    alert.setHeaderText("Ha ocurrido un error en el SISTEMA");
+                    alert.setContentText("Favor de comunicarse con soporte al numero ######## y proporcionar la siguiente información \n " + e);
+                    alert.showAndWait();
+                    //Dado que es un error de sistema o conexión solo lo puede atender el de sistemas
+                    throw new Exception(e);
+                }
+
+            }
+        }
+        else{
+            //Esto va dentro de un else perdón
+            //En caso de que no haya seleccionado nada tambien le daremos un mensaje de que debe seleccionar un fila antes de continuar
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("No ha seleccionado ninguna FILA");
+            alert.setContentText("Seleccione una fila para eliminar");
+            //Ahora cada uno de los alerte debe pausar el programa para que no sea posible interactuar con el a menos de que el alert desaparezca, para ello usamos ShowAwait en todos
+            alert.showAndWait();
+        }
+
     }
     @FXML private void upDateRegisterRIaction(ActionEvent event){
         System.out.println("hi");
@@ -370,7 +356,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         nVisitasC.setCellValueFactory(new PropertyValueFactory<>("nVisitas"));
         tipoDeVisitanteC.setCellValueFactory(new PropertyValueFactory<>("tipoDeVisitante"));
         try {
-            ListAdult.setItems(adultCRUD.getAllResource());
+            ListAdult.setItems(adultCRUD.getAllResources());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -402,7 +388,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         tipoDeVisitanteKC.setCellValueFactory(new PropertyValueFactory<>("tipoDeVisitante"));
 
         try {
-            ListKid.setItems(kidCRUD.getAllResource());
+            ListKid.setItems(kidCRUD.getAllResources());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

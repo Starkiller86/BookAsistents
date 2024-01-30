@@ -31,7 +31,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
      * @throws Exception se realiza cuando la conexion HTTP es diferente a 200, de otra forma continua el programa
      */
     @Override
-    public ObservableList<Adult> getAllResource() throws Exception {
+    public ObservableList<Adult> getAllResources() throws Exception {
         /**Uri o (Uniform resource identifier) es un identificador único que se encarga de localizar o identificar algún único recurso, en este caso se utiliza esta Uri,
          * para poder identificar los datos que se encuentran en esa localizacion, haciendo que se guarden en la variable uri, guardando una localizacion de datos.**/
         uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults");
@@ -181,8 +181,8 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
 
     @Override
     public void deleteResource(int id) throws Exception {
-        uri = new URI("http://localhost:4040/crm/deleteManager/0");
-        if(!usingTest)
+        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults/"+id);
+
             connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("DELETE");
         connection.setRequestProperty("User-Agent", "JAVAFX/1.0 SNAPSHOT (Windows 11; x64)");
@@ -203,7 +203,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
 
     @Override
     public void putResource(Adult adult) throws Exception {
-        uri = new URI("http://localhost:4040/crm/updateManager");
+        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults");
         if(!usingTest)
             connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("PUT");

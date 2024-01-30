@@ -19,7 +19,7 @@ public interface CRUD<Resource> {
      * @return observablelist es lo que retorna con todos los registros de la base de datos
      * @throws Exception es lo que se coloca cuando la conexión HTTP es diferente a 200, de otra forma continua el programa
      */
-    ObservableList<Resource> getAllResource() throws Exception;
+    ObservableList<Resource> getAllResources() throws Exception;
 
     /***
      * Este método se encarga de poder generar un registro en la base de datos mediante las conexiones HTTP y

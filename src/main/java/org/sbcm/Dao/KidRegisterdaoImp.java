@@ -31,7 +31,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
       */
 
     @Override
-    public ObservableList<Kid> getAllResource() throws Exception {
+    public ObservableList<Kid> getAllResources() throws Exception {
         uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids");
 
         connection = (HttpURLConnection) uri.toURL().openConnection();
@@ -77,7 +77,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
     @Override
     public void postResourse(Kid kid) throws Exception {
         uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids");
-        if(!usingTest)
+
             connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
@@ -105,7 +105,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
       */
     @Override
     public Kid getOneResourceById(int id) throws Exception {
-        uri = new URI("http://localhost:4040/crm/getManager/"+id);
+        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults"+id);
         if(!usingTest)
             connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("GET");
@@ -144,8 +144,9 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
 
     @Override
     public void deleteResource(int id) throws Exception {
-        uri = new URI("http://localhost:4040/crm/deleteManager/0");
-        if(!usingTest)
+        //Muchachos por eso les quité el copiar y pegar en clase
+        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids/"+id);//aquí debemos colocar al final al id que entra por parametro
+
             connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("DELETE");
         connection.setRequestProperty("User-Agent", "JAVAFX/1.0 SNAPSHOT (Windows 11; x64)");
