@@ -3,6 +3,7 @@ module org.sbcm {
     requires javafx.fxml;
     requires javafx.media;
     opens org.sbcm to javafx.fxml;
+    opens org.sbcm.Controller.VentantasControllers to javafx.fxml;
     exports org.sbcm;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.core;
@@ -17,5 +18,6 @@ module org.sbcm {
     exports org.sbcm.Dao;
     exports org.sbcm.Model;
     exports org.sbcm.Controller;
+    exports org.sbcm.SingletonModels;
 
 }

@@ -1,6 +1,7 @@
 package org.sbcm.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.sbcm.Controller.VentantasControllers.UpdateRegisterWindowController;
 
 public class Adult {
 /**Este modelo de Adult en donde se encuentra la estructura de los datos que se deben de tener en los registros y cada uno de estos

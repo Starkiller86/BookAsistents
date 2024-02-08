@@ -78,7 +78,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
     public void postResourse(Kid kid) throws Exception {
         uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids");
 
-            connection = (HttpURLConnection) uri.toURL().openConnection();
+        connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setDoOutput(true);
@@ -166,9 +166,8 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
 
     @Override
     public void putResource(Kid kid) throws Exception {
-        uri = new URI("http://localhost:4040/crm/updateManager");
-        if(!usingTest)
-            connection = (HttpURLConnection) uri.toURL().openConnection();
+        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids");
+        connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("User-Agent", "JAVAFX/1.0 SNAPSHOT (Windows 11; x64)");

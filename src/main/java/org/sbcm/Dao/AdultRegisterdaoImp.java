@@ -114,7 +114,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
         {
             uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults");
 
-                connection = (HttpURLConnection) uri.toURL().openConnection();
+            connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setDoOutput(true);
@@ -204,8 +204,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
     @Override
     public void putResource(Adult adult) throws Exception {
         uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults");
-        if(!usingTest)
-            connection = (HttpURLConnection) uri.toURL().openConnection();
+        connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("User-Agent", "JAVAFX/1.0 SNAPSHOT (Windows 11; x64)");
@@ -219,7 +218,6 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
             throw new Exception();
         }
         connection.disconnect();
-
     }
 
     @Override

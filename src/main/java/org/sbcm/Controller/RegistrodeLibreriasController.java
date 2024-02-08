@@ -1,20 +1,30 @@
 package org.sbcm.Controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.sbcm.Dao.AdultRegisterdaoImp;
 import org.sbcm.Dao.CRUD;
 import org.sbcm.Dao.KidRegisterdaoImp;
 import org.sbcm.Model.Adult;
 import org.sbcm.Model.Kid;
+import org.sbcm.SingletonModels.AdultSingleton;
+import org.sbcm.SingletonModels.KidSinglenton;
+import org.sbcm.SingletonModelsAsistent.AdultAsistentSingleton;
 
 import java.awt.*;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class RegistrodeLibreriasController extends Component implements Initializable {
@@ -24,25 +34,22 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     //Para poder acceder a las funcionalidades de la base de datos y el servidor necesitamos el DAO, lo voy a declarar en la parte superior, pero cuando dividamos
     //en varios archivos cada uno debe tener su propia instancia de Dao que necesite
     CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
-    /**
-     * Prueba de GitHub
-     */
     CRUD<Kid> kidCRUD = new KidRegisterdaoImp();
-    //Tab AdultRegister
-    //Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones.
+    /**Tab AdultRegister**/
+    /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones.**/
     //Para darle una accion a un botón es necesario indicar desde la interfaz a que funcion va a desencadenar la acción
 
     @FXML private TextField nRegistroRA;
     @FXML private TextField edadRA;
-    //Grupo Genero
+    /**Grupo Género**/
     final ToggleGroup grupoGeneroRA = new ToggleGroup();
     @FXML private RadioButton femRA;
     @FXML private RadioButton masRA;
-    //Grupo discapacidad
+    /**Grupo Discapacidad**/
     @FXML private RadioButton siRA;
     @FXML private RadioButton noRA;
     final ToggleGroup grupodiscapacidad = new ToggleGroup();
-    //grupo escolaridad
+    /**Grupo Escolaridad**/
     @FXML private RadioButton preRA;
     @FXML private RadioButton priRA;
     @FXML private RadioButton secuRA;
@@ -50,7 +57,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private RadioButton licRA;
     @FXML private RadioButton posRA;
     final ToggleGroup grupoescolaridad = new ToggleGroup();
-    //grupo ocupación
+    /**Grupo Ocupación**/
     @FXML private RadioButton hogRA;
     @FXML private RadioButton estRA;
     @FXML private RadioButton emploRA;
@@ -63,9 +70,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private TextField nVisitasRA;
     @FXML private Button buttonRA;
 
-
-    //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
-
+    /**En esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.**/
     @FXML private void buttonRegisterAdult(ActionEvent event) throws Exception{
         //Primero vamos a crear el objeto en el que vamos a colocar toda la info de la interfaz
         Adult adulto = new Adult();
@@ -78,16 +83,19 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         adulto.setOcupacion(((RadioButton) grupoocupacion.getSelectedToggle()).getText());
         adulto.setTipoDeVisitante("Adulto");
         adulto.setNVisitas(Integer.parseInt(nVisitasRA.getText()));
+        System.out.println(new ObjectMapper().writeValueAsString(adulto));
         //ahora solo llamaremos la función del crud que se encarga de subir datos mediante el servidor a la base de datos
         try{
             adultCRUD.postResourse(adulto);
+            //Debemos actualizar la tabla tambien
+            ListAdult.setItems(adultCRUD.getAllResources());
         }catch (Exception e){
             throw new Exception(e);
         }
     }
 
-    //Tab KidRegister
-    //Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones
+    /**Tab KidRegister**/
+    /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones**/
     @FXML private TextField nRegistroRI;
     @FXML private TextField edadRI;
     @FXML private TextField textInput;
@@ -97,15 +105,15 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private TextField nVisitasRI;
     @FXML private Button buttonRI;
 
-    //grupo genero
+    /**Grupo Género**/
     @FXML private RadioButton femRI;
     @FXML private RadioButton masRI;
     final ToggleGroup grupogeneroK = new ToggleGroup();
-    //grupo discapacidad
+    /**Grupo Discapacidad**/
     @FXML private RadioButton siRI;
     @FXML private RadioButton noRI;
     final ToggleGroup grupodiscapacidadK = new ToggleGroup();
-    //grupo escolaridad
+    /**Grupo Escolaridad**/
     @FXML private RadioButton preRI;
     @FXML private RadioButton priRI;
     @FXML private RadioButton secuRI;
@@ -113,14 +121,14 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private RadioButton licRI;
     @FXML private RadioButton posRI;
     final ToggleGroup grupoescolaridadK = new ToggleGroup();
-    //grupo ocupación
+    /**Grupo Ocupación**/
     @FXML private RadioButton hogRI;
     @FXML private RadioButton estRI;
     @FXML private RadioButton emploRI;
     @FXML private RadioButton desRI;
     final  ToggleGroup grupoocupacionK = new ToggleGroup();
 
-    //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
+    /**En esta parte del código lo que realiza es determinar la función que el botón va a hacer en la interfaz y la base de datos.**/
     @FXML private  void buttonActionInfantil(ActionEvent e)throws Exception{
         Kid kid = new Kid();
         kid.setEdad(Integer.parseInt(edadRI.getText()));
@@ -130,17 +138,18 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         kid.setOcupacion(((RadioButton)grupoocupacionK.getSelectedToggle()).getText());
         kid.setTipoDeVisitante("Kid");
         kid.setNVisitas(Integer.parseInt(nVisitasRI.getText()));
+        kid.setId(Integer.parseInt(nRegistroRI.getText()));
+        System.out.println(new ObjectMapper().writeValueAsString(kid));
         try {
             kidCRUD.postResourse(kid);
+            ListKid.setItems(kidCRUD.getAllResources());
         }catch (Exception exception){
             throw new Exception(exception);
         }
-
-
     }
 
-    //Tab AdultList
-    //Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones
+    /**Tab AdultList**/
+    /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones**/
     @FXML
     private TableView <Adult> ListAdult;
     @FXML
@@ -163,16 +172,21 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private Button deleteRegisterRA;
     @FXML private Button upDateRegisterRA;
     @FXML private Button findRegisterRA;
-    //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
 
+    /**En esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.**/
     @FXML private void deleteRegisterRAAction(ActionEvent event) throws Exception{
         Alert alert;
         Adult selectadult = ListAdult.getSelectionModel().getSelectedItem();
         if(selectadult!=null){
             alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmación");
-            alert.setHeaderText("¿Deseas eliminar este registro?");
-            alert.setContentText("Registro: \n ID : " + selectadult.getId());
+            alert.setHeaderText("¿Realmente desea eliminar el registro?");
+            alert.setContentText("Registro: \n ID : " + selectadult.getId()+
+                    "\n Edad: " + selectadult.getEdad() +
+                    "\n Genero: " + selectadult.getGenero() +
+                    "\n Escolaridad: " + selectadult.getEscolaridad() +
+                    "\n Discapacidad: " + selectadult.getDiscapacidad() +
+                    "\n Ocupación: " + selectadult.getOcupacion());
             ButtonType respuesta = alert.showAndWait().orElse(ButtonType.CANCEL);
             if(respuesta == ButtonType.OK){
                 try {
@@ -180,29 +194,86 @@ public class RegistrodeLibreriasController extends Component implements Initiali
                     ListAdult.setItems(adultCRUD.getAllResources());
                     alert.setTitle("operacion Exitosa");
                     alert.setHeaderText("El siguiente registro ha sido eliminado con exito");
-                    alert.setContentText("Registro: \n ID : " + selectadult.getId());
+                    alert.setContentText("Registro: \n ID : " + selectadult.getId() +
+                            "\n Edad: " + selectadult.getEdad() +
+                            "\n Genero: " + selectadult.getGenero() +
+                            "\n Escolaridad: " + selectadult.getEscolaridad() +
+                            "\n Discapacidad: " + selectadult.getDiscapacidad() +
+                            "\n Ocupación: " + selectadult.getOcupacion());
                     alert.showAndWait();
                 }catch (Exception e){
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("ERROR");
                     alert.setHeaderText("Ha ocurrido un error en el sistema");
-                    alert.setContentText("Favor de comunicarse al ########");
+                    alert.setContentText("Favor de comunicarse a soporte al correo socialservice285@gmail.com y proporcionar la siguiente información \n" + e);
                     alert.showAndWait();
                     throw new Exception(e);
                 }
             }
         }
-
+        else {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("No ha seleccionado ninguna FILA");
+            alert.setContentText("Seleccione una fila para eliminar");
+            alert.showAndWait();
+        }
     }
-    @FXML private void upDateRegisterRAaction(ActionEvent event){
+    @FXML private void upDateRegisterRAaction(ActionEvent event) throws Exception{
+        //Voy a verificar que el botón funciona correctamente con un sout
+        //funciona bien
+        //System.out.println("update");
+        //Como es posible que exitan errores con comunicacion del servidor o en la seleccion del elemeto voy a programar dentro de un try
+        try {
+            //Como se supone que debe seleccionar algo de la tabla para poderlo actualizar voy a verificar si tiene seleccionado algo
+            Adult adultoSelected = ListAdult.getSelectionModel().getSelectedItem();
+            //Si adultoSelected es nulo o no existe quiere decir que no selecciono nada entonces le mostrare un alert que le indique que debe seleccionar algo
+            if(adultoSelected == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("No seleccionaste ningun Usuario");
+                alert.setContentText("Selecciona un usuario para continuar");
+                //Configuramos la ventana como ShowandAwait para que no nos deje interactuar con la interfaz mientras está abierta
+                alert.showAndWait();
+            }
+            //En el caso de que adulto sea nulo y no haya nada seleccionado usaremos un assert para cortar la ejecucion en este punto y pase al catch
+            assert adultoSelected != null : "Adulto es nulo";
+            //Si no sucede lo anterior  y si tenemos algo seleccionado vamos a pasar la información de un controlador a otro para que se pueda mostrar y editar
+            //Como tal javafx no tiene un funcionalidad que permita esta comunicación, pero java como tal mediante un patron de diseño: "Singleton"
+            //Nuestra unica instancia va a guardar la informacion de nuestro usuario para que podamos leer la misma información desde cualquier parte de nuestro codigo
+            //Creamos nuestro singleton
+            AdultSingleton adultSingleton = AdultSingleton.getInstance(); //No usamos new, en su lugar colocamos el metodo estatico getInstance() de AdultSingleton
+            //Colocamos datos del adultoSelected a adultoSingleton
+            adultSingleton.setId(adultoSelected.getId());
+            adultSingleton.setDiscapacidad(adultoSelected.getDiscapacidad());
+            adultSingleton.setnVisitas(adultoSelected.getNVisitas());
+            adultSingleton.setEdad(adultoSelected.getEdad());
+            adultSingleton.setEscolaridad(adultoSelected.getEscolaridad());
+            adultSingleton.setGenero(adultoSelected.getGenero());
+            adultSingleton.setOcupacion(adultoSelected.getOcupacion());
+            adultSingleton.setTipoDeVisitante(adultoSelected.getTipoDeVisitante());
+            //Ahora tenemos que crear una nueva ventana donde cargaremos la interfaz que creamos para actualizar los datos
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Ventanas/UpdateRegisterWindow.fxml"));
+            Parent root= loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Actualizar datos de Usuario");
+            stage.setScene(scene);
+            stage.showAndWait();
+            //Una vez que la ventana se cierre vamos a actualizar la tabla para que se muestren los datos actualizados
+            ListAdult.setItems(adultCRUD.getAllResources());
 
+        }catch (Exception e){
+            throw new Exception(e);
+        }
     }
     @FXML private void findRegisterRAaction(ActionEvent event){
-        System.out.println("hiii");
+
     }
 
-    //Tab KidList
-    //Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones
+    /**Tab KidList**/
+    /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones**/
     @FXML
     private TableView <Kid> ListKid;
     @FXML
@@ -225,7 +296,7 @@ public class RegistrodeLibreriasController extends Component implements Initiali
     @FXML private Button upDateRegisterRI;
     @FXML private Button findRegisterRI;
 
-    //en esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.
+    /**En esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.**/
 
     @FXML private void deleteRegisterRIaction(ActionEvent event) throws Exception{
         //Creamos un alert para brindar confirmación al usuario
@@ -242,7 +313,8 @@ public class RegistrodeLibreriasController extends Component implements Initiali
                     "\n Edad: " + selectedKid.getEdad() +
                     "\n Genero: " + selectedKid.getGenero() +
                     "\n Escolaridad: " + selectedKid.getEscolaridad() +
-                     "etc");
+                    "\n Discapacidad: " + selectedKid.getDiscapacidad() +
+                    "\n Ocupación: " + selectedKid.getOcupacion());
             //Mostramos y Extraemos la respuesta y la guardamos en un ButtonType
             ButtonType respuesta = alert.showAndWait().orElse(ButtonType.CANCEL);
             //Verificamos que decidió el usuario
@@ -262,7 +334,8 @@ public class RegistrodeLibreriasController extends Component implements Initiali
                             "\n Edad: " + selectedKid.getEdad() +
                             "\n Genero: " + selectedKid.getGenero() +
                             "\n Escolaridad: " + selectedKid.getEscolaridad() +
-                            "etc");
+                            "\n Discapacidad: "+ selectedKid.getDiscapacidad() +
+                            "\n Ocupación: " + selectedKid.getOcupacion());
                     alert.showAndWait();
                 }catch (Exception e){
                     //En caso de surgir algún error durante el try se ejecutará el catch, de lo contrario solo se omite en la ejecución
@@ -270,12 +343,11 @@ public class RegistrodeLibreriasController extends Component implements Initiali
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("ERROR");
                     alert.setHeaderText("Ha ocurrido un error en el SISTEMA");
-                    alert.setContentText("Favor de comunicarse con soporte al numero ######## y proporcionar la siguiente información \n " + e);
+                    alert.setContentText("Favor de comunicarse con soporte al correo socialservice285@gmail.com y proporcionar la siguiente información \n " + e);
                     alert.showAndWait();
                     //Dado que es un error de sistema o conexión solo lo puede atender el de sistemas
                     throw new Exception(e);
                 }
-
             }
         }
         else{
@@ -290,16 +362,47 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         }
 
     }
-    @FXML private void upDateRegisterRIaction(ActionEvent event){
-        System.out.println("hi");
+    @FXML private void upDateRegisterRIaction(ActionEvent event) throws Exception{
+        try{
+            Kid kidSelected = ListKid.getSelectionModel().getSelectedItem();
+            if(kidSelected == null){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("ERROR");
+                alert.setHeaderText("No seleccionaste ningun usuario");
+                alert.setContentText("Selecciona un Usuario para continuar");
+                alert.showAndWait();
+            }
+            assert kidSelected != null : "Kid es nulo";
+            KidSinglenton kidSinglenton = KidSinglenton.getInstance();
+            kidSinglenton.setId(kidSelected.getId());
+            kidSinglenton.setEdad(kidSelected.getEdad());
+            kidSinglenton.setDiscapacidad(kidSelected.getDiscapacidad());
+            kidSinglenton.setEscolaridad(kidSelected.getEscolaridad());
+            kidSinglenton.setGenero(kidSelected.getGenero());
+            kidSinglenton.setOcupacion(kidSelected.getOcupacion());
+            kidSinglenton.setnVisitas(kidSelected.getNVisitas());
+            kidSinglenton.setTipoDeVisitante(kidSelected.getTipoDeVisitante());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Ventanas/UpdateRegisterWindowKid.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Actualizar datos de Usuario");
+            stage.setScene(scene);
+            stage.showAndWait();
+            ListKid.setItems(kidCRUD.getAllResources());
+        }catch (Exception e){
+            throw new Exception(e);
+
+        }
     }
     @FXML private void findRegisterRIaction(ActionEvent event){
         System.out.println("hiiiii");
     }
 
 
-    //Tab NumberGenerateKid
-    //Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones
+    /**Tab NumberGenerateKid**/
+    /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones**/
     @FXML private TextField numberKid;
     @FXML private Button buttonG;
     @FXML private void buttonActionbuttonG(ActionEvent event){
@@ -310,12 +413,11 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         this.numberKid.setText(rand+"");
     }
 
-    //Tab NumberGenerateAdult
-    //Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones
+    /**Tab NumberGenerateAdult**/
+    /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones**/
     @FXML private TextField numberAdult;
     @FXML private Button buttonGA;
-    //este botón muestra un número aleatorio los cuales se usaran para poder registrar a los usuarios en la base de datos.
-
+    /**Este botón muestra un número aleatorio los cuales se usaran para poder registrar a los usuarios en la base de datos.**/
     @FXML private void buttonActionbuttonGA(ActionEvent event){
         long rand;
         do {
@@ -323,8 +425,19 @@ public class RegistrodeLibreriasController extends Component implements Initiali
         }while (rand % 2 != 1);
         this.numberAdult.setText(rand+"");
     }
-    //En esta línea de código se van a determinar todas las variables que van a aparecer en la interfaz o estas son todas las variables que vera el usuario en el servidor.
+    /**En esta línea de código se van a determinar todas las variables que van a aparecer en la interfaz o estas son todas las variables que vera el usuario en el servidor.**/
+    @FXML private void SumanVisitasC(ActionEvent event){
 
+    }
+    @FXML private void SumanVisitasKC(ActionEvent event){
+
+    }
+    @FXML private void VisitantetipoDeVisitanteC(ActionEvent event){
+
+    }
+    @FXML private void Visitante(ActionEvent event){
+
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         masRA.setToggleGroup(grupoGeneroRA);
