@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.sbcm.Model.Adult;
 import org.sbcm.Model.Kid;
 
 import java.io.BufferedReader;

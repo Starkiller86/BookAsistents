@@ -1,7 +1,6 @@
 package org.sbcm.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.sbcm.Controller.VentantasControllers.UpdateRegisterWindowController;
 
 public class Adult {
 /**Este modelo de Adult en donde se encuentra la estructura de los datos que se deben de tener en los registros y cada uno de estos
@@ -9,6 +8,11 @@ public class Adult {
  * **/
     @JsonProperty("id")
     private int id;
+
+    @JsonProperty("nombre")
+    private String nombre;
+    @JsonProperty("apellido")
+    private String apellido;
     @JsonProperty("edad")
     private int edad;
     @JsonProperty("genero")
@@ -24,6 +28,22 @@ public class Adult {
     private int nVisitas;
     @JsonProperty("tipoDeVisitante")
     private String tipoDeVisitante;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
     public int getNVisitas() {
         return nVisitas;

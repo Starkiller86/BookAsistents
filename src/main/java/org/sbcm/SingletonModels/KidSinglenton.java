@@ -1,13 +1,13 @@
 package org.sbcm.SingletonModels;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class KidSinglenton {
     /**El atributo principal debe ser la propia instancia estatica y privada de la clase**/
     public static KidSinglenton kidSinglenton;
     /**El constructor debe de ser privado
     Debajo podemos colocar los atributos que vamos a guardar de los usuarios**/
     private int id;
+    private String nombre;
+    private String apellido;
     private int edad;
     private String genero;
     private String escolaridad;
@@ -33,6 +33,22 @@ public class KidSinglenton {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public int getEdad() {

@@ -7,6 +7,8 @@ public class AdultSingleton {
     /**EL constructor debe ser privado
     Debajo podemos colocar los atributos que vamos a guardar de los usuarios**/
     private int id;
+    private String nombre;
+    private String apellido;
     private int edad;
     private String genero;
     private  String escolaridad;
@@ -30,6 +32,22 @@ public class AdultSingleton {
     /**Solo se genera getter y setter para los demás atributos sin contar la instancia**/
     public int getId() {
         return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public void setId(int id) {

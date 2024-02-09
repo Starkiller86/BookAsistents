@@ -1,12 +1,11 @@
 package org.sbcm.Dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.deser.impl.FailingDeserializer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.sbcm.Model.Adult;
-import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
