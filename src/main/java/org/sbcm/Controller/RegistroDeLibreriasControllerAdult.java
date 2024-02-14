@@ -84,19 +84,24 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         adulto.setEscolaridad(((RadioButton) grupoescolaridad.getSelectedToggle()).getText());
         adulto.setOcupacion(((RadioButton) grupoocupacion.getSelectedToggle()).getText());
         adulto.setTipoDeVisitante("Adulto");
-        adulto.setNVisitas(Integer.parseInt(nVisitasRA.getText()));
         System.out.println(new ObjectMapper().writeValueAsString(adulto));
         //ahora solo llamaremos la función del crud que se encarga de subir datos mediante el servidor a la base de datos
         try{
             adultCRUD.postResourse(adulto);
             //Debemos actualizar la tabla tambien
             ListAdult.setItems(adultCRUD.getAllResources());
+            edadRA.setText("");
+            nombreRA.setText("");
+            apellidoRA.setText("");
+            grupoGeneroRA.selectToggle(null);
+            grupodiscapacidad.selectToggle(null);
+            grupoescolaridad.selectToggle(null);
+            grupoocupacion.selectToggle(null);
+            tipoDeVisitanteC.setText("");
         }catch (Exception e){
             throw new Exception(e);
         }
     }
-
-
 
     /**Tab AdultList**/
     /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones**/

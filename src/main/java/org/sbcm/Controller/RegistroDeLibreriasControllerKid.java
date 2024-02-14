@@ -76,6 +76,14 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
         try {
             kidCRUD.postResourse(kid);
             ListKid.setItems(kidCRUD.getAllResources());
+            nombreRI.setText("");
+            apellidoRI.setText("");
+            edadRI.setText("");
+            grupogeneroK.selectToggle(null);
+            grupodiscapacidadK.selectToggle(null);
+            grupoescolaridadK.selectToggle(null);
+            grupoocupacionK.selectToggle(null);
+            tipoDeVisitanteKC.setText("");
         }catch (Exception exception){
             throw new Exception(exception);
         }

@@ -21,6 +21,12 @@ public class UpdateRegisterWindowKidController implements Initializable {
     private TextField idFieldKid;
 
     @FXML
+    private TextField nombreFieldKid;
+
+    @FXML
+    private  TextField apellidoFieldKid;
+
+    @FXML
     private TextField edadFieldKid;
 
     @FXML
@@ -51,6 +57,8 @@ public class UpdateRegisterWindowKidController implements Initializable {
         try {
             Kid kid = new Kid();
             kid.setNVisitas(Integer.parseInt(nVisitasFieldKid.getText()));
+            kid.setNombre(nombreFieldKid.getText());
+            kid.setApellido(apellidoFieldKid.getText());
             kid.setOcupacion(ocupacionFieldKid.getText());
             kid.setEdad(Integer.parseInt(edadFieldKid.getText()));
             kid.setEscolaridad(escolaridadFieldKid.getText());
@@ -69,12 +77,22 @@ public class UpdateRegisterWindowKidController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
+    @FXML public void buttonCancelarKAction(ActionEvent event){
+        try {
+            Stage stage = (Stage) buttonCancelarK.getScene().getWindow();
+            stage.close();
+        }catch (Exception e){
+
+        }
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         /**Creamos la instancia de KidSingleton aquí tambien para que podamos acceder a los datos**/
         KidSinglenton kidSinglenton = KidSinglenton.getInstance();
         /**Al momento de inicializar este controlador junto con su interfaz vamos a colocar los datos del singlenton en cada uno de los campos para poder modificar los datos**/
         idFieldKid.setText(String.valueOf(kidSinglenton.getId()));
+        nombreFieldKid.setText(kidSinglenton.getNombre());
+        apellidoFieldKid.setText(kidSinglenton.getApellido());
         edadFieldKid.setText(String.valueOf(kidSinglenton.getEdad()));
         generoFieldKid.setText(kidSinglenton.getGenero());
         discapacidadFieldKid.setText(kidSinglenton.getDiscapacidad());

@@ -26,26 +26,21 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="420.0" layoutY="124.0" text="INICIO">
+                        <Label layoutX="420.0" layoutY="151.0" text="INICIO">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label layoutX="357.0" layoutY="175.0" text="Ingresa los siguientes datos ">
+                        <Label layoutX="357.0" layoutY="202.0" text="Ingresa los siguientes datos ">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="267.0" layoutY="242.0" text="Nombre Completo:">
+                        <Label layoutX="267.0" layoutY="270.0" text="Nombre y Apellidos:">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <Label layoutX="342.0" layoutY="303.0" text="Apellidos:">
-                           <font>
-                              <Font size="18.0" />
-                           </font></Label>
-                        <TextField layoutX="433.0" layoutY="240.0" prefHeight="44.0" prefWidth="240.0" />
-                        <TextField layoutX="434.0" layoutY="304.0" prefHeight="40.0" prefWidth="240.0" />
+                        <TextField fx:id="nombreyapellidoFieldKid" layoutX="433.0" layoutY="268.0" prefHeight="44.0" prefWidth="240.0" />
                         <Button layoutX="556.0" layoutY="437.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" text="Buscar" />
                         <Button layoutX="649.0" layoutY="437.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Cancelar" />
                      </children>

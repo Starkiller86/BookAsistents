@@ -16,9 +16,11 @@ import org.sbcm.SingletonModels.AdultSingleton;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UpdateRegisterWindowController implements Initializable {
+public class UpdateRegisterWindowAdultController implements Initializable {
     @FXML
     private TextField idField;
+    @FXML private TextField nombreField;
+    @FXML private TextField apellidoField;
     @FXML
     private TextField edadField;
     @FXML
@@ -57,6 +59,10 @@ public class UpdateRegisterWindowController implements Initializable {
             adult.setTipoDeVisitante(tipoVisitanteField.getText());
             adult.setDiscapacidad(discapacidadField.getText());
             adult.setId(Integer.parseInt(idField.getText()));
+
+            adult.setNombre(nombreField.getText());
+            adult.setApellido(apellidoField.getText());
+
             //Una vez que tenemos nuestro modelo con todos los datos de la interfaz ya podemos mandarlo al servidor para que lo registre en la base de datos
             adultCRUD.putResource(adult);
             //Ahora en caso de que haya hecho la función correctamente vamos a cerrar la ventana
@@ -73,6 +79,14 @@ public class UpdateRegisterWindowController implements Initializable {
 
         }
     }
+    @FXML public void buttonCancelarAction(ActionEvent event){
+        try {
+            Stage stage = (Stage) buttonCancelar.getScene().getWindow();
+            stage.close();
+        }catch (Exception e){
+
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -80,6 +94,8 @@ public class UpdateRegisterWindowController implements Initializable {
         /**Creamos la instancia de AdultSingleton aqui tambien para que podamos acceder a los datos que tenga en ese momento**/
         AdultSingleton adultSingleton = AdultSingleton.getInstance();
         /**Al momento de inicializar este controlador junto con su interfaz vamos a colcar los datos del singleton en cada uno de los campos para que los mpueda modificar**/
+        nombreField.setText(adultSingleton.getNombre());
+        apellidoField.setText(adultSingleton.getApellido());
         idField.setText(String.valueOf(adultSingleton.getId()));
         edadField.setText(String.valueOf(adultSingleton.getEdad()));
         generoFIeld.setText(adultSingleton.getGenero());
