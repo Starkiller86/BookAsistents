@@ -139,8 +139,10 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             alert.setTitle("Confirmación");
             alert.setHeaderText("¿Realmente desea eliminar el registro?");
             alert.setContentText("Registro: \n ID : " + selectadult.getId()+
+                    "\n Nombre: " + selectadult.getNombre() +
+                    "\n Apellido: " +  selectadult.getApellido() +
                     "\n Edad: " + selectadult.getEdad() +
-                    "\n Genero: " + selectadult.getGenero() +
+                    "\n Género: " + selectadult.getGenero() +
                     "\n Escolaridad: " + selectadult.getEscolaridad() +
                     "\n Discapacidad: " + selectadult.getDiscapacidad() +
                     "\n Ocupación: " + selectadult.getOcupacion());
@@ -152,8 +154,10 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
                     alert.setTitle("operacion Exitosa");
                     alert.setHeaderText("El siguiente registro ha sido eliminado con exito");
                     alert.setContentText("Registro: \n ID : " + selectadult.getId() +
+                            "\n Nombre: " + selectadult.getNombre() +
+                            "\n Apellido: " + selectadult.getApellido() +
                             "\n Edad: " + selectadult.getEdad() +
-                            "\n Genero: " + selectadult.getGenero() +
+                            "\n Género: " + selectadult.getGenero() +
                             "\n Escolaridad: " + selectadult.getEscolaridad() +
                             "\n Discapacidad: " + selectadult.getDiscapacidad() +
                             "\n Ocupación: " + selectadult.getOcupacion());

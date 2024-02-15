@@ -129,8 +129,10 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             alert.setTitle("Confirmación");
             alert.setHeaderText("¿Realmente desea eliminar el registro?");
             alert.setContentText("Registro: \n ID: " + selectedKid.getId() +
+                    "\n Nombre: " + selectedKid.getNombre() +
+                    "\n Apellido: " + selectedKid.getApellido() +
                     "\n Edad: " + selectedKid.getEdad() +
-                    "\n Genero: " + selectedKid.getGenero() +
+                    "\n Género: " + selectedKid.getGenero() +
                     "\n Escolaridad: " + selectedKid.getEscolaridad() +
                     "\n Discapacidad: " + selectedKid.getDiscapacidad() +
                     "\n Ocupación: " + selectedKid.getOcupacion());
@@ -150,8 +152,10 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
                     alert.setTitle("Operación Exitosa");
                     alert.setHeaderText("El siguiente registro ha sido eliminado con exito!");
                     alert.setContentText("Registro: \n ID: " + selectedKid.getId() +
+                            "\n Nombre: " + selectedKid.getNombre() +
+                            "\n Apellido: " + selectedKid.getApellido() +
                             "\n Edad: " + selectedKid.getEdad() +
-                            "\n Genero: " + selectedKid.getGenero() +
+                            "\n Género: " + selectedKid.getGenero() +
                             "\n Escolaridad: " + selectedKid.getEscolaridad() +
                             "\n Discapacidad: "+ selectedKid.getDiscapacidad() +
                             "\n Ocupación: " + selectedKid.getOcupacion());
