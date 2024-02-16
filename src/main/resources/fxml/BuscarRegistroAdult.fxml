@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="212.0" layoutY="14.0" text="Buscar Registro ">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TableView layoutY="51.0" prefHeight="350.0" prefWidth="600.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="No.Registro" />
+            <TableColumn prefWidth="75.0" text="Nombre" />
+            <TableColumn prefWidth="75.0" text="Apellidos" />
+          <TableColumn prefWidth="59.0" text="Edad" />
+            <TableColumn prefWidth="72.0" text="Género" />
+            <TableColumn prefWidth="94.0" text="Discapacidad" />
+            <TableColumn prefWidth="75.0" text="Escolaridad" />
+            <TableColumn prefWidth="75.0" text="Ocupación" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
