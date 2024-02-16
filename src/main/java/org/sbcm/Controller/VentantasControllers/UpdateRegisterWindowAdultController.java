@@ -42,6 +42,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
 
     //Declaramos la implementacion de crud correspondiente a esta ventana de actualizacion, que es la implementacion para adultos
     CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
+    AdultSingleton adultSingleton = AdultSingleton.getInstance();
 
     //Creamos la funcion que se va a ejecutar al momento de presionar el botón actualizar
 
@@ -66,6 +67,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
             //Una vez que tenemos nuestro modelo con todos los datos de la interfaz ya podemos mandarlo al servidor para que lo registre en la base de datos
             adultCRUD.putResource(adult);
             //Ahora en caso de que haya hecho la función correctamente vamos a cerrar la ventana
+            adultSingleton = null;
             Stage stage = (Stage) buttonActualizar.getScene().getWindow();//Aqui tomamos la instancia de la ventana
             stage.close();
         }catch (Exception e){
@@ -77,10 +79,12 @@ public class UpdateRegisterWindowAdultController implements Initializable {
             System.out.println(e.getMessage());
 
 
+
         }
     }
     @FXML public void buttonCancelarAction(ActionEvent event){
         try {
+            adultSingleton = null;
             Stage stage = (Stage) buttonCancelar.getScene().getWindow();
             stage.close();
         }catch (Exception e){
@@ -92,7 +96,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
         /**Creamos la instancia de AdultSingleton aqui tambien para que podamos acceder a los datos que tenga en ese momento**/
-        AdultSingleton adultSingleton = AdultSingleton.getInstance();
+
         /**Al momento de inicializar este controlador junto con su interfaz vamos a colcar los datos del singleton en cada uno de los campos para que los mpueda modificar**/
         nombreField.setText(adultSingleton.getNombre());
         apellidoField.setText(adultSingleton.getApellido());

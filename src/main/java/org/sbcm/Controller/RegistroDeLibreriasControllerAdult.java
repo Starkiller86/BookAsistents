@@ -22,6 +22,7 @@ import org.sbcm.SingletonModels.AdultSingleton;
 import org.sbcm.SingletonModels.KidSinglenton;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,6 +33,30 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
     //Para poder acceder a las funcionalidades de la base de datos y el servidor necesitamos el DAO, lo voy a declarar en la parte superior, pero cuando dividamos
     //en varios archivos cada uno debe tener su propia instancia de Dao que necesite
     CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
+
+
+    /**Tab registrar asistencia*/
+
+    @FXML private TextField nombreyapellidoField;
+    @FXML private Button buscarButton;
+
+    @FXML private void buscarButtonAction(ActionEvent event) throws IOException {
+        AdultSingleton adultSingleton= AdultSingleton.getInstance();
+        adultSingleton.setNombre(nombreyapellidoField.getText());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VentanasdeAsistencia/SelectUserInterface.fxml"));
+        Parent root= loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Seleccionar Usuario Registrado");
+        stage.setScene(scene);
+        stage.showAndWait();
+
+
+
+    }
+
+
 
     /**Tab AdultRegister**/
     /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones.**/
@@ -83,6 +108,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         adulto.setDiscapacidad(((RadioButton) grupodiscapacidad.getSelectedToggle()).getText());
         adulto.setEscolaridad(((RadioButton) grupoescolaridad.getSelectedToggle()).getText());
         adulto.setOcupacion(((RadioButton) grupoocupacion.getSelectedToggle()).getText());
+        adulto.setNVisitas(1);
         adulto.setTipoDeVisitante("Adulto");
         System.out.println(new ObjectMapper().writeValueAsString(adulto));
         //ahora solo llamaremos la función del crud que se encarga de subir datos mediante el servidor a la base de datos
@@ -224,6 +250,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             stage.setTitle("Actualizar datos de Usuario");
             stage.setScene(scene);
             stage.showAndWait();
+            adultSingleton = null;
             //Una vez que la ventana se cierre vamos a actualizar la tabla para que se muestren los datos actualizados
             ListAdult.setItems(adultCRUD.getAllResources());
 

@@ -53,6 +53,8 @@ public class UpdateRegisterWindowKidController implements Initializable {
     @FXML
     private Button buttonCancelarK;
     CRUD<Kid> kidCRUD = new KidRegisterdaoImp();
+    /**Creamos la instancia de KidSingleton aquí tambien para que podamos acceder a los datos**/
+    KidSinglenton kidSinglenton = KidSinglenton.getInstance();
     @FXML public void buttonActualizarKidAction(ActionEvent event){
         try {
             Kid kid = new Kid();
@@ -67,6 +69,7 @@ public class UpdateRegisterWindowKidController implements Initializable {
             kid.setDiscapacidad(discapacidadFieldKid.getText());
             kid.setId(Integer.parseInt(idFieldKid.getText()));
             kidCRUD.putResource(kid);
+            kidSinglenton = null;
             Stage stage = (Stage) buttonActualizarK.getScene().getWindow();
             stage.close();
         }catch (Exception e){
@@ -79,6 +82,7 @@ public class UpdateRegisterWindowKidController implements Initializable {
     }
     @FXML public void buttonCancelarKAction(ActionEvent event){
         try {
+            kidSinglenton = null;
             Stage stage = (Stage) buttonCancelarK.getScene().getWindow();
             stage.close();
         }catch (Exception e){
@@ -87,8 +91,7 @@ public class UpdateRegisterWindowKidController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /**Creamos la instancia de KidSingleton aquí tambien para que podamos acceder a los datos**/
-        KidSinglenton kidSinglenton = KidSinglenton.getInstance();
+
         /**Al momento de inicializar este controlador junto con su interfaz vamos a colocar los datos del singlenton en cada uno de los campos para poder modificar los datos**/
         idFieldKid.setText(String.valueOf(kidSinglenton.getId()));
         nombreFieldKid.setText(kidSinglenton.getNombre());
