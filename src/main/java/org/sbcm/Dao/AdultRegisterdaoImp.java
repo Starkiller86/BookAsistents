@@ -13,7 +13,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
-    /**AdultRegisterdaolmp es la implementación del CRUD, de tal manera que mediante las conexiones HTTP, es posible poder utilizar los registros o datos que se
+import java.util.List;
+
+/**AdultRegisterdaolmp es la implementación del CRUD, de tal manera que mediante las conexiones HTTP, es posible poder utilizar los registros o datos que se
      * encuentran en la base de datos, haciendo que se puedan Crear, Actualizar, Leer y Eliminar cualquier registro mediante las conexiones HTTP, estos métodos
      * son los que se implementan con el CRUD y que hacen que se realicen estas acciones con los registros**/
 
@@ -219,7 +221,65 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
         connection.disconnect();
     }
 
-    @Override
+        /**
+         * La implementación de obtener todas las coincidencia por el nombre no es muy distinto a obtener todos los recursos, es demasiado parecido
+         * @param name nombre estrella que se desea buscar
+         * @return
+         */
+        @Override
+        public ObservableList<Adult> getAllResourcesByName(String name) throws Exception{
+            //Al parecer los espacios no los interpreta como el navegador con %20 entonces vamos a colocarlos
+            //Entonces creamos una nueva cadena donde remplacemos los espacios por %20
+            String nameReplace = name.replace(" ", "%20");//Aquí indicamos que remplace todos los espacios vacios con %20
+            //Tenemos un uri con el endpoint al que vamos a acceder
+            uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults/search/" + nameReplace);
+            connection = (HttpURLConnection) uri.toURL().openConnection();
+            //ya que tenemos la conexión vamos a darle sus propiedades correspondientes
+            //Indicamos que tipo de metodo HTTP es
+            connection.setRequestMethod("GET");
+            //indicamos el tipo de respuesta que queremos
+            connection.setRequestProperty("Accept", "application/json");
+            //indicamos desde donde estamos realizando la conexión
+            connection.setRequestProperty("User-Agent", "JAVAFX 1.0 SNAPSHOT (Windows 11, x64)");
+
+            //verificamos si la conexión ha sido exitosa
+            if (connection.getResponseCode() != 200)
+                throw new Exception();
+            //En caso de ser correcta continuará con el codigo
+
+            //Hacemos la lectura utilizando la libreria Streams de net
+
+            InputStreamReader lecturaBytes = new InputStreamReader(connection.getInputStream());
+            BufferedReader lecturaBuffer = new BufferedReader(lecturaBytes);
+            String line = lecturaBuffer.readLine();
+            StringBuilder lines = new StringBuilder();
+            while(line != null){
+                lines.append(line);
+                line = lecturaBuffer.readLine();
+            }
+            lecturaBuffer.close();
+
+            //Hasta este punto ya tenemos la respuesta de todas la coincidencias en lines, vamos a colocarlo en un JSONArray
+
+            JSONArray arrayCoincidencias = new JSONArray(lines.toString());
+            //Creamo la lista observable para almacenar los resultados de la consulta en objetos java que podamos colocar en la tabla
+            ObservableList<Adult> listaCoincidencias = FXCollections.observableArrayList();
+            //Neceistamos un objectMapper para mapear los valores de los json en los objetos java
+            ObjectMapper mapper = new ObjectMapper();
+            //Creamos un foreach que por cada elemento del array lo colocará de manera ordenada en la lista observable
+
+            for (Object o: arrayCoincidencias) {
+                JSONObject jsonObject = (JSONObject) o;
+                Adult adult = mapper.readValue(jsonObject.toString(), Adult.class);
+                listaCoincidencias.add(adult);
+            }
+            //Hasta este punto ya tenemos una lista observable con todas las coincidencias
+            //Solo queda desconectar y retornar
+            connection.disconnect();
+            return listaCoincidencias;
+        }
+
+        @Override
     public void setConnection(HttpURLConnection connection) {
     }
 

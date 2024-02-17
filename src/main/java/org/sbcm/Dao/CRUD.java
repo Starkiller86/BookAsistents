@@ -1,6 +1,7 @@
 package org.sbcm.Dao;
 
 import javafx.collections.ObservableList;
+import org.sbcm.Model.Adult;
 
 import java.net.HttpURLConnection;
 import java.net.URI;
@@ -54,6 +55,13 @@ public interface CRUD<Resource> {
      */
     void putResource(Resource resource) throws Exception;
 
+    /**
+     * Es un método que se encarga de obtener todos los registros que tengan un coincidencia con el nombre que se le propociona
+     * por parametro, ordenando la mejor coincidencia a la peor
+     * @param name nombre estrella que se desea buscar
+     * @return Lista Observable con todas las coincidencias
+     */
+    ObservableList<Adult> getAllResourcesByName(String name) throws Exception;
     void setConnection(HttpURLConnection connection);
     URI getUri();
 

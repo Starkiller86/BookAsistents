@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.RegistroDeLibreriasControllerAdult">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.RegistroDeLibreriasControllerAdult">
    <children>
     <AnchorPane layoutX="46.0" layoutY="30.0" minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="805.0">
          <children>
@@ -42,7 +42,7 @@
                            </font>
                         </Label>
                         <TextField fx:id="nombreyapellidoField" layoutX="206.0" layoutY="265.0" prefHeight="38.0" prefWidth="554.0" />
-                        <Button fx:id="buscarButton" layoutX="763.0" layoutY="265.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="84.0" text="Buscar " />
+                        <Button fx:id="buscarButton" layoutX="763.0" layoutY="265.0" mnemonicParsing="false" onAction="#buscarButtonAction" prefHeight="38.0" prefWidth="84.0" text="Buscar " />
                      </children>
                   </AnchorPane>
               </content>

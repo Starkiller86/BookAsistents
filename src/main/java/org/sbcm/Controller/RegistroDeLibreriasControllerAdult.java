@@ -41,8 +41,9 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
     @FXML private Button buscarButton;
 
     @FXML private void buscarButtonAction(ActionEvent event) throws IOException {
-        AdultSingleton adultSingleton= AdultSingleton.getInstance();
-        adultSingleton.setNombre(nombreyapellidoField.getText());
+        AdultSingleton adultSingleton= AdultSingleton.getInstance();//Voy a utilizar el singleton solo para guardar el nombre
+        adultSingleton.setNombre(nombreyapellidoField.getText());//A pesar de que pedimos nombre completo del lado del servidor lo vamos a interpretar solo como texto
+        //Aquí generamos la ventana
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VentanasdeAsistencia/SelectUserInterface.fxml"));
         Parent root= loader.load();
         Scene scene = new Scene(root);
@@ -51,6 +52,9 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         stage.setTitle("Seleccionar Usuario Registrado");
         stage.setScene(scene);
         stage.showAndWait();
+        //Y una vez que la ventana se cierra, ya sea por x o y, vamos a regresar el singleton a null
+        adultSingleton = null;//de esta manera en las demas partes de nuestro codigo donde lo usamos no se verá conflictuado
+
 
 
 

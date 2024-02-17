@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.sbcm.Model.Adult;
 import org.sbcm.Model.Kid;
 
 import java.io.BufferedReader;
@@ -182,7 +183,12 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
         connection.disconnect();
     }
 
-    @Override
+         @Override
+         public ObservableList<Adult> getAllResourcesByName(String name) throws Exception {
+             return null;
+         }
+
+         @Override
     public void setConnection(HttpURLConnection connection) {
 
     }
