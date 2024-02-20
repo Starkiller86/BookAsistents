@@ -48,6 +48,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         stage.setTitle("Seleccionar Usuario Registrado");
         stage.setScene(scene);
         stage.showAndWait();
+        ListAdult.setItems(adultCRUD.getAllResources());
         //Y una vez que la ventana se cierra, ya sea por x o y, vamos a regresar el singleton a null
         adultSingleton = null;//de esta manera en las demas partes de nuestro codigo donde lo usamos no se verá conflictuado
         try {
