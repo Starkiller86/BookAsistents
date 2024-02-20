@@ -61,7 +61,7 @@ public interface CRUD<Resource> {
      * @param name nombre estrella que se desea buscar
      * @return Lista Observable con todas las coincidencias
      */
-    ObservableList<Adult> getAllResourcesByName(String name) throws Exception;
+    ObservableList<Resource> getAllResourcesByName(String name) throws Exception;
     void setConnection(HttpURLConnection connection);
     URI getUri();
 

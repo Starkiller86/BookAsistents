@@ -78,6 +78,7 @@ public class UpdateRegisterWindowKidController implements Initializable {
             alert.setHeaderText("Hubo un error al actualizar los datos");
             alert.setContentText("Comuniquese con soporte: " + e.getMessage());
             System.out.println(e.getMessage());
+            kidSinglenton=null;
         }
     }
     @FXML public void buttonCancelarKAction(ActionEvent event){

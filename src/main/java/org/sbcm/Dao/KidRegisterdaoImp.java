@@ -1,6 +1,7 @@
 package org.sbcm.Dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.JSONArray;
@@ -183,10 +184,41 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
         connection.disconnect();
     }
 
-         @Override
-         public ObservableList<Adult> getAllResourcesByName(String name) throws Exception {
-             return null;
-         }
+    @Override
+    public ObservableList<Kid> getAllResourcesByName(String name) throws Exception {
+        String nameReplace = name.replace(" ", "%20");
+        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids/search/"+nameReplace);
+        connection = (HttpURLConnection) uri.toURL().openConnection();
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("Accept", "application/json");
+        connection.setRequestProperty("User-Agent", "JAVAFX 1.0 SNAPSHOT (Windows 10; x64)");
+        if (connection.getResponseCode() != 200)
+            throw new Exception();
+
+        InputStreamReader lecturaTransmision = new InputStreamReader(connection.getInputStream());
+        BufferedReader lecturaBufer = new BufferedReader(lecturaTransmision);
+        String line = lecturaBufer.readLine();
+        StringBuilder lines = new StringBuilder();
+        while (line != null){
+            lines.append(line);
+            line = lecturaBufer.readLine();
+        }
+        lecturaBufer.close();
+
+        JSONArray consultaArray = new JSONArray(lines.toString());
+        ObservableList<Kid> consultaLista = FXCollections.observableArrayList();
+        ObjectMapper mapper = new ObjectMapper();
+
+        for (Object o: consultaArray){
+            JSONObject json = (JSONObject) o;
+            Kid kid = mapper.readValue(json.toString(), Kid.class);
+            consultaLista.addAll(kid);
+        }
+        connection.disconnect();
+
+
+        return consultaLista;
+    }
 
          @Override
     public void setConnection(HttpURLConnection connection) {

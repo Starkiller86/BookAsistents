@@ -19,9 +19,39 @@ import org.sbcm.SingletonModels.KidSinglenton;
 import javax.swing.table.TableColumnModel;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class RegistroDeLibreriasControllerKid implements Initializable {
     CRUD<Kid> kidCRUD = new KidRegisterdaoImp();
+
+
+    /**
+     * Tab Busqueda
+     */
+
+    @FXML TextField nombreyapellidoField;
+    @FXML Button buscarButton;
+
+    @FXML private void buscarButtonAction(ActionEvent event) throws Exception{
+        KidSinglenton kidSinglenton =  KidSinglenton.getInstance();
+        kidSinglenton.setNombre(nombreyapellidoField.getText());
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/VentanasdeAsistencia/SelectKidInterface.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Seleccionar Usuario Registrado");
+        stage.setScene(scene);
+        stage.showAndWait();
+        try
+        {
+            nombreyapellidoField.setText("");
+        }
+        catch (Exception e){
+            throw new Exception();
+        }
+    }
+
     /**Tab KidRegister**/
     /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones**/
     @FXML
@@ -228,6 +258,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             stage.setTitle("Actualizar datos de Usuario");
             stage.setScene(scene);
             stage.showAndWait();
+            kidSinglenton = null;
             ListKid.setItems(kidCRUD.getAllResources());
         }catch (Exception e){
             throw new Exception(e);

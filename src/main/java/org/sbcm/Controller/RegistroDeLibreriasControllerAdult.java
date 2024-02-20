@@ -15,15 +15,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.sbcm.Dao.AdultRegisterdaoImp;
 import org.sbcm.Dao.CRUD;
-import org.sbcm.Dao.KidRegisterdaoImp;
 import org.sbcm.Model.Adult;
-import org.sbcm.Model.Kid;
 import org.sbcm.SingletonModels.AdultSingleton;
-import org.sbcm.SingletonModels.KidSinglenton;
 
 import java.awt.*;
-import java.io.EOFException;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -45,7 +40,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         AdultSingleton adultSingleton= AdultSingleton.getInstance();//Voy a utilizar el singleton solo para guardar el nombre
         adultSingleton.setNombre(nombreyapellidoField.getText());//A pesar de que pedimos nombre completo del lado del servidor lo vamos a interpretar solo como texto
         //Aquí generamos la ventana
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VentanasdeAsistencia/SelectUserInterface.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VentanasdeAsistencia/SelectAdultInterface.fxml"));
         Parent root= loader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -197,7 +192,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
                     "\n Ocupación: " + selectadult.getOcupacion());
             ButtonType respuesta = alert.showAndWait().orElse(ButtonType.CANCEL);
             if(respuesta == ButtonType.OK){
-                try {
+                try{
                     adultCRUD.deleteResource(selectadult.getId());
                     ListAdult.setItems(adultCRUD.getAllResources());
                     alert.setTitle("operacion Exitosa");

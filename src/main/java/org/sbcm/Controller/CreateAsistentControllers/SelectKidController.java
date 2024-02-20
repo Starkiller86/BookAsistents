@@ -7,6 +7,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.sbcm.Dao.CRUD;
+import org.sbcm.Dao.KidRegisterdaoImp;
 import org.sbcm.Model.Adult;
 import org.sbcm.Model.Kid;
 import org.sbcm.SingletonModels.AdultSingleton;
@@ -21,7 +23,7 @@ public class SelectKidController implements Initializable {
     @FXML
     private TableView<Kid> TablaResultKid;
     @FXML
-    private TableColumn<Kid, String> idKC;
+    private TableColumn<Kid, Integer> idKC;
     @FXML
     private TableColumn<Kid,String> nombreKC;
     @FXML
@@ -44,8 +46,11 @@ public class SelectKidController implements Initializable {
     private Button cancelarbuttonKC;
     @FXML
     private Button asistenciabuttonKC;
+
+    CRUD<Kid> kidCRUD = new KidRegisterdaoImp();
     @FXML public void marcarButtonKidAction(ActionEvent event){
-        KidSinglenton kidSinglenton = KidSinglenton.getInstance();
+
+
     }
 
     @FXML public void cancelarButtonKidAction(ActionEvent event){
@@ -61,7 +66,23 @@ public class SelectKidController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        nombreKC.setCellValueFactory(new PropertyValueFactory<>(""));
+        KidSinglenton kidSinglenton = KidSinglenton.getInstance();
+        idKC.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nombreKC.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        apellidoKC.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        edadKC.setCellValueFactory(new PropertyValueFactory<>("edad"));
+        generoKC.setCellValueFactory(new PropertyValueFactory<>("genero"));
+        escolaridadKC.setCellValueFactory(new PropertyValueFactory<>("escolaridad"));
+        discapacidadKC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));
+        ocupacionKC.setCellValueFactory(new PropertyValueFactory<>("ocupacion"));
+        nvisitasKC.setCellValueFactory(new PropertyValueFactory<>("nVisitas"));
+        tipodevisitanteKC.setCellValueFactory(new PropertyValueFactory<>("tipoDeVisitante"));
+        try{
+            TablaResultKid.setItems(kidCRUD.getAllResourcesByName(kidSinglenton.getNombre()));
+            kidSinglenton = null;
+        }catch (Exception e){
+            throw  new RuntimeException();
+        }
 
 
 
