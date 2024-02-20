@@ -22,6 +22,7 @@ import org.sbcm.SingletonModels.AdultSingleton;
 import org.sbcm.SingletonModels.KidSinglenton;
 
 import java.awt.*;
+import java.io.EOFException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,7 +41,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
     @FXML private TextField nombreyapellidoField;
     @FXML private Button buscarButton;
 
-    @FXML private void buscarButtonAction(ActionEvent event) throws IOException {
+    @FXML private void buscarButtonAction(ActionEvent event) throws Exception {
         AdultSingleton adultSingleton= AdultSingleton.getInstance();//Voy a utilizar el singleton solo para guardar el nombre
         adultSingleton.setNombre(nombreyapellidoField.getText());//A pesar de que pedimos nombre completo del lado del servidor lo vamos a interpretar solo como texto
         //Aquí generamos la ventana
@@ -54,10 +55,11 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         stage.showAndWait();
         //Y una vez que la ventana se cierra, ya sea por x o y, vamos a regresar el singleton a null
         adultSingleton = null;//de esta manera en las demas partes de nuestro codigo donde lo usamos no se verá conflictuado
-
-
-
-
+        try {
+            nombreyapellidoField.setText("");
+        }catch (Exception e){
+            throw new Exception(e);
+        }
     }
 
 
@@ -105,16 +107,25 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         Adult adulto = new Adult();
         //Le asigno el valor de sus atributos con base a lo que obtenga de la interfaz
         //adulto.setId(Integer.parseInt(nRegistroRA.getText()));
-        adulto.setEdad(Integer.parseInt(edadRA.getText()));
-        adulto.setNombre(nombreRA.getText());
-        adulto.setApellido(apellidoRA.getText());
-        adulto.setGenero(((RadioButton) grupoGeneroRA.getSelectedToggle()).getText());
-        adulto.setDiscapacidad(((RadioButton) grupodiscapacidad.getSelectedToggle()).getText());
-        adulto.setEscolaridad(((RadioButton) grupoescolaridad.getSelectedToggle()).getText());
-        adulto.setOcupacion(((RadioButton) grupoocupacion.getSelectedToggle()).getText());
-        adulto.setNVisitas(1);
-        adulto.setTipoDeVisitante("Adulto");
-        System.out.println(new ObjectMapper().writeValueAsString(adulto));
+        try {
+            adulto.setEdad(Integer.parseInt(edadRA.getText()));
+            adulto.setNombre(nombreRA.getText());
+            adulto.setApellido(apellidoRA.getText());
+            adulto.setGenero(((RadioButton) grupoGeneroRA.getSelectedToggle()).getText());
+            adulto.setDiscapacidad(((RadioButton) grupodiscapacidad.getSelectedToggle()).getText());
+            adulto.setEscolaridad(((RadioButton) grupoescolaridad.getSelectedToggle()).getText());
+            adulto.setOcupacion(((RadioButton) grupoocupacion.getSelectedToggle()).getText());
+            adulto.setNVisitas(1);
+            adulto.setTipoDeVisitante("Adulto");
+            System.out.println(new ObjectMapper().writeValueAsString(adulto));
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Hubo un error al capturar los datos");
+            alert.setContentText("Coloque los datos correctamente");
+            alert.showAndWait();
+            throw new Exception();
+        }
         //ahora solo llamaremos la función del crud que se encarga de subir datos mediante el servidor a la base de datos
         try{
             adultCRUD.postResourse(adulto);
@@ -128,7 +139,15 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             grupoescolaridad.selectToggle(null);
             grupoocupacion.selectToggle(null);
             tipoDeVisitanteC.setText("");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Registro Correcto");
+            alert.setHeaderText("El registro se ha realizado correctamente");
+            alert.showAndWait();
         }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Error de conexión");
+            alert.setContentText("Comunique a soporte : " + e);
             throw new Exception(e);
         }
     }

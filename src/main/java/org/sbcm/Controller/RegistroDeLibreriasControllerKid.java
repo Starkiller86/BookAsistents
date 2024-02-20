@@ -64,15 +64,24 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
     /**En esta parte del código lo que realiza es determinar la función que el botón va a hacer en la interfaz y la base de datos.**/
     @FXML private  void buttonActionInfantil(ActionEvent e)throws Exception{
         Kid kid = new Kid();
-        kid.setNombre(nombreRI.getText());
-        kid.setApellido(apellidoRI.getText());
-        kid.setEdad(Integer.parseInt(edadRI.getText()));
-        kid.setGenero(((RadioButton)grupogeneroK.getSelectedToggle()).getText());
-        kid.setDiscapacidad(((RadioButton)grupodiscapacidadK.getSelectedToggle()).getText());
-        kid.setEscolaridad(((RadioButton)grupoescolaridadK.getSelectedToggle()).getText());
-        kid.setOcupacion(((RadioButton)grupoocupacionK.getSelectedToggle()).getText());
-        kid.setTipoDeVisitante("Kid");
-        System.out.println(new ObjectMapper().writeValueAsString(kid));
+        try {
+            kid.setNombre(nombreRI.getText());
+            kid.setApellido(apellidoRI.getText());
+            kid.setEdad(Integer.parseInt(edadRI.getText()));
+            kid.setGenero(((RadioButton) grupogeneroK.getSelectedToggle()).getText());
+            kid.setDiscapacidad(((RadioButton) grupodiscapacidadK.getSelectedToggle()).getText());
+            kid.setEscolaridad(((RadioButton) grupoescolaridadK.getSelectedToggle()).getText());
+            kid.setOcupacion(((RadioButton) grupoocupacionK.getSelectedToggle()).getText());
+            kid.setTipoDeVisitante("Kid");
+            System.out.println(new ObjectMapper().writeValueAsString(kid));
+        }catch (Exception exception){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Hubo un error");
+            alert.setContentText("Coloque los datos");
+            alert.showAndWait();
+            throw  new Exception();
+        }
         try {
             kidCRUD.postResourse(kid);
             ListKid.setItems(kidCRUD.getAllResources());
@@ -84,7 +93,11 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             grupoescolaridadK.selectToggle(null);
             grupoocupacionK.selectToggle(null);
             tipoDeVisitanteKC.setText("");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Registro Correcto");
         }catch (Exception exception){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
             throw new Exception(exception);
         }
     }
