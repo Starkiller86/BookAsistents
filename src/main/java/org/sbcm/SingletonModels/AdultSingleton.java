@@ -16,6 +16,9 @@ public class AdultSingleton {
     private String ocupacion;
     private int nVisitas;
     private String tipoDeVisitante;
+    private String domicilio;
+    private String npersonal;
+    private String nemergencia;
 
     private AdultSingleton(){}
     /**Declarar el método getInstance para devolver la misma instancia en caso de ser creada en cualquier parte del código**/
@@ -108,5 +111,29 @@ public class AdultSingleton {
 
     public void setTipoDeVisitante(String tipoDeVisitante) {
         this.tipoDeVisitante = tipoDeVisitante;
+    }
+
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public String getNpersonal() {
+        return npersonal;
+    }
+
+    public void setNpersonal(String npersonal) {
+        this.npersonal = npersonal;
+    }
+
+    public String getNemergencia() {
+        return nemergencia;
+    }
+
+    public void setNemergencia(String nemergencia) {
+        this.nemergencia = nemergencia;
     }
 }

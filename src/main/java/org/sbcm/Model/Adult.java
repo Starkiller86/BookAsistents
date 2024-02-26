@@ -1,6 +1,7 @@
 package org.sbcm.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javafx.fxml.FXML;
 
 public class Adult {
 /**Este modelo de Adult en donde se encuentra la estructura de los datos que se deben de tener en los registros y cada uno de estos
@@ -8,7 +9,6 @@ public class Adult {
  * **/
     @JsonProperty("id")
     private int id;
-
     @JsonProperty("nombre")
     private String nombre;
     @JsonProperty("apellido")
@@ -23,11 +23,16 @@ public class Adult {
     private String discapacidad;
     @JsonProperty("ocupacion")
     private String ocupacion;
-
     @JsonProperty("nVisitas")
     private int nVisitas;
     @JsonProperty("tipoDeVisitante")
     private String tipoDeVisitante;
+    @JsonProperty("domicilio")
+    private String domicilio;
+    @JsonProperty("numeropersonal")
+    private String numeropersonal;
+    @JsonProperty("numeroemergencia")
+    private String numeroemergencia;
 
     public String getNombre() {
         return nombre;
@@ -108,4 +113,27 @@ public class Adult {
         this.ocupacion = ocupacion;
     }
 
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public String getNumeropersonal() {
+        return numeropersonal;
+    }
+
+    public void setNumeropersonal(String numeropersonal) {
+        this.numeropersonal = numeropersonal;
+    }
+
+    public String getNumeroemergencia() {
+        return numeroemergencia;
+    }
+
+    public void setNumeroemergencia(String numeroemergencia) {
+        this.numeroemergencia = numeroemergencia;
+    }
 }

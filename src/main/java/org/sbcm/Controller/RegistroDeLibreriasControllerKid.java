@@ -43,9 +43,11 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
         stage.setTitle("Seleccionar Usuario Registrado");
         stage.setScene(scene);
         stage.showAndWait();
+
         try
         {
             nombreyapellidoField.setText("");
+            ListKid.setItems(kidCRUD.getAllResources());
         }
         catch (Exception e){
             throw new Exception();
@@ -102,7 +104,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             kid.setDiscapacidad(((RadioButton) grupodiscapacidadK.getSelectedToggle()).getText());
             kid.setEscolaridad(((RadioButton) grupoescolaridadK.getSelectedToggle()).getText());
             kid.setOcupacion(((RadioButton) grupoocupacionK.getSelectedToggle()).getText());
-            kid.setTipoDeVisitante("Kid");
+            kid.setTipoDeVisitante("No Frecuente");
             System.out.println(new ObjectMapper().writeValueAsString(kid));
         }catch (Exception exception){
             Alert alert = new Alert(Alert.AlertType.ERROR);

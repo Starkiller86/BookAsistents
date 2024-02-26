@@ -26,6 +26,12 @@ public class Kid {
     private int nVisitas;
     @JsonProperty("tipoDeVisitante")
     private String tipoDeVisitante;
+    @JsonProperty("domicilio")
+    private String domicilio;
+    @JsonProperty("numeropersonal")
+    private String numeropersonal;
+    @JsonProperty("numeroemergencia")
+    private String numeroemergencia;
 
     public String getNombre() {
         return nombre;
@@ -105,5 +111,27 @@ public class Kid {
     public void setOcupacion(String ocupacion) {
         this.ocupacion = ocupacion;
     }
+    public String getDomicilio() {
+        return domicilio;
+    }
 
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public String getNumeropersonal() {
+        return numeropersonal;
+    }
+
+    public void setNumeropersonal(String numeropersonal) {
+        this.numeropersonal = numeropersonal;
+    }
+
+    public String getNumeroemergencia() {
+        return numeroemergencia;
+    }
+
+    public void setNumeroemergencia(String numeroemergencia) {
+        this.numeroemergencia = numeroemergencia;
+    }
 }

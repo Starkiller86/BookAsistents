@@ -112,7 +112,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             adulto.setEscolaridad(((RadioButton) grupoescolaridad.getSelectedToggle()).getText());
             adulto.setOcupacion(((RadioButton) grupoocupacion.getSelectedToggle()).getText());
             adulto.setNVisitas(1);
-            adulto.setTipoDeVisitante("Adulto");
+            adulto.setTipoDeVisitante("No Frecuente");
             System.out.println(new ObjectMapper().writeValueAsString(adulto));
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -306,6 +306,42 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
     @FXML private void Visitante(ActionEvent event){
 
     }
+    @FXML private TextField domicilioDAC;
+    @FXML private TextField npersonalDAC;
+    @FXML private TextField nemergenciaDAC;
+    @FXML private TableView<Adult> dataTableDAC;
+    @FXML private Button dataadult;
+    @FXML private void buttonActionRegisterData(ActionEvent event) throws Exception{
+        Adult adult = new Adult();
+        CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
+        try {
+            Adult adulto = dataTableDAC.getSelectionModel().getSelectedItem();
+            if (adulto == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("No pusiste ningun dato");
+                alert.setContentText("Coloca los datos");
+                alert.showAndWait();
+            }
+            assert adulto != null : "Adulto es nulo";
+            AdultSingleton adultSingleton = AdultSingleton.getInstance();
+            adultSingleton.setDomicilio(adulto.getDomicilio());
+            adultSingleton.setNpersonal(adulto.getNumeropersonal());
+            adultSingleton.setNemergencia(adulto.getNumeroemergencia());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VentanasdeAsistencia/ImportantDataAdult.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Datos Importantes del Usuario");
+            stage.setScene(scene);
+            stage.showAndWait();
+            adultSingleton = null;
+            dataTableDAC.setItems(adultCRUD.getAllResources());
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         masRA.setToggleGroup(grupoGeneroRA);
@@ -343,4 +379,6 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         }
 
     }
+
+
 }

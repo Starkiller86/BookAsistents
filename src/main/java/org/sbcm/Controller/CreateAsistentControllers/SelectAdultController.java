@@ -64,8 +64,26 @@ public class SelectAdultController implements Initializable {
             }
             assert adult != null;
 
+            if(adult.getNVisitas()+1 >= 6 && !adult.getTipoDeVisitante().equals("Con Credencial")){
+                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                 alert.setTitle("Tramite de Credencial");
+                 alert.setHeaderText("Ya puedes tramitar tu credencial!");
+                 alert.setContentText("¿Deseas tramitar tu crendencial?");
+                 alert.showAndWait().ifPresent(response ->{
+                     if (response == ButtonType.OK)
+                     {
+                         //Aqui va la logica de cambiar el valor de tipo de usuario  si solo es frecuente, no frecuente, con credencial etc
+                         adult.setTipoDeVisitante("Con Credencial");
+                     }
+                     else {
+                        adult.setTipoDeVisitante("Frecuente");
+                     }
+                 });
+
+            }
+
             adultCRUD.putResource(adult);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Asistencia Registrada");
             alert.setContentText("La asistencia fue registrada correctamente");
             alert.showAndWait();
@@ -73,6 +91,10 @@ public class SelectAdultController implements Initializable {
             stage.close();
 
         }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("ERROR DE CONEXIÓN");
+            alert.setContentText("Los cambios no fueron registrados");
 
         }
         //el nombre completo con los apeidos esta guardado el propiedad nombre, pero necesitamos analizar un momento el servidor

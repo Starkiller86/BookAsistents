@@ -38,7 +38,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <Button fx:id="asistenciabuttonKC" layoutX="712.0" layoutY="346.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" text="Marcar Asistencia" />
+        <Button fx:id="asistenciabuttonKC" onAction="#marcarButtonKidAction" layoutX="712.0" layoutY="346.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" text="Marcar Asistencia" />
         <Button fx:id="cancelarbuttonKC" layoutX="624.0" layoutY="346.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="Cancelar" />
     </children>
 </AnchorPane>
