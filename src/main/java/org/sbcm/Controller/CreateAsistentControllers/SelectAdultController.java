@@ -1,13 +1,11 @@
 package org.sbcm.Controller.CreateAsistentControllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.json.JSONObject;
 import org.sbcm.Dao.AdultRegisterdaoImp;
 import org.sbcm.Dao.CRUD;
 import org.sbcm.Model.Adult;
@@ -24,7 +22,7 @@ public class SelectAdultController implements Initializable {
     @FXML
     private TableColumn<Adult, String> discapacidadC;
     @FXML
-    private TableColumn<Adult, Integer> edadC;
+    private TableColumn<Adult, Integer> fechaNacimientoC;
     @FXML
     private TableColumn<Adult, String> escolaridadC;
     @FXML
@@ -82,7 +80,7 @@ public class SelectAdultController implements Initializable {
 
             }
 
-            adultCRUD.putResource(adult);
+            adultCRUD.putAssistance(adult);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Asistencia Registrada");
             alert.setContentText("La asistencia fue registrada correctamente");
@@ -117,7 +115,7 @@ public class SelectAdultController implements Initializable {
     public void initialize(URL location, ResourceBundle resources){
         apellidoC.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         discapacidadC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));
-        edadC.setCellValueFactory(new PropertyValueFactory<>("edad"));
+        fechaNacimientoC.setCellValueFactory(new PropertyValueFactory<>("edad"));
         escolaridadC.setCellValueFactory(new PropertyValueFactory<>("escolaridad"));
         generoC.setCellValueFactory(new PropertyValueFactory<>("genero"));
         idC.setCellValueFactory(new PropertyValueFactory<>("id"));

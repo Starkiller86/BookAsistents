@@ -19,7 +19,12 @@ import java.nio.charset.StandardCharsets;
       * encuentran en la base de datos, haciendo que se puedan Crear, Actualizar, Leer y Eliminar cualquier registro mediante las conexiones Http, estos método
       * son los que se implementan con el CRUD y que hacen que se realicen estas acciones con los registros**/
 public class KidRegisterdaoImp implements CRUD<Kid>{
-    //estas son las variables de conexión o de instancia que permiten que la base de datos se conecten con el código
+         @Override
+         public void putAssistance(Kid kid) throws Exception {
+
+         }
+
+         //estas son las variables de conexión o de instancia que permiten que la base de datos se conecten con el código
     HttpURLConnection connection;
     URI uri;
     boolean usingTest = true;

@@ -9,7 +9,7 @@ public class AdultSingleton {
     private int id;
     private String nombre;
     private String apellido;
-    private int edad;
+    private String fechaNacimiento;
     private String genero;
     private  String escolaridad;
     private String discapacidad;
@@ -57,12 +57,12 @@ public class AdultSingleton {
         this.id = id;
     }
 
-    public int getEdad() {
-        return edad;
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getGenero() {

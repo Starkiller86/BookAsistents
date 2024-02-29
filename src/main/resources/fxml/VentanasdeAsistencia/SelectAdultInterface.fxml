@@ -26,7 +26,7 @@
           <TableColumn fx:id="idC" editable="false" prefWidth="34.39999485015869" sortable="false" text="ID" />
           <TableColumn fx:id="nombreC" editable="false" prefWidth="95.20000839233398" sortable="false" text="Nombre" />
             <TableColumn fx:id="apellidoC" editable="false" prefWidth="116.80000305175781" sortable="false" text="Apellido" />
-            <TableColumn fx:id="edadC" editable="false" prefWidth="44.79998779296875" sortable="false" text="Edad" />
+            <TableColumn fx:id="fechaNacimientoC" editable="false" prefWidth="44.79998779296875" sortable="false" text="Fecha Nacimiento" />
             <TableColumn fx:id="generoC" editable="false" prefWidth="87.199951171875" sortable="false" text="Genero" />
             <TableColumn fx:id="escolaridadC" editable="false" prefWidth="96.79998779296875" sortable="false" text="Escolaridad" />
             <TableColumn fx:id="discapacidadC" editable="false" prefWidth="80.800048828125" sortable="false" text="Discapacidad" />

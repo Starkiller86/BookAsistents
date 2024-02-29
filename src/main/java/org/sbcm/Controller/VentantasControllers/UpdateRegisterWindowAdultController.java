@@ -54,7 +54,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
             Adult adult = new Adult();
             adult.setNVisitas(Integer.parseInt(noVisitasField.getText())); //Colocamos como valor en cada uno de sus atributos el valor del campo de texto en la interfaz
             adult.setOcupacion(ocupacionField.getText());
-            adult.setEdad(Integer.parseInt(edadField.getText()));
+            adult.setFechaNacimiento(edadField.getText());
             adult.setEscolaridad(escolaridadField.getText());
             adult.setGenero(generoFIeld.getText());
             adult.setTipoDeVisitante(tipoVisitanteField.getText());
@@ -66,6 +66,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
 
             //Una vez que tenemos nuestro modelo con todos los datos de la interfaz ya podemos mandarlo al servidor para que lo registre en la base de datos
             adultCRUD.putResource(adult);
+            System.out.println(adult.getFechaNacimiento());
             //Ahora en caso de que haya hecho la función correctamente vamos a cerrar la ventana
             adultSingleton = null;
             Stage stage = (Stage) buttonActualizar.getScene().getWindow();//Aqui tomamos la instancia de la ventana
@@ -101,7 +102,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
         nombreField.setText(adultSingleton.getNombre());
         apellidoField.setText(adultSingleton.getApellido());
         idField.setText(String.valueOf(adultSingleton.getId()));
-        edadField.setText(String.valueOf(adultSingleton.getEdad()));
+        edadField.setText(String.valueOf(adultSingleton.getFechaNacimiento()));
         generoFIeld.setText(adultSingleton.getGenero());
         discapacidadField.setText(adultSingleton.getDiscapacidad());
         escolaridadField.setText(adultSingleton.getEscolaridad());

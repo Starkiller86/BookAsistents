@@ -20,6 +20,7 @@ import org.sbcm.SingletonModels.AdultSingleton;
 
 import java.awt.*;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class RegistroDeLibreriasControllerAdult extends Component implements Initializable {
@@ -67,7 +68,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
     @FXML private TextField nRegistroRA;
     @FXML private TextField nombreRA;
     @FXML private TextField apellidoRA;
-    @FXML private TextField edadRA;
+    @FXML private TextField fechaRA;
     /**Grupo Género**/
     final ToggleGroup grupoGeneroRA = new ToggleGroup();
     @FXML private RadioButton femRA;
@@ -89,12 +90,9 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
     @FXML private RadioButton estRA;
     @FXML private RadioButton emploRA;
     @FXML private RadioButton desRA;
+    @FXML private DatePicker fechaNacimientoP;
     final ToggleGroup grupoocupacion = new ToggleGroup();
-    @FXML private TextField textInputgeneroRA;
-    @FXML private TextField textInputdiscapacidadRA;
-    @FXML private TextField textInputescolaridadRA;
-    @FXML private TextField textInputocupacionRA;
-    @FXML private TextField nVisitasRA;
+
     @FXML private Button buttonRA;
 
     /**En esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.**/
@@ -104,7 +102,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         //Le asigno el valor de sus atributos con base a lo que obtenga de la interfaz
         //adulto.setId(Integer.parseInt(nRegistroRA.getText()));
         try {
-            adulto.setEdad(Integer.parseInt(edadRA.getText()));
+            adulto.setFechaNacimiento(fechaNacimientoP.getValue().format(DateTimeFormatter.ISO_DATE));
             adulto.setNombre(nombreRA.getText());
             adulto.setApellido(apellidoRA.getText());
             adulto.setGenero(((RadioButton) grupoGeneroRA.getSelectedToggle()).getText());
@@ -127,7 +125,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             adultCRUD.postResourse(adulto);
             //Debemos actualizar la tabla tambien
             ListAdult.setItems(adultCRUD.getAllResources());
-            edadRA.setText("");
+            fechaRA.setText("");
             nombreRA.setText("");
             apellidoRA.setText("");
             grupoGeneroRA.selectToggle(null);
@@ -157,7 +155,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
     @FXML TableColumn<Adult, String> nombreC;
     @FXML TableColumn<Adult, String> apellidoC;
     @FXML
-    private TableColumn<Adult, Integer> edadC;
+    private TableColumn<Adult, String> fechaNacimientoC;
     @FXML
     private TableColumn<Adult, String > generoC;
     @FXML
@@ -186,7 +184,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             alert.setContentText("Registro: \n ID : " + selectadult.getId()+
                     "\n Nombre: " + selectadult.getNombre() +
                     "\n Apellido: " +  selectadult.getApellido() +
-                    "\n Edad: " + selectadult.getEdad() +
+                    "\n Fecha de Nacimiento: " + selectadult.getFechaNacimiento() +
                     "\n Género: " + selectadult.getGenero() +
                     "\n Escolaridad: " + selectadult.getEscolaridad() +
                     "\n Discapacidad: " + selectadult.getDiscapacidad() +
@@ -201,7 +199,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
                     alert.setContentText("Registro: \n ID : " + selectadult.getId() +
                             "\n Nombre: " + selectadult.getNombre() +
                             "\n Apellido: " + selectadult.getApellido() +
-                            "\n Edad: " + selectadult.getEdad() +
+                            "\n Fecha de Nacimiento: " + selectadult.getFechaNacimiento() +
                             "\n Género: " + selectadult.getGenero() +
                             "\n Escolaridad: " + selectadult.getEscolaridad() +
                             "\n Discapacidad: " + selectadult.getDiscapacidad() +
@@ -241,6 +239,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
                 alert.setContentText("Selecciona un usuario para continuar");
                 //Configuramos la ventana como ShowandAwait para que no nos deje interactuar con la interfaz mientras está abierta
                 alert.showAndWait();
+
             }
             //En el caso de que adulto sea nulo y no haya nada seleccionado usaremos un assert para cortar la ejecucion en este punto y pase al catch
             assert adultoSelected != null : "Adulto es nulo";
@@ -255,7 +254,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             adultSingleton.setApellido(adultoSelected.getApellido());
             adultSingleton.setDiscapacidad(adultoSelected.getDiscapacidad());
             adultSingleton.setnVisitas(adultoSelected.getNVisitas());
-            adultSingleton.setEdad(adultoSelected.getEdad());
+            adultSingleton.setFechaNacimiento(adultoSelected.getFechaNacimiento());
             adultSingleton.setEscolaridad(adultoSelected.getEscolaridad());
             adultSingleton.setGenero(adultoSelected.getGenero());
             adultSingleton.setOcupacion(adultoSelected.getOcupacion());
@@ -315,6 +314,10 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         Adult adult = new Adult();
         CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
         try {
+            adult.setDomicilio(domicilioDAC.getText());
+            adult.setNpersonal(npersonalDAC.getText());
+            adult.setNemergencia(nemergenciaDAC.getText());
+            System.out.println(new ObjectMapper().writeValueAsString(adult));
             Adult adulto = dataTableDAC.getSelectionModel().getSelectedItem();
             if (adulto == null) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -326,9 +329,9 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             assert adulto != null : "Adulto es nulo";
             AdultSingleton adultSingleton = AdultSingleton.getInstance();
             adultSingleton.setDomicilio(adulto.getDomicilio());
-            adultSingleton.setNpersonal(adulto.getNumeropersonal());
-            adultSingleton.setNemergencia(adulto.getNumeroemergencia());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VentanasdeAsistencia/ImportantDataAdult.fxml"));
+            adultSingleton.setNpersonal(adulto.getNpersonal());
+            adultSingleton.setNemergencia(adulto.getNemergencia());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Ventanas/ImportantDataAdult.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -339,7 +342,25 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             adultSingleton = null;
             dataTableDAC.setItems(adultCRUD.getAllResources());
         }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("No pusiste ningun dato");
+            alert.setContentText("Coloca los datos");
+            alert.showAndWait();
             throw new Exception(e);
+        }
+        try {
+            adultCRUD.postResourse(adult);
+            ListAdult.setItems(adultCRUD.getAllResources());
+            domicilioDAC.setText("");
+            npersonalDAC.setText("");
+            nemergenciaDAC.setText("");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Registro de Datos Correcto");
+        }catch (Exception exception){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            throw new Exception(exception);
         }
     }
     @Override
@@ -361,7 +382,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         idC.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreC.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         apellidoC.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        edadC.setCellValueFactory(new PropertyValueFactory<>("edad"));
+        fechaNacimientoC.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
         generoC.setCellValueFactory(new PropertyValueFactory<>("genero"));
         //genero
         discapacidadC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));

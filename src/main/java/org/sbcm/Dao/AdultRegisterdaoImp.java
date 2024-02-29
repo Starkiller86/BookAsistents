@@ -279,7 +279,27 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
             return listaCoincidencias;
         }
 
-        @Override
+    @Override
+    public void putAssistance(Adult adult) throws Exception {
+        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults/mark");
+        connection = (HttpURLConnection) uri.toURL().openConnection();
+        connection.setRequestMethod("PUT");
+        connection.setRequestProperty("Content-Type" , "application/json");
+        connection.setRequestProperty("User-Agent" , "JAVAFX/1.0 SNAPSHOT (Windows 10; x64)");
+        connection.setDoOutput(true);
+
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject json = new JSONObject(mapper.writeValueAsString(adult));
+        OutputStream transmisionSalida = connection.getOutputStream();
+        byte[] salidaBytes = json.toString().getBytes(StandardCharsets.UTF_8);
+        transmisionSalida.write(salidaBytes);
+        if (connection.getResponseCode() != 200)
+            throw new Exception();
+
+        connection.disconnect();
+    }
+
+    @Override
     public void setConnection(HttpURLConnection connection) {
     }
 

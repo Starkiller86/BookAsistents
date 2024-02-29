@@ -28,10 +28,10 @@ public class Kid {
     private String tipoDeVisitante;
     @JsonProperty("domicilio")
     private String domicilio;
-    @JsonProperty("numeropersonal")
-    private String numeropersonal;
-    @JsonProperty("numeroemergencia")
-    private String numeroemergencia;
+    @JsonProperty("npersonal")
+    private String npersonal;
+    @JsonProperty("nemergencia")
+    private String nemergencia;
 
     public String getNombre() {
         return nombre;
@@ -119,19 +119,19 @@ public class Kid {
         this.domicilio = domicilio;
     }
 
-    public String getNumeropersonal() {
-        return numeropersonal;
+    public String getNpersonal() {
+        return npersonal;
     }
 
-    public void setNumeropersonal(String numeropersonal) {
-        this.numeropersonal = numeropersonal;
+    public void setNpersonal(String npersonal) {
+        this.npersonal = npersonal;
     }
 
-    public String getNumeroemergencia() {
-        return numeroemergencia;
+    public String getNemergencia() {
+        return nemergencia;
     }
 
-    public void setNumeroemergencia(String numeroemergencia) {
-        this.numeroemergencia = numeroemergencia;
+    public void setNemergencia(String nemergencia) {
+        this.nemergencia = nemergencia;
     }
 }

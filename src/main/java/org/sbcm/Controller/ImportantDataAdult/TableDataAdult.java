@@ -22,16 +22,20 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TableDataAdult implements Initializable {
-    @FXML private TextField domicilioRAC;
-    @FXML private TextField npersonalRAC;
-    @FXML private TextField nemergenciaRAC;
-    @FXML private TableView<Adult> dataTableAC;
+    @FXML private TextField domicilioDAC;
+    @FXML private TextField npersonalDAC;
+    @FXML private TextField nemergenciaDAC;
+    @FXML private TableView<Adult> dataTableDAC;
     @FXML private Button dataadult;
     @FXML private void buttonActionRegisterData(ActionEvent event) throws Exception{
         Adult adult = new Adult();
         CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
         try {
-            Adult adulto = dataTableAC.getSelectionModel().getSelectedItem();
+            adult.setDomicilio(domicilioDAC.getText());
+            adult.setNpersonal(npersonalDAC.getText());
+            adult.setNemergencia(nemergenciaDAC.getText());
+            System.out.println(new ObjectMapper().writeValueAsString(adult));
+            Adult adulto = dataTableDAC.getSelectionModel().getSelectedItem();
             if (adulto == null) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error");
@@ -42,8 +46,8 @@ public class TableDataAdult implements Initializable {
             assert adulto != null : "Adulto es nulo";
             AdultSingleton adultSingleton = AdultSingleton.getInstance();
             adultSingleton.setDomicilio(adulto.getDomicilio());
-            adultSingleton.setNpersonal(adulto.getNumeropersonal());
-            adultSingleton.setNemergencia(adulto.getNumeroemergencia());
+            adultSingleton.setNpersonal(adulto.getNpersonal());
+            adultSingleton.setNemergencia(adulto.getNemergencia());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VentanasdeAsistencia/ImportantDataAdult.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -53,9 +57,27 @@ public class TableDataAdult implements Initializable {
             stage.setScene(scene);
             stage.showAndWait();
             adultSingleton = null;
-            dataTableAC.setItems(adultCRUD.getAllResources());
+            dataTableDAC.setItems(adultCRUD.getAllResources());
         }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("No pusiste ningun dato");
+            alert.setContentText("Coloca los datos");
+            alert.showAndWait();
             throw new Exception(e);
+        }
+        try {
+            adultCRUD.postResourse(adult);
+            dataTableDAC.setItems(adultCRUD.getAllResources());
+            domicilioDAC.setText("");
+            npersonalDAC.setText("");
+            nemergenciaDAC.setText("");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Registro de Datos Correcto");
+        }catch (Exception exception){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            throw new Exception(exception);
         }
     }
     @Override

@@ -1,7 +1,6 @@
 package org.sbcm.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javafx.fxml.FXML;
 
 public class Adult {
 /**Este modelo de Adult en donde se encuentra la estructura de los datos que se deben de tener en los registros y cada uno de estos
@@ -13,8 +12,8 @@ public class Adult {
     private String nombre;
     @JsonProperty("apellido")
     private String apellido;
-    @JsonProperty("edad")
-    private int edad;
+    @JsonProperty("fechaNacimiento")
+    private String fechaNacimiento;
     @JsonProperty("genero")
     private String genero;
     @JsonProperty("escolaridad")
@@ -29,10 +28,10 @@ public class Adult {
     private String tipoDeVisitante;
     @JsonProperty("domicilio")
     private String domicilio;
-    @JsonProperty("numeropersonal")
-    private String numeropersonal;
-    @JsonProperty("numeroemergencia")
-    private String numeroemergencia;
+    @JsonProperty("npersonal")
+    private String npersonal;
+    @JsonProperty("nemergencia")
+    private String nemergencia;
 
     public String getNombre() {
         return nombre;
@@ -73,12 +72,12 @@ public class Adult {
     public void setId(int id) {
         this.id = id;
     }
-    public int getEdad() {
-        return edad;
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getGenero() {
@@ -121,19 +120,19 @@ public class Adult {
         this.domicilio = domicilio;
     }
 
-    public String getNumeropersonal() {
-        return numeropersonal;
+    public String getNpersonal() {
+        return npersonal;
     }
 
-    public void setNumeropersonal(String numeropersonal) {
-        this.numeropersonal = numeropersonal;
+    public void setNpersonal(String npersonal) {
+        this.npersonal = npersonal;
     }
 
-    public String getNumeroemergencia() {
-        return numeroemergencia;
+    public String getNemergencia() {
+        return nemergencia;
     }
 
-    public void setNumeroemergencia(String numeroemergencia) {
-        this.numeroemergencia = numeroemergencia;
+    public void setNemergencia(String nemergencia) {
+        this.nemergencia = nemergencia;
     }
 }

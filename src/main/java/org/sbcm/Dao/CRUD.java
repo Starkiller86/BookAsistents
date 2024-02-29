@@ -62,6 +62,8 @@ public interface CRUD<Resource> {
      * @return Lista Observable con todas las coincidencias
      */
     ObservableList<Resource> getAllResourcesByName(String name) throws Exception;
+
+    void putAssistance(Resource resource) throws Exception;
     void setConnection(HttpURLConnection connection);
     URI getUri();
 
