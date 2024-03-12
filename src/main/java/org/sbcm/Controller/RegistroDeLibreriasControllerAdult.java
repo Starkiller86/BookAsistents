@@ -21,6 +21,7 @@ import org.sbcm.SingletonModels.AdultSingleton;
 import java.awt.*;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class RegistroDeLibreriasControllerAdult extends Component implements Initializable {
@@ -68,7 +69,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
     @FXML private TextField nRegistroRA;
     @FXML private TextField nombreRA;
     @FXML private TextField apellidoRA;
-    @FXML private TextField fechaRA;
+    @FXML private DatePicker fechaNacimientoP;
     /**Grupo Género**/
     final ToggleGroup grupoGeneroRA = new ToggleGroup();
     @FXML private RadioButton femRA;
@@ -90,7 +91,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
     @FXML private RadioButton estRA;
     @FXML private RadioButton emploRA;
     @FXML private RadioButton desRA;
-    @FXML private DatePicker fechaNacimientoP;
+
     final ToggleGroup grupoocupacion = new ToggleGroup();
 
     @FXML private Button buttonRA;
@@ -125,7 +126,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             adultCRUD.postResourse(adulto);
             //Debemos actualizar la tabla tambien
             ListAdult.setItems(adultCRUD.getAllResources());
-            fechaRA.setText("");
+            fechaNacimientoP.setValue(null);
             nombreRA.setText("");
             apellidoRA.setText("");
             grupoGeneroRA.selectToggle(null);

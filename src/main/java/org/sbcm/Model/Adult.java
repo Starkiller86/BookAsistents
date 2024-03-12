@@ -26,12 +26,8 @@ public class Adult {
     private int nVisitas;
     @JsonProperty("tipoDeVisitante")
     private String tipoDeVisitante;
-    @JsonProperty("domicilio")
-    private String domicilio;
-    @JsonProperty("npersonal")
-    private String npersonal;
-    @JsonProperty("nemergencia")
-    private String nemergencia;
+
+
 
     public String getNombre() {
         return nombre;
@@ -112,27 +108,5 @@ public class Adult {
         this.ocupacion = ocupacion;
     }
 
-    public String getDomicilio() {
-        return domicilio;
-    }
 
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
-
-    public String getNpersonal() {
-        return npersonal;
-    }
-
-    public void setNpersonal(String npersonal) {
-        this.npersonal = npersonal;
-    }
-
-    public String getNemergencia() {
-        return nemergencia;
-    }
-
-    public void setNemergencia(String nemergencia) {
-        this.nemergencia = nemergencia;
-    }
 }

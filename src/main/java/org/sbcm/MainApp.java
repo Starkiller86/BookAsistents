@@ -11,7 +11,7 @@ import java.io.IOException;
 public class MainApp extends Application {
     @Override
     public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/RegistrodeLibreriasAdult.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/RegistrodeLibreriasKid.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("");
         stage.setScene(scene);

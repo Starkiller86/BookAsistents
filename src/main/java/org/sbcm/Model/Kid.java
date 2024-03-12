@@ -12,12 +12,12 @@ public class Kid {
     private String nombre;
     @JsonProperty("apellido")
     private String apellido;
-    @JsonProperty("edad")
-    private int edad;
+    @JsonProperty("fechaNacimiento")
+    private String fechaNacimiento;
     @JsonProperty("genero")
     private String genero;
     @JsonProperty("escolaridad")
-    private String escolaridad;
+    private  String escolaridad;
     @JsonProperty("discapacidad")
     private String discapacidad;
     @JsonProperty("ocupacion")
@@ -26,12 +26,27 @@ public class Kid {
     private int nVisitas;
     @JsonProperty("tipoDeVisitante")
     private String tipoDeVisitante;
-    @JsonProperty("domicilio")
-    private String domicilio;
-    @JsonProperty("npersonal")
-    private String npersonal;
-    @JsonProperty("nemergencia")
-    private String nemergencia;
+
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public void setOcupacion(String ocupacion) {
+        this.ocupacion = ocupacion;
+    }
+
+    public int getnVisitas() {
+        return nVisitas;
+    }
+
+    public void setnVisitas(int nVisitas) {
+        this.nVisitas = nVisitas;
+    }
 
     public String getNombre() {
         return nombre;
@@ -73,12 +88,7 @@ public class Kid {
         this.id = id;
     }
 
-    public int getEdad() {
-        return edad;
-    }
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
+
 
     public String getGenero() {
         return genero;
@@ -108,30 +118,6 @@ public class Kid {
         return ocupacion;
     }
 
-    public void setOcupacion(String ocupacion) {
-        this.ocupacion = ocupacion;
-    }
-    public String getDomicilio() {
-        return domicilio;
-    }
 
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
 
-    public String getNpersonal() {
-        return npersonal;
-    }
-
-    public void setNpersonal(String npersonal) {
-        this.npersonal = npersonal;
-    }
-
-    public String getNemergencia() {
-        return nemergencia;
-    }
-
-    public void setNemergencia(String nemergencia) {
-        this.nemergencia = nemergencia;
-    }
 }

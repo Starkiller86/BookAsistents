@@ -31,9 +31,7 @@ public class TableDataAdult implements Initializable {
         Adult adult = new Adult();
         CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
         try {
-            adult.setDomicilio(domicilioDAC.getText());
-            adult.setNpersonal(npersonalDAC.getText());
-            adult.setNemergencia(nemergenciaDAC.getText());
+
             System.out.println(new ObjectMapper().writeValueAsString(adult));
             Adult adulto = dataTableDAC.getSelectionModel().getSelectedItem();
             if (adulto == null) {
@@ -45,9 +43,6 @@ public class TableDataAdult implements Initializable {
             }
             assert adulto != null : "Adulto es nulo";
             AdultSingleton adultSingleton = AdultSingleton.getInstance();
-            adultSingleton.setDomicilio(adulto.getDomicilio());
-            adultSingleton.setNpersonal(adulto.getNpersonal());
-            adultSingleton.setNemergencia(adulto.getNemergencia());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VentanasdeAsistencia/ImportantDataAdult.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
