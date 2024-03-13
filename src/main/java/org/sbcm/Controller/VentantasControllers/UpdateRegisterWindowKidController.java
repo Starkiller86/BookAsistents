@@ -62,7 +62,7 @@ public class UpdateRegisterWindowKidController implements Initializable {
             kid.setNombre(nombreFieldKid.getText());
             kid.setApellido(apellidoFieldKid.getText());
             kid.setOcupacion(ocupacionFieldKid.getText());
-            kid.setEdad(Integer.parseInt(edadFieldKid.getText()));
+            kid.setFechaNacimiento(edadFieldKid.getText());
             kid.setEscolaridad(escolaridadFieldKid.getText());
             kid.setGenero(generoFieldKid.getText());
             kid.setTipoDeVisitante(tipoDeVisitanteFieldKid.getText());
@@ -97,7 +97,7 @@ public class UpdateRegisterWindowKidController implements Initializable {
         idFieldKid.setText(String.valueOf(kidSinglenton.getId()));
         nombreFieldKid.setText(kidSinglenton.getNombre());
         apellidoFieldKid.setText(kidSinglenton.getApellido());
-        edadFieldKid.setText(String.valueOf(kidSinglenton.getEdad()));
+        edadFieldKid.setText(String.valueOf(kidSinglenton.getFechadenacimiento()));
         generoFieldKid.setText(kidSinglenton.getGenero());
         discapacidadFieldKid.setText(kidSinglenton.getDiscapacidad());
         escolaridadFieldKid.setText(kidSinglenton.getEscolaridad());

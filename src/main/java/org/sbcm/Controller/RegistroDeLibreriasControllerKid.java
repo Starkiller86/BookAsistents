@@ -18,6 +18,7 @@ import org.sbcm.SingletonModels.KidSinglenton;
 
 import javax.swing.table.TableColumnModel;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -60,7 +61,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
     private TextField nRegistroRI;
     @FXML private TextField nombreRI;
     @FXML private TextField apellidoRI;
-    @FXML private TextField edadRI;
+    @FXML private DatePicker dateKid;
     @FXML private TextField textInput;
     @FXML private TextField TextInput;
     @FXML private TextField TextInputRI;
@@ -99,7 +100,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
         try {
             kid.setNombre(nombreRI.getText());
             kid.setApellido(apellidoRI.getText());
-            kid.setEdad(Integer.parseInt(edadRI.getText()));
+            kid.setFechaNacimiento(dateKid.getValue().format(DateTimeFormatter.ISO_DATE));
             kid.setGenero(((RadioButton) grupogeneroK.getSelectedToggle()).getText());
             kid.setDiscapacidad(((RadioButton) grupodiscapacidadK.getSelectedToggle()).getText());
             kid.setEscolaridad(((RadioButton) grupoescolaridadK.getSelectedToggle()).getText());
@@ -119,7 +120,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             ListKid.setItems(kidCRUD.getAllResources());
             nombreRI.setText("");
             apellidoRI.setText("");
-            edadRI.setText("");
+            dateKid.setValue(null);
             grupogeneroK.selectToggle(null);
             grupodiscapacidadK.selectToggle(null);
             grupoescolaridadK.selectToggle(null);
@@ -143,7 +144,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
     @FXML private TableColumn<Kid, String> nombreKC;
     @FXML private TableColumn<Kid, String> apellidoKC;
     @FXML
-    private TableColumn<Kid,Integer> edadKC;
+    private TableColumn<Kid,String> edadKC;
     @FXML
     private TableColumn<Kid, String> generoKC;
     @FXML
@@ -176,7 +177,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             alert.setContentText("Registro: \n ID: " + selectedKid.getId() +
                     "\n Nombre: " + selectedKid.getNombre() +
                     "\n Apellido: " + selectedKid.getApellido() +
-                    "\n Edad: " + selectedKid.getEdad() +
+                    "\n Fecha de Nacimiento: " + selectedKid.getFechaNacimiento() +
                     "\n Género: " + selectedKid.getGenero() +
                     "\n Escolaridad: " + selectedKid.getEscolaridad() +
                     "\n Discapacidad: " + selectedKid.getDiscapacidad() +
@@ -199,7 +200,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
                     alert.setContentText("Registro: \n ID: " + selectedKid.getId() +
                             "\n Nombre: " + selectedKid.getNombre() +
                             "\n Apellido: " + selectedKid.getApellido() +
-                            "\n Edad: " + selectedKid.getEdad() +
+                            "\n Fecha de Nacimiento: " + selectedKid.getFechaNacimiento() +
                             "\n Género: " + selectedKid.getGenero() +
                             "\n Escolaridad: " + selectedKid.getEscolaridad() +
                             "\n Discapacidad: "+ selectedKid.getDiscapacidad() +
@@ -245,7 +246,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             kidSinglenton.setId(kidSelected.getId());
             kidSinglenton.setNombre(kidSelected.getNombre());
             kidSinglenton.setApellido(kidSelected.getApellido());
-            kidSinglenton.setEdad(kidSelected.getEdad());
+            kidSinglenton.setFechadenacimiento(kidSelected.getFechaNacimiento());
             kidSinglenton.setDiscapacidad(kidSelected.getDiscapacidad());
             kidSinglenton.setEscolaridad(kidSelected.getEscolaridad());
             kidSinglenton.setGenero(kidSelected.getGenero());
@@ -304,7 +305,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
         idKC.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreKC.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         apellidoKC.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        edadKC.setCellValueFactory(new PropertyValueFactory<>("edad"));
+        edadKC.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
         generoKC.setCellValueFactory(new PropertyValueFactory<>("genero"));
 
         discapacidadKC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));

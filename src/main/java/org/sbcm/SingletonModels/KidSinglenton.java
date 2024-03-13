@@ -8,7 +8,7 @@ public class KidSinglenton {
     private int id;
     private String nombre;
     private String apellido;
-    private int edad;
+    private String fechadenacimiento;
     private String genero;
     private String escolaridad;
     private String discapacidad;
@@ -51,12 +51,12 @@ public class KidSinglenton {
         this.apellido = apellido;
     }
 
-    public int getEdad() {
-        return edad;
+    public String getFechadenacimiento() {
+        return fechadenacimiento;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setFechadenacimiento(String fechadenacimiento) {
+        this.fechadenacimiento = fechadenacimiento;
     }
 
     public String getGenero() {

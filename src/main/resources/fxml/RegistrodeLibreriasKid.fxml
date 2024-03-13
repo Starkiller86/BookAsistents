@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
@@ -61,16 +62,11 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label layoutX="338.0" layoutY="161.0" text="Edad:">
+                        <Label layoutX="203.0" layoutY="161.0" text="Fecha de Nacimiento:">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="edadRI" layoutX="418.0" layoutY="160.0" prefHeight="31.0" prefWidth="186.0">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
                         <Label layoutX="327.0" layoutY="212.0" text="Género:">
                            <font>
                               <Font size="20.0" />
@@ -126,6 +122,7 @@
                               <Font size="15.0" />
                            </font>
                         </TextField>
+                        <DatePicker fx:id="dateKid" layoutX="421.0" layoutY="164.0" prefHeight="30.0" prefWidth="188.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -139,8 +136,8 @@
                             <TableColumn fx:id="idKC" prefWidth="61.0" text="Id" />
                               <TableColumn fx:id="nombreKC" prefWidth="75.0" text="Nombre" />
                               <TableColumn fx:id="apellidoKC" prefWidth="104.0" text="Apellido" />
-                            <TableColumn fx:id="edadKC" prefWidth="61.0" text="Edad" />
-                              <TableColumn fx:id="generoKC" prefWidth="84.0" text="Género" />
+                            <TableColumn fx:id="edadKC" prefWidth="79.0" text="FechaNacimiento" />
+                              <TableColumn fx:id="generoKC" prefWidth="66.0" text="Género" />
                               <TableColumn fx:id="discapacidadKC" prefWidth="110.0" text="Discapacidad" />
                               <TableColumn fx:id="escolaridadKC" prefWidth="106.0" text="Escolaridad" />
                               <TableColumn fx:id="ocupacionKC" prefWidth="98.0" text="Ocupación" />
