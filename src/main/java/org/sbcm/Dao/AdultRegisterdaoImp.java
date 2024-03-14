@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
+import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -111,7 +112,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
      */
 
     @Override
-    public void postResourse(Adult adult) throws Exception {
+    public int postResourse(Adult adult) throws Exception {
         {
             uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults");
 
@@ -128,8 +129,22 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
             transmisionSalida.write(salidaBytes);
             if(connection.getResponseCode()!=200){
                 throw  new Exception();
+            }//Se supone que cómo solo enviabamos aquí terminaba el metodo post, pero ahora regresa un entero, entonces vamos a recibir ese entero
+
+            InputStreamReader lecturaTransmision = new InputStreamReader(connection.getInputStream());
+            BufferedReader lecturaBuffer = new BufferedReader(lecturaTransmision);
+            String line = lecturaBuffer.readLine();
+            StringBuilder lines = new StringBuilder();
+            while (line!=null){
+                lines.append(line);
+                line = lecturaBuffer.readLine();
             }
+            lecturaBuffer.close();
+            int idRegistrado = Integer.parseInt(lines.toString());
+
+
             connection.disconnect();
+            return idRegistrado;
         }
     }
 

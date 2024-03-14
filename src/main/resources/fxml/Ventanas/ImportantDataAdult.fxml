@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.RegistroDeLibreriasControllerAdult">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="">
    <children>
       <TabPane layoutY="-4.0" prefHeight="407.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -43,7 +43,7 @@
                            </font>
                         </Label>
                         <TextField fx:id="nemergenciaDAC" layoutX="327.0" layoutY="234.0" prefHeight="25.0" prefWidth="164.0" />
-                        <Button fx:id="dataadult" layoutX="308.0" layoutY="294.0" mnemonicParsing="false" onAction="#buttonActionRegisterData" text="Button">
+                        <Button fx:id="dataadult" layoutX="308.0" layoutY="294.0" mnemonicParsing="false" onAction="" text="Button">
                            <font>
                               <Font size="15.0" />
                            </font>

@@ -81,7 +81,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
       */
 
     @Override
-    public void postResourse(Kid kid) throws Exception {
+    public int postResourse(Kid kid) throws Exception {
         uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids");
 
         connection = (HttpURLConnection) uri.toURL().openConnection();
@@ -99,6 +99,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
             throw  new Exception();
         }
         connection.disconnect();
+        return 0;
     }
 
      /***

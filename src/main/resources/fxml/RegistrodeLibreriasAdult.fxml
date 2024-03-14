@@ -122,7 +122,6 @@
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="dataadult" layoutX="757.0" layoutY="510.0" mnemonicParsing="false" onAction="#buttonActionRegisterData" prefHeight="31.0" prefWidth="90.0" text="Datos" />
                         <DatePicker fx:id="fechaNacimientoP" layoutX="398.0" layoutY="184.0" prefHeight="25.0" prefWidth="191.0" />
                      </children>
                   </AnchorPane>

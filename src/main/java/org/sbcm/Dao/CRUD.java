@@ -28,7 +28,7 @@ public interface CRUD<Resource> {
      * @param resource es el objeto JAVA y sus datos
      * @throws Exception es lo que se realiza cuando la conexión HTTP es diferente a 200 de otra forma continua el código
      */
-    void postResourse(Resource resource) throws Exception;
+    int postResourse(Resource resource) throws Exception;
 
     /***
      * En este método se obtienen todos los datos de un registro en especifico con su id, y mediante las conecciones

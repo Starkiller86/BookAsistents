@@ -123,7 +123,8 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         }
         //ahora solo llamaremos la función del crud que se encarga de subir datos mediante el servidor a la base de datos
         try{
-            adultCRUD.postResourse(adulto);
+            //obtenemos el id del adulto que vamos a registrar
+            int idadulto = adultCRUD.postResourse(adulto);
             //Debemos actualizar la tabla tambien
             ListAdult.setItems(adultCRUD.getAllResources());
             fechaNacimientoP.setValue(null);
@@ -134,6 +135,17 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             grupoescolaridad.selectToggle(null);
             grupoocupacion.selectToggle(null);
             tipoDeVisitanteC.setText("");
+            //Usamos a singleton para usar ese id en otra parte
+            AdultSingleton singleton = AdultSingleton.getInstance();
+            singleton.setId(idadulto);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ImportantDataAdult.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Registrar datos personales");
+            stage.setScene(scene);
+            stage.showAndWait();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Registro Correcto");
             alert.setHeaderText("El registro se ha realizado correctamente");
