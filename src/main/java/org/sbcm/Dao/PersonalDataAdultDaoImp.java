@@ -23,13 +23,14 @@ public class PersonalDataAdultDaoImp implements CRUD<PersonalDataAdult> {
 
     @Override
     public int postResourse(PersonalDataAdult personalDataAdult) throws Exception {
-        uri = new URI("");
+        uri = new URI("http://localhost:4040/sbcm/personalA");
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("User-Agent", "JAVAFX/1.0 SNAPSHOT (Windows 10; x64)");
         connection.setDoOutput(true);
         JSONObject json = new JSONObject(mapper.writeValueAsString(personalDataAdult));
+        System.out.println(json.toString(1));
         OutputStream salidaTransmision = connection.getOutputStream();
         byte[] transBytes = json.toString().getBytes(StandardCharsets.UTF_8);
         salidaTransmision.write(transBytes);
@@ -48,6 +49,7 @@ public class PersonalDataAdultDaoImp implements CRUD<PersonalDataAdult> {
 
         connection.disconnect();
         return Integer.parseInt(lines.toString());
+
     }
 
     @Override

@@ -98,7 +98,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
 
         /**Aqui la conxión se desconecta haciendo que retorne ListAdult.**/
         connection.disconnect();
-
+        System.out.println(ListAdult.get(ListAdult.size()-1).getFechaNacimiento().toString());
         /**En esta línea de código se van a retornar todos los datos JSON en objetos JAVA con ListAdult.**/
         return ListAdult;
     }

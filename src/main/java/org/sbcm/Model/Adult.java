@@ -2,6 +2,10 @@ package org.sbcm.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.SimpleFormatter;
+
 public class Adult {
 /**Este modelo de Adult en donde se encuentra la estructura de los datos que se deben de tener en los registros y cada uno de estos
  * contiene campos que corresponden con la base de datos
@@ -13,7 +17,7 @@ public class Adult {
     @JsonProperty("apellido")
     private String apellido;
     @JsonProperty("fechaNacimiento")
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
     @JsonProperty("genero")
     private String genero;
     @JsonProperty("escolaridad")
@@ -26,8 +30,15 @@ public class Adult {
     private int nVisitas;
     @JsonProperty("tipoDeVisitante")
     private String tipoDeVisitante;
+    private String simmpleDate;
 
+    public String getSimmpleDate() {
+        return new SimpleDateFormat("dd-MM-yyyy").format(fechaNacimiento);
+    }
 
+    public void setSimmpleDate(String simmpleDate) {
+        this.simmpleDate = simmpleDate;
+    }
 
     public String getNombre() {
         return nombre;
@@ -68,11 +79,11 @@ public class Adult {
     public void setId(int id) {
         this.id = id;
     }
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

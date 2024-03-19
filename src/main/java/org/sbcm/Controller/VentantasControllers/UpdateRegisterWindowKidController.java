@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import org.sbcm.Dao.CRUD;
 import org.sbcm.Dao.KidRegisterdaoImp;
 import org.sbcm.Model.Kid;
-import org.sbcm.SingletonModels.KidSinglenton;
+import org.sbcm.Model.SingletonModels.KidSinglenton;
 
 import java.net.URL;
 import java.util.ResourceBundle;

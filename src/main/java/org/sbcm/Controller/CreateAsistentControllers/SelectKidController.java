@@ -8,14 +8,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.sbcm.Dao.CRUD;
 import org.sbcm.Dao.KidRegisterdaoImp;
-import org.sbcm.Model.Adult;
 import org.sbcm.Model.Kid;
-import org.sbcm.SingletonModels.AdultSingleton;
-import org.sbcm.SingletonModels.KidSinglenton;
+import org.sbcm.Model.SingletonModels.KidSinglenton;
 
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class SelectKidController implements Initializable {

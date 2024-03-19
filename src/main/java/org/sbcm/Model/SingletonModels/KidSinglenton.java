@@ -1,4 +1,4 @@
-package org.sbcm.SingletonModels;
+package org.sbcm.Model.SingletonModels;
 
 public class KidSinglenton {
     /**El atributo principal debe ser la propia instancia estatica y privada de la clase**/

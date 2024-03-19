@@ -20,7 +20,7 @@ module org.sbcm {
     exports org.sbcm.Dao;
     exports org.sbcm.Model;
     exports org.sbcm.Controller;
-    exports org.sbcm.SingletonModels;
+    exports org.sbcm.Model.SingletonModels;
     exports org.sbcm.Controller.CreateAsistentControllers to javafx.fxml;
     exports org.sbcm.Controller.DatosUsuarioController to javafx.fxml;
 

@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,12 +16,12 @@ import javafx.stage.Stage;
 import org.sbcm.Dao.AdultRegisterdaoImp;
 import org.sbcm.Dao.CRUD;
 import org.sbcm.Model.Adult;
-import org.sbcm.SingletonModels.AdultSingleton;
+import org.sbcm.Model.SingletonModels.AdultSingleton;
 
 import java.awt.*;
 import java.net.URL;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class RegistroDeLibreriasControllerAdult extends Component implements Initializable {
@@ -36,9 +36,8 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
     /**Tab registrar asistencia*/
 
     @FXML private TextField nombreyapellidoField;
-    @FXML private Button buscarButton;
 
-    @FXML private void buscarButtonAction(ActionEvent event) throws Exception {
+    @FXML private void buscarButtonAction(ActionEvent ignoreEvent) throws Exception {
         AdultSingleton adultSingleton= AdultSingleton.getInstance();//Voy a utilizar el singleton solo para guardar el nombre
         adultSingleton.setNombre(nombreyapellidoField.getText());//A pesar de que pedimos nombre completo del lado del servidor lo vamos a interpretar solo como texto
         //Aquí generamos la ventana
@@ -62,11 +61,11 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
 
 
 
-    /**Tab AdultRegister**/
+    /*Tab AdultRegister**/
     /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones.**/
     //Para darle una accion a un botón es necesario indicar desde la interfaz a que funcion va a desencadenar la acción
 
-    @FXML private TextField nRegistroRA;
+
     @FXML private TextField nombreRA;
     @FXML private TextField apellidoRA;
     @FXML private DatePicker fechaNacimientoP;
@@ -94,24 +93,34 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
 
     final ToggleGroup grupoocupacion = new ToggleGroup();
 
-    @FXML private Button buttonRA;
+
 
     /**En esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.**/
-    @FXML private void buttonRegisterAdult(ActionEvent event) throws Exception{
+    @FXML private void buttonRegisterAdult(ActionEvent ignoreEvent) throws Exception{
         //Primero vamos a crear el objeto en el que vamos a colocar toda la info de la interfaz
         Adult adulto = new Adult();
+        AdultSingleton singleton = AdultSingleton.getInstance();
         //Le asigno el valor de sus atributos con base a lo que obtenga de la interfaz
         //adulto.setId(Integer.parseInt(nRegistroRA.getText()));
         try {
-            adulto.setFechaNacimiento(fechaNacimientoP.getValue().format(DateTimeFormatter.ISO_DATE));
+            adulto.setFechaNacimiento(Date.from(fechaNacimientoP.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            singleton.setFechaNacimiento(adulto.getFechaNacimiento());
             adulto.setNombre(nombreRA.getText());
+            singleton.setNombre(adulto.getNombre());
             adulto.setApellido(apellidoRA.getText());
+            singleton.setApellido(adulto.getApellido());
             adulto.setGenero(((RadioButton) grupoGeneroRA.getSelectedToggle()).getText());
+            singleton.setGenero(adulto.getGenero());
             adulto.setDiscapacidad(((RadioButton) grupodiscapacidad.getSelectedToggle()).getText());
+            singleton.setDiscapacidad(adulto.getDiscapacidad());
             adulto.setEscolaridad(((RadioButton) grupoescolaridad.getSelectedToggle()).getText());
+            singleton.setEscolaridad(adulto.getEscolaridad());
             adulto.setOcupacion(((RadioButton) grupoocupacion.getSelectedToggle()).getText());
+            singleton.setOcupacion(adulto.getOcupacion());
             adulto.setNVisitas(1);
+            singleton.setNVisitas(adulto.getNVisitas());
             adulto.setTipoDeVisitante("No Frecuente");
+            singleton.setTipoDeVisitante(adulto.getTipoDeVisitante());
             System.out.println(new ObjectMapper().writeValueAsString(adulto));
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -124,7 +133,8 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         //ahora solo llamaremos la función del crud que se encarga de subir datos mediante el servidor a la base de datos
         try{
             //obtenemos el id del adulto que vamos a registrar
-            int idadulto = adultCRUD.postResourse(adulto);
+            System.out.println("Fecha de nacimiento" + singleton.getFechaNacimiento().toString());
+            int idadulto = adultCRUD.postResourse(singleton);
             //Debemos actualizar la tabla tambien
             ListAdult.setItems(adultCRUD.getAllResources());
             fechaNacimientoP.setValue(null);
@@ -136,7 +146,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             grupoocupacion.selectToggle(null);
             tipoDeVisitanteC.setText("");
             //Usamos a singleton para usar ese id en otra parte
-            AdultSingleton singleton = AdultSingleton.getInstance();
+
             singleton.setId(idadulto);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ImportantDataAdult.fxml"));
             Parent root = loader.load();
@@ -148,7 +158,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             stage.showAndWait();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Registro Correcto");
-            alert.setHeaderText("El registro se ha realizado correctamente");
+            alert.setHeaderText("El registro se ha realizado correctamente con el ID: " + idadulto);
             alert.showAndWait();
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -159,7 +169,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         }
     }
 
-    /**Tab AdultList**/
+    /*Tab AdultList**/
     /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones**/
     @FXML
     private TableView <Adult> ListAdult;
@@ -182,12 +192,10 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
     @FXML
     private TableColumn<Adult, String> tipoDeVisitanteC;
 
-    @FXML private Button deleteRegisterRA;
-    @FXML private Button upDateRegisterRA;
-    @FXML private Button findRegisterRA;
+
 
     /**En esta parte del código lo que realiza es determinar la funcion que el botón va a hacer en la interfaz y la base de datos.**/
-    @FXML private void deleteRegisterRAAction(ActionEvent event) throws Exception{
+    @FXML private void deleteRegisterRAAction(ActionEvent ignoreEvent) throws Exception{
         Alert alert;
         Adult selectadult = ListAdult.getSelectionModel().getSelectedItem();
         if(selectadult!=null){
@@ -236,7 +244,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             alert.showAndWait();
         }
     }
-    @FXML private void upDateRegisterRAaction(ActionEvent event) throws Exception{
+    @FXML private void upDateRegisterRAaction(ActionEvent ignoreEvent) throws Exception{
         //Voy a verificar que el botón funciona correctamente con un sout
         //funciona bien
         //System.out.println("update");
@@ -266,7 +274,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             adultSingleton.setNombre(adultoSelected.getNombre());
             adultSingleton.setApellido(adultoSelected.getApellido());
             adultSingleton.setDiscapacidad(adultoSelected.getDiscapacidad());
-            adultSingleton.setnVisitas(adultoSelected.getNVisitas());
+            adultSingleton.setNVisitas(adultoSelected.getNVisitas());
             adultSingleton.setFechaNacimiento(adultoSelected.getFechaNacimiento());
             adultSingleton.setEscolaridad(adultoSelected.getEscolaridad());
             adultSingleton.setGenero(adultoSelected.getGenero());
@@ -289,16 +297,16 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             throw new Exception(e);
         }
     }
-    @FXML private void findRegisterRAaction(ActionEvent event){
+    @FXML private void findRegisterRAaction(ActionEvent ignoredEvent){
 
     }
 
-        /**Tab NumberGenerateAdult**/
+    /*Tab NumberGenerateAdult**/
     /**Aquí debajo vamos a declarar todos los nodos de esa tab o pestaña, en orden y las funciones de los botones**/
     @FXML private TextField numberAdult;
-    @FXML private Button buttonGA;
+
     /**Este botón muestra un número aleatorio los cuales se usaran para poder registrar a los usuarios en la base de datos.**/
-    @FXML private void buttonActionbuttonGA(ActionEvent event){
+    @FXML private void buttonActionbuttonGA(ActionEvent ignoreEvent){
         long rand;
         do {
             rand = (long) (Math.random() * 20000);
@@ -306,72 +314,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         this.numberAdult.setText(rand+"");
     }
     /**En esta línea de código se van a determinar todas las variables que van a aparecer en la interfaz o estas son todas las variables que vera el usuario en el servidor.**/
-    @FXML private void SumanVisitasC(ActionEvent event){
 
-    }
-    @FXML private void SumanVisitasKC(ActionEvent event){
-
-    }
-    @FXML private void VisitantetipoDeVisitanteC(ActionEvent event){
-
-    }
-    @FXML private void Visitante(ActionEvent event){
-
-    }
-    @FXML private TextField domicilioDAC;
-    @FXML private TextField npersonalDAC;
-    @FXML private TextField nemergenciaDAC;
-    @FXML private TableView<Adult> dataTableDAC;
-    @FXML private Button dataadult;
-    @FXML private void buttonActionRegisterData(ActionEvent event) throws Exception{
-        Adult adult = new Adult();
-        CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
-        try {
-
-            System.out.println(new ObjectMapper().writeValueAsString(adult));
-            Adult adulto = dataTableDAC.getSelectionModel().getSelectedItem();
-            if (adulto == null) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
-                alert.setHeaderText("No pusiste ningun dato");
-                alert.setContentText("Coloca los datos");
-                alert.showAndWait();
-            }
-            assert adulto != null : "Adulto es nulo";
-            AdultSingleton adultSingleton = AdultSingleton.getInstance();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Ventanas/ImportantDataAdult.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Datos Importantes del Usuario");
-            stage.setScene(scene);
-            stage.showAndWait();
-            adultSingleton = null;
-            dataTableDAC.setItems(adultCRUD.getAllResources());
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("No pusiste ningun dato");
-            alert.setContentText("Coloca los datos");
-            alert.showAndWait();
-            throw new Exception(e);
-        }
-        try {
-            adultCRUD.postResourse(adult);
-            ListAdult.setItems(adultCRUD.getAllResources());
-            domicilioDAC.setText("");
-            npersonalDAC.setText("");
-            nemergenciaDAC.setText("");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Registro de Datos Correcto");
-        }catch (Exception exception){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            throw new Exception(exception);
-        }
-    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         masRA.setToggleGroup(grupoGeneroRA);
@@ -391,7 +334,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         idC.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreC.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         apellidoC.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        fechaNacimientoC.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+        fechaNacimientoC.setCellValueFactory(new PropertyValueFactory<>("simmpleDate"));
         generoC.setCellValueFactory(new PropertyValueFactory<>("genero"));
         //genero
         discapacidadC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));

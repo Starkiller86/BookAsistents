@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import org.sbcm.Dao.AdultRegisterdaoImp;
 import org.sbcm.Dao.CRUD;
 import org.sbcm.Model.Adult;
-import org.sbcm.SingletonModels.AdultSingleton;
+import org.sbcm.Model.SingletonModels.AdultSingleton;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,7 +54,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
             Adult adult = new Adult();
             adult.setNVisitas(Integer.parseInt(noVisitasField.getText())); //Colocamos como valor en cada uno de sus atributos el valor del campo de texto en la interfaz
             adult.setOcupacion(ocupacionField.getText());
-            adult.setFechaNacimiento(edadField.getText());
+            //adult.setFechaNacimiento(edadField.getText());
             adult.setEscolaridad(escolaridadField.getText());
             adult.setGenero(generoFIeld.getText());
             adult.setTipoDeVisitante(tipoVisitanteField.getText());
@@ -107,7 +107,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
         discapacidadField.setText(adultSingleton.getDiscapacidad());
         escolaridadField.setText(adultSingleton.getEscolaridad());
         ocupacionField.setText(adultSingleton.getOcupacion());
-        noVisitasField.setText(String.valueOf(adultSingleton.getnVisitas()));
+        noVisitasField.setText(String.valueOf(adultSingleton.getNVisitas()));
         tipoVisitanteField.setText(adultSingleton.getTipoDeVisitante());
     }
 

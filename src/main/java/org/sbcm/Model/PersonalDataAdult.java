@@ -6,13 +6,22 @@ public class PersonalDataAdult {
     @JsonProperty("id")
     private Integer id;
     @JsonProperty("idAdulto")
-    private int idAdulto;
-    @JsonProperty("domicilio")
-    private String domicilio;
+    private Adult idAdulto;
+
     @JsonProperty("numeropersonal")
     private String numeropersonal;
     @JsonProperty("numeroemergencia")
     private String numeroemergencia;
+    @JsonProperty("domicilio")
+    private String domicilio;
+
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
 
     public Integer getId() {
         return id;
@@ -22,21 +31,15 @@ public class PersonalDataAdult {
         this.id = id;
     }
 
-    public int getIdAdulto() {
+    public Adult getIdAdulto() {
         return idAdulto;
     }
 
-    public void setIdAdulto(int idAdulto) {
+    public void setIdAdulto(Adult idAdulto) {
         this.idAdulto = idAdulto;
     }
 
-    public String getDomicilio() {
-        return domicilio;
-    }
 
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
 
     public String getNumeropersonal() {
         return numeropersonal;

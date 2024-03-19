@@ -9,9 +9,10 @@ import javafx.stage.Stage;
 import org.sbcm.Dao.AdultRegisterdaoImp;
 import org.sbcm.Dao.CRUD;
 import org.sbcm.Model.Adult;
-import org.sbcm.SingletonModels.AdultSingleton;
+import org.sbcm.Model.SingletonModels.AdultSingleton;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class SelectAdultController implements Initializable {
@@ -22,7 +23,7 @@ public class SelectAdultController implements Initializable {
     @FXML
     private TableColumn<Adult, String> discapacidadC;
     @FXML
-    private TableColumn<Adult, Integer> fechaNacimientoC;
+    private TableColumn<Adult, Date> fechaNacimientoC;
     @FXML
     private TableColumn<Adult, String> escolaridadC;
     @FXML
