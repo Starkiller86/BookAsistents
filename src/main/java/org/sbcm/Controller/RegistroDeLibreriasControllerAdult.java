@@ -148,7 +148,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             //Usamos a singleton para usar ese id en otra parte
 
             singleton.setId(idadulto);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ImportantDataAdult.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PersonalData/ImportantDataAdult.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();

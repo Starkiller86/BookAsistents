@@ -2,6 +2,8 @@ package org.sbcm.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Date;
+
 public class Kid {
     /**Este modelo de Kid, cuenta con todos los datos que debe de tener los registros y
      * cada uno de estos contienen campos que corresponden a la base de datos
@@ -13,7 +15,7 @@ public class Kid {
     @JsonProperty("apellido")
     private String apellido;
     @JsonProperty("fechaNacimiento")
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
     @JsonProperty("genero")
     private String genero;
     @JsonProperty("escolaridad")
@@ -28,11 +30,11 @@ public class Kid {
     private String tipoDeVisitante;
 
 
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

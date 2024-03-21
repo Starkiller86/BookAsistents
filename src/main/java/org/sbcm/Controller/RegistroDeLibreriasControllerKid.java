@@ -17,7 +17,9 @@ import org.sbcm.Model.Kid;
 import org.sbcm.Model.SingletonModels.KidSinglenton;
 
 import java.net.URL;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class RegistroDeLibreriasControllerKid implements Initializable {
@@ -95,15 +97,24 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
     /**En esta parte del código lo que realiza es determinar la función que el botón va a hacer en la interfaz y la base de datos.**/
     @FXML private  void buttonActionInfantil(ActionEvent e)throws Exception{
         Kid kid = new Kid();
+        KidSinglenton kidSinglenton =KidSinglenton.getInstance();
         try {
+
             kid.setNombre(nombreRI.getText());
+            kidSinglenton.setNombre(nombreRI.getText());
             kid.setApellido(apellidoRI.getText());
-            kid.setFechaNacimiento(dateKid.getValue().format(DateTimeFormatter.ISO_DATE));
+            kidSinglenton.setApellido(apellidoRI.getText());
+            kid.setFechaNacimiento(Date.from(dateKid.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             kid.setGenero(((RadioButton) grupogeneroK.getSelectedToggle()).getText());
+            kidSinglenton.setGenero(kid.getGenero());
             kid.setDiscapacidad(((RadioButton) grupodiscapacidadK.getSelectedToggle()).getText());
+            kidSinglenton.setDiscapacidad(kid.getDiscapacidad());
             kid.setEscolaridad(((RadioButton) grupoescolaridadK.getSelectedToggle()).getText());
+            kidSinglenton.setEscolaridad(kid.getEscolaridad());
             kid.setOcupacion(((RadioButton) grupoocupacionK.getSelectedToggle()).getText());
+            kidSinglenton.setOcupacion(kid.getOcupacion());
             kid.setTipoDeVisitante("No Frecuente");
+            kidSinglenton.setTipoDeVisitante(kid.getTipoDeVisitante());
             System.out.println(new ObjectMapper().writeValueAsString(kid));
         }catch (Exception exception){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -115,6 +126,8 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
         }
         try {
             kidCRUD.postResourse(kid);
+            System.out.println("Fecha de nacimiento" + kidSinglenton.getFechaNacimiento());
+            int idkid = kidCRUD.postResourse(kidSinglenton);
             ListKid.setItems(kidCRUD.getAllResources());
             nombreRI.setText("");
             apellidoRI.setText("");
@@ -124,11 +137,23 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             grupoescolaridadK.selectToggle(null);
             grupoocupacionK.selectToggle(null);
             tipoDeVisitanteKC.setText("");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            kidSinglenton.setId(idkid);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PersonalData/ImportantDataKid.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Registrar datos personales");
+            stage.setScene(scene);
+            stage.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Registro Correcto");
+            alert.setHeaderText("el registro se hico correctamente con el id: " + idkid);
+            alert.showAndWait();
         }catch (Exception exception){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
+            alert.setHeaderText("Comunique a soporte: " + e);
             throw new Exception(exception);
         }
     }
@@ -244,7 +269,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             kidSinglenton.setId(kidSelected.getId());
             kidSinglenton.setNombre(kidSelected.getNombre());
             kidSinglenton.setApellido(kidSelected.getApellido());
-            kidSinglenton.setFechadenacimiento(kidSelected.getFechaNacimiento());
+            kidSinglenton.setFechaNacimiento(kidSelected.getFechaNacimiento());
             kidSinglenton.setDiscapacidad(kidSelected.getDiscapacidad());
             kidSinglenton.setEscolaridad(kidSelected.getEscolaridad());
             kidSinglenton.setGenero(kidSelected.getGenero());
