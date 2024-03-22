@@ -50,6 +50,7 @@ public class ImportantDataAdultController implements Initializable {
             adult.setTipoDeVisitante(singleton.getTipoDeVisitante());
 
             PersonalDataAdult personal = new PersonalDataAdult();
+
             personal.setDomicilio(domicilioDAC.getText());
             personal.setIdAdulto(singleton);
             personal.setNumeroemergencia(nemergenciaDAC.getText());

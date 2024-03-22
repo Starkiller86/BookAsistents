@@ -25,7 +25,6 @@ import java.util.ResourceBundle;
 public class RegistroDeLibreriasControllerKid implements Initializable {
     CRUD<Kid> kidCRUD = new KidRegisterdaoImp();
 
-
     /**
      * Tab Busqueda
      */
@@ -95,16 +94,16 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
 
 
     /**En esta parte del código lo que realiza es determinar la función que el botón va a hacer en la interfaz y la base de datos.**/
-    @FXML private  void buttonActionInfantil(ActionEvent e)throws Exception{
+    @FXML private  void buttonActionInfantil(ActionEvent ignoreEvent)throws Exception{
         Kid kid = new Kid();
         KidSinglenton kidSinglenton =KidSinglenton.getInstance();
         try {
-
             kid.setNombre(nombreRI.getText());
-            kidSinglenton.setNombre(nombreRI.getText());
+            kidSinglenton.setNombre(kid.getNombre());
             kid.setApellido(apellidoRI.getText());
-            kidSinglenton.setApellido(apellidoRI.getText());
+            kidSinglenton.setApellido(kid.getApellido());
             kid.setFechaNacimiento(Date.from(dateKid.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            kidSinglenton.setFechaNacimiento(kid.getFechaNacimiento());
             kid.setGenero(((RadioButton) grupogeneroK.getSelectedToggle()).getText());
             kidSinglenton.setGenero(kid.getGenero());
             kid.setDiscapacidad(((RadioButton) grupodiscapacidadK.getSelectedToggle()).getText());
@@ -122,11 +121,10 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             alert.setHeaderText("Hubo un error");
             alert.setContentText("Coloque los datos");
             alert.showAndWait();
-            throw  new Exception();
+            throw new Exception();
         }
         try {
-            kidCRUD.postResourse(kid);
-            System.out.println("Fecha de nacimiento" + kidSinglenton.getFechaNacimiento());
+            System.out.println("Fecha de nacimiento" + kidSinglenton.getFechaNacimiento().toString());
             int idkid = kidCRUD.postResourse(kidSinglenton);
             ListKid.setItems(kidCRUD.getAllResources());
             nombreRI.setText("");
@@ -137,6 +135,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             grupoescolaridadK.selectToggle(null);
             grupoocupacionK.selectToggle(null);
             tipoDeVisitanteKC.setText("");
+
             kidSinglenton.setId(idkid);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PersonalData/ImportantDataKid.fxml"));
             Parent root = loader.load();
@@ -153,7 +152,8 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
         }catch (Exception exception){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
-            alert.setHeaderText("Comunique a soporte: " + e);
+            alert.setHeaderText("Error de conexión");
+            alert.setContentText("Comunique a soporte: "+exception);
             throw new Exception(exception);
         }
     }

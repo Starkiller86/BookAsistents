@@ -70,7 +70,7 @@ public class ImportantDataKidController implements Initializable {
             alert.setHeaderText("NO SE HA REGISTRADO LA INFORMACION PERSONAL");
             alert.setContentText("comuniquese con soporte con el siguiente mensaje" +e.getMessage());
             alert.showAndWait();
-            throw new Exception(e);
+            throw new Exception();
         }
         Stage stage = (Stage) datakid.getScene().getWindow();
         stage.close();
