@@ -102,7 +102,7 @@ public class UpdateRegisterWindowKidController implements Initializable {
         discapacidadFieldKid.setText(kidSinglenton.getDiscapacidad());
         escolaridadFieldKid.setText(kidSinglenton.getEscolaridad());
         ocupacionFieldKid.setText(kidSinglenton.getOcupacion());
-        nVisitasFieldKid.setText(String.valueOf(kidSinglenton.getnVisitas()));
+        nVisitasFieldKid.setText(String.valueOf(kidSinglenton.getNVisitas()));
         tipoDeVisitanteFieldKid.setText(kidSinglenton.getTipoDeVisitante());
     }
 }

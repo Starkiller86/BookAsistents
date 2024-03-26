@@ -62,15 +62,15 @@ public class ImportantDataKidController implements Initializable {
             int idPersonal = personalDataKid.postResourse(personalDataKid1);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Registro correcto");
-            alert.setHeaderText("se ha registrado la informacion personal con exito con el ID: " + idPersonal);
+            alert.setHeaderText("se ha registrado la información personal con exito con el ID: " + idPersonal);
             alert.showAndWait();
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Registro incorrecto");
             alert.setHeaderText("NO SE HA REGISTRADO LA INFORMACION PERSONAL");
-            alert.setContentText("comuniquese con soporte con el siguiente mensaje" +e.getMessage());
+            alert.setContentText("comuniquese con soporte con el siguiente mensaje" + e.getMessage());
             alert.showAndWait();
-            throw new Exception();
+            throw new Exception(e);
         }
         Stage stage = (Stage) datakid.getScene().getWindow();
         stage.close();

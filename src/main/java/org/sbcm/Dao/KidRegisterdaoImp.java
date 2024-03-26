@@ -19,10 +19,6 @@ import java.nio.charset.StandardCharsets;
       * encuentran en la base de datos, haciendo que se puedan Crear, Actualizar, Leer y Eliminar cualquier registro mediante las conexiones Http, estos método
       * son los que se implementan con el CRUD y que hacen que se realicen estas acciones con los registros**/
 public class KidRegisterdaoImp implements CRUD<Kid>{
-         @Override
-         public void putAssistance(Kid kid) throws Exception {
-
-         }
 
          //estas son las variables de conexión o de instancia que permiten que la base de datos se conecten con el código
     HttpURLConnection connection;
@@ -69,6 +65,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
         System.out.println(connection.getHeaderFields());
         connection.disconnect();
 
+
         return ListKid;
     }
 
@@ -92,14 +89,26 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
 
         ObjectMapper objectMapper = new ObjectMapper();
         JSONObject jsonKid = new JSONObject(objectMapper.writeValueAsString(kid));
+        System.out.println(jsonKid.toString(1));
         OutputStream transmisionSalida = connection.getOutputStream();
         byte[] salidaBytes = jsonKid.toString().getBytes(StandardCharsets.UTF_8);
         transmisionSalida.write(salidaBytes);
         if(connection.getResponseCode()!=200){
             throw  new Exception();
         }
+
+        InputStreamReader lecturaTransmision = new InputStreamReader(connection.getInputStream());
+        BufferedReader lecturaBuffer = new BufferedReader(lecturaTransmision);
+        String line = lecturaBuffer.readLine();
+        StringBuilder lineas = new StringBuilder();
+        while (line!=null){
+            lineas.append(line);
+            line = lecturaBuffer.readLine();
+        }
+        lecturaBuffer.close();
+        int idRegistrado = Integer.parseInt(lineas.toString());
         connection.disconnect();
-        return 0;
+        return idRegistrado;
     }
 
      /***
@@ -225,6 +234,24 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
 
         return consultaLista;
     }
+     @Override
+     public void putAssistance(Kid kid) throws Exception {
+        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kidsregister/mark");
+        connection = (HttpURLConnection) uri.toURL().openConnection();
+        connection.setRequestMethod("PUT");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("User-Agent", "JAVAFX/1.0 SNAPSHOT (Windows 10; x64)");
+        connection.setDoOutput(true);
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject object = new JSONObject(mapper.writeValueAsString(kid));
+        OutputStream transmisionSalida = connection.getOutputStream();
+        byte[] salidaBytes = object.toString().getBytes(StandardCharsets.UTF_8);
+        transmisionSalida.write(salidaBytes);
+        if (connection.getResponseCode() != 200)
+            throw new Exception();
+        connection.disconnect();
+
+     }
 
          @Override
     public void setConnection(HttpURLConnection connection) {

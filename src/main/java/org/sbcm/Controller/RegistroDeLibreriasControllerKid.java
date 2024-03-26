@@ -94,9 +94,9 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
 
 
     /**En esta parte del código lo que realiza es determinar la función que el botón va a hacer en la interfaz y la base de datos.**/
-    @FXML private  void buttonActionInfantil(ActionEvent ignoreEvent)throws Exception{
+    @FXML private void buttonActionInfantil(ActionEvent ignoreEvent)throws Exception{
         Kid kid = new Kid();
-        KidSinglenton kidSinglenton =KidSinglenton.getInstance();
+        KidSinglenton kidSinglenton = KidSinglenton.getInstance();
         try {
             kid.setNombre(nombreRI.getText());
             kidSinglenton.setNombre(kid.getNombre());
@@ -147,14 +147,14 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             stage.showAndWait();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Registro Correcto");
-            alert.setHeaderText("el registro se hico correctamente con el id: " + idkid);
+            alert.setHeaderText("el registro se hizo correctamente con el id: " + idkid);
             alert.showAndWait();
-        }catch (Exception exception){
+        }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Error de conexión");
-            alert.setContentText("Comunique a soporte: "+exception);
-            throw new Exception(exception);
+            alert.setContentText("Comunique a soporte: "+ e);
+            throw new Exception(e);
         }
     }
 
@@ -274,7 +274,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             kidSinglenton.setEscolaridad(kidSelected.getEscolaridad());
             kidSinglenton.setGenero(kidSelected.getGenero());
             kidSinglenton.setOcupacion(kidSelected.getOcupacion());
-            kidSinglenton.setnVisitas(kidSelected.getNVisitas());
+            kidSinglenton.setNVisitas(kidSelected.getNVisitas());
             kidSinglenton.setTipoDeVisitante(kidSelected.getTipoDeVisitante());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Ventanas/UpdateRegisterWindowKid.fxml"));
             Parent root = loader.load();

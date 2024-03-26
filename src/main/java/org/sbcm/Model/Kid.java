@@ -42,14 +42,6 @@ public class Kid {
         this.ocupacion = ocupacion;
     }
 
-    public int getnVisitas() {
-        return nVisitas;
-    }
-
-    public void setnVisitas(int nVisitas) {
-        this.nVisitas = nVisitas;
-    }
-
     public String getNombre() {
         return nombre;
     }
