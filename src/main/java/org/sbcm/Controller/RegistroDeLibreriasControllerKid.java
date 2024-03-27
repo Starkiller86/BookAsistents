@@ -18,7 +18,6 @@ import org.sbcm.Model.SingletonModels.KidSinglenton;
 
 import java.net.URL;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -118,8 +117,8 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
         }catch (Exception exception){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
-            alert.setHeaderText("Hubo un error");
-            alert.setContentText("Coloque los datos");
+            alert.setHeaderText("Hubo un error al capturar los datos");
+            alert.setContentText("Coloque los datos correctamente");
             alert.showAndWait();
             throw new Exception();
         }
@@ -147,7 +146,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             stage.showAndWait();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Registro Correcto");
-            alert.setHeaderText("el registro se hizo correctamente con el id: " + idkid);
+            alert.setHeaderText("el registro se ha realizado correctamente con el ID: " + idkid);
             alert.showAndWait();
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -234,7 +233,7 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
                     //Mostraremos un mensaje al usuario indicando que hubo un error y debe comunicarse con soporte
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("ERROR");
-                    alert.setHeaderText("Ha ocurrido un error en el SISTEMA");
+                    alert.setHeaderText("Ha ocurrido un error en el sistema");
                     alert.setContentText("Favor de comunicarse con soporte al correo socialservice285@gmail.com y proporcionar la siguiente información \n " + e);
                     alert.showAndWait();
                     //Dado que es un error de sistema o conexión solo lo puede atender el de sistemas
@@ -260,8 +259,8 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             if(kidSelected == null){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("ERROR");
-                alert.setHeaderText("No seleccionaste ningun usuario");
-                alert.setContentText("Selecciona un Usuario para continuar");
+                alert.setHeaderText("No seleccionaste ningun Usuario");
+                alert.setContentText("Selecciona un usuario para continuar");
                 alert.showAndWait();
             }
             assert kidSelected != null : "Kid es nulo";
