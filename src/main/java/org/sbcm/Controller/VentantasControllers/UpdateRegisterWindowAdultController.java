@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.sbcm.Dao.AdultRegisterdaoImp;
@@ -14,6 +15,9 @@ import org.sbcm.Model.Adult;
 import org.sbcm.Model.SingletonModels.AdultSingleton;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class UpdateRegisterWindowAdultController implements Initializable {
@@ -22,7 +26,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
     @FXML private TextField nombreField;
     @FXML private TextField apellidoField;
     @FXML
-    private TextField edadField;
+    private DatePicker fechaNacimientoField;
     @FXML
     private TextField generoFIeld;
     @FXML
@@ -54,7 +58,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
             Adult adult = new Adult();
             adult.setNVisitas(Integer.parseInt(noVisitasField.getText())); //Colocamos como valor en cada uno de sus atributos el valor del campo de texto en la interfaz
             adult.setOcupacion(ocupacionField.getText());
-            //adult.setFechaNacimiento(edadField.getText());
+            adult.setFechaNacimiento(Date.from(fechaNacimientoField.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             adult.setEscolaridad(escolaridadField.getText());
             adult.setGenero(generoFIeld.getText());
             adult.setTipoDeVisitante(tipoVisitanteField.getText());
@@ -63,12 +67,11 @@ public class UpdateRegisterWindowAdultController implements Initializable {
 
             adult.setNombre(nombreField.getText());
             adult.setApellido(apellidoField.getText());
-
+            System.out.println(adult.getFechaNacimiento());
             //Una vez que tenemos nuestro modelo con todos los datos de la interfaz ya podemos mandarlo al servidor para que lo registre en la base de datos
             adultCRUD.putResource(adult);
-            System.out.println(adult.getFechaNacimiento());
-            //Ahora en caso de que haya hecho la función correctamente vamos a cerrar la ventana
             adultSingleton = null;
+            //Ahora en caso de que haya hecho la función correctamente vamos a cerrar la ventana
             Stage stage = (Stage) buttonActualizar.getScene().getWindow();//Aqui tomamos la instancia de la ventana
             stage.close();
         }catch (Exception e){
@@ -78,9 +81,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
             alert.setHeaderText("Hubo un error al actualizar los datos");
             alert.setContentText("Comuniquese con soporte: " + e.getMessage());
             System.out.println(e.getMessage());
-
-
-
+            adultSingleton = null;
         }
     }
     @FXML public void buttonCancelarAction(ActionEvent event){
@@ -102,7 +103,8 @@ public class UpdateRegisterWindowAdultController implements Initializable {
         nombreField.setText(adultSingleton.getNombre());
         apellidoField.setText(adultSingleton.getApellido());
         idField.setText(String.valueOf(adultSingleton.getId()));
-        edadField.setText(String.valueOf(adultSingleton.getFechaNacimiento()));
+        LocalDate local = adultSingleton.getFechaNacimiento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        fechaNacimientoField.setValue(local);
         generoFIeld.setText(adultSingleton.getGenero());
         discapacidadField.setText(adultSingleton.getDiscapacidad());
         escolaridadField.setText(adultSingleton.getEscolaridad());

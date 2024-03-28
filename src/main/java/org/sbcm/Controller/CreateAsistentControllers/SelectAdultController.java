@@ -116,7 +116,7 @@ public class SelectAdultController implements Initializable {
     public void initialize(URL location, ResourceBundle resources){
         apellidoC.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         discapacidadC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));
-        fechaNacimientoC.setCellValueFactory(new PropertyValueFactory<>("edad"));
+        fechaNacimientoC.setCellValueFactory(new PropertyValueFactory<>("simpleDate"));
         escolaridadC.setCellValueFactory(new PropertyValueFactory<>("escolaridad"));
         generoC.setCellValueFactory(new PropertyValueFactory<>("genero"));
         idC.setCellValueFactory(new PropertyValueFactory<>("id"));

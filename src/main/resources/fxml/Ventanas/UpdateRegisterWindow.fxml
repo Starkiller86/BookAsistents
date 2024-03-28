@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -42,8 +43,7 @@
             <TextField fx:id="nombreField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Apellido: " GridPane.rowIndex="2" />
             <TextField fx:id="apellidoField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Edad: " GridPane.rowIndex="3" />
-            <TextField fx:id="edadField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Fecha de Nacimiento: " GridPane.rowIndex="3" />
             <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Género: " GridPane.rowIndex="4" />
             <TextField fx:id="generoFIeld" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Discapacidad: " GridPane.rowIndex="5" />
@@ -56,6 +56,7 @@
             <TextField fx:id="noVisitasField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Tipo de Visitante: " GridPane.rowIndex="9" />
             <TextField fx:id="tipoVisitanteField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <DatePicker fx:id="fechaNacimientoField" prefHeight="25.0" prefWidth="267.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button fx:id="buttonActualizar" layoutX="392.0" layoutY="406.0" mnemonicParsing="false" onAction="#buttonActualizarAction" text="Actualizar" />

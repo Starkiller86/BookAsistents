@@ -34,7 +34,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
 
     @Override
     public ObservableList<Kid> getAllResources() throws Exception {
-        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids");
+        uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/kids");
 
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("GET");
@@ -79,7 +79,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
 
     @Override
     public int postResourse(Kid kid) throws Exception {
-        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids");
+        uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/kids");
 
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("POST");
@@ -121,7 +121,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
       */
     @Override
     public Kid getOneResourceById(int id) throws Exception {
-        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/adults"+id);
+        uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/adults"+id);
         if(!usingTest)
             connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("GET");
@@ -161,7 +161,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
     @Override
     public void deleteResource(int id) throws Exception {
         //Muchachos por eso les quité el copiar y pegar en clase
-        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids/"+id);//aquí debemos colocar al final al id que entra por parametro
+        uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/kids/"+id);//aquí debemos colocar al final al id que entra por parametro
 
             connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("DELETE");
@@ -182,7 +182,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
 
     @Override
     public void putResource(Kid kid) throws Exception {
-        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids");
+        uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/kids");
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Content-Type", "application/json");
@@ -202,7 +202,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
     @Override
     public ObservableList<Kid> getAllResourcesByName(String name) throws Exception {
         String nameReplace = name.replace(" ", "%20");
-        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kids/search/"+nameReplace);
+        uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/kids/search/"+nameReplace);
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", "application/json");
@@ -236,7 +236,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
     }
      @Override
      public void putAssistance(Kid kid) throws Exception {
-        uri = new URI("http://localhost:4040/sbcm/registrolibrerias/kidsregister/mark");
+        uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/kidsregister/mark");
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Content-Type", "application/json");

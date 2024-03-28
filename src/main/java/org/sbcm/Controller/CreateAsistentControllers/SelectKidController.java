@@ -103,7 +103,7 @@ public class SelectKidController implements Initializable {
         idKC.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreKC.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         apellidoKC.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        edadKC.setCellValueFactory(new PropertyValueFactory<>("edad"));
+        edadKC.setCellValueFactory(new PropertyValueFactory<>("simpleDate"));
         generoKC.setCellValueFactory(new PropertyValueFactory<>("genero"));
         escolaridadKC.setCellValueFactory(new PropertyValueFactory<>("escolaridad"));
         discapacidadKC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));

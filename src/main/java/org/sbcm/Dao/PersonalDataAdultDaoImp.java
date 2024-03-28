@@ -23,7 +23,7 @@ public class PersonalDataAdultDaoImp implements CRUD<PersonalDataAdult> {
 
     @Override
     public int postResourse(PersonalDataAdult personalDataAdult) throws Exception {
-        uri = new URI("http://localhost:4040/sbcm/personalA");
+        uri = new URI("http://172.63.1.147:4040/sbcm/personalA");
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");

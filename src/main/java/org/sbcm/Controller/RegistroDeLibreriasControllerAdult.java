@@ -244,7 +244,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
             alert.showAndWait();
         }
     }
-    @FXML private void upDateRegisterRAaction(ActionEvent ignoreEvent) throws Exception{
+    @FXML private void upDateRegisterRAaction(ActionEvent event) throws Exception{
         //Voy a verificar que el botón funciona correctamente con un sout
         //funciona bien
         //System.out.println("update");
@@ -334,7 +334,7 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         idC.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreC.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         apellidoC.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        fechaNacimientoC.setCellValueFactory(new PropertyValueFactory<>("simmpleDate"));
+        fechaNacimientoC.setCellValueFactory(new PropertyValueFactory<>("simpleDate"));
         generoC.setCellValueFactory(new PropertyValueFactory<>("genero"));
         //genero
         discapacidadC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));

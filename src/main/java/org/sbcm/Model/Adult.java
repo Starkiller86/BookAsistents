@@ -30,14 +30,24 @@ public class Adult {
     private int nVisitas;
     @JsonProperty("tipoDeVisitante")
     private String tipoDeVisitante;
-    private String simmpleDate;
+    public String simpleDate = "";
 
-    public String getSimmpleDate() {
-        return new SimpleDateFormat("dd-MM-yyyy").format(fechaNacimiento);
+    public String getSimpleDate() {
+        if (simpleDate == null){
+            return "0-00-0000";
+        }
+        String simple = "";
+        try{
+            simple = new SimpleDateFormat("dd-MM-yyyy").format(fechaNacimiento);
+        }
+        catch (Exception ignored){
+
+        }
+        return simple;
     }
 
-    public void setSimmpleDate(String simmpleDate) {
-        this.simmpleDate = simmpleDate;
+    public void setSimpleDate(String simpleDate) {
+        this.simpleDate = simpleDate;
     }
 
     public String getNombre() {

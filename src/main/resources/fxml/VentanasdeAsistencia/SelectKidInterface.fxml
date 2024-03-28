@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.CreateAsistentControllers.SelectKidController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.CreateAsistentControllers.SelectKidController">
     <children>
         <ImageView fitHeight="159.0" fitWidth="155.0" layoutX="-23.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -26,7 +26,7 @@
                 <TableColumn fx:id="idKC" editable="false" prefWidth="34.39999485015869" sortable="false" text="ID" />
                 <TableColumn fx:id="nombreKC" editable="false" prefWidth="95.20000839233398" sortable="false" text="Nombre" />
                 <TableColumn fx:id="apellidoKC" editable="false" prefWidth="116.80000305175781" sortable="false" text="Apellido" />
-                <TableColumn fx:id="edadKC" editable="false" prefWidth="44.79998779296875" sortable="false" text="Edad" />
+                <TableColumn fx:id="edadKC" editable="false" prefWidth="44.79998779296875" sortable="false" text="Fecha de Nacimiento" />
                 <TableColumn fx:id="generoKC" editable="false" prefWidth="87.199951171875" sortable="false" text="Genero" />
                 <TableColumn fx:id="escolaridadKC" editable="false" prefWidth="96.79998779296875" sortable="false" text="Escolaridad" />
                 <TableColumn fx:id="discapacidadKC" editable="false" prefWidth="80.800048828125" sortable="false" text="Discapacidad" />
@@ -38,7 +38,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <Button fx:id="asistenciabuttonKC" onAction="#marcarButtonKidAction" layoutX="712.0" layoutY="346.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" text="Marcar Asistencia" />
+        <Button fx:id="asistenciabuttonKC" layoutX="712.0" layoutY="346.0" mnemonicParsing="false" onAction="#marcarButtonKidAction" prefHeight="26.0" prefWidth="122.0" text="Marcar Asistencia" />
         <Button fx:id="cancelarbuttonKC" layoutX="624.0" layoutY="346.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="Cancelar" />
     </children>
 </AnchorPane>
