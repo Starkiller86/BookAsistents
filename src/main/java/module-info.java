@@ -16,12 +16,15 @@ module org.sbcm {
     opens org.sbcm.Model to com.fasterxml.jackson.annotation, com.fasterxml.jackson.databind;
     opens org.sbcm.Controller.CreateAsistentControllers to javafx.fxml;
     opens org.sbcm.Controller.DatosUsuarioController to javafx.fxml;
+    opens org.sbcm.Controller.Boards to javafx.fxml;
 
     exports org.sbcm.Dao;
     exports org.sbcm.Model;
     exports org.sbcm.Controller;
+
     exports org.sbcm.Model.SingletonModels;
     exports org.sbcm.Controller.CreateAsistentControllers to javafx.fxml;
     exports org.sbcm.Controller.DatosUsuarioController to javafx.fxml;
+    exports org.sbcm.Controller.Boards to javafx.fxml;
 
 }

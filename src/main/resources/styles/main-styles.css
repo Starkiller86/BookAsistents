@@ -1,0 +1,38 @@
+#principalBorder {
+    -fx-background-color: #162891;
+}
+#secondaryBorder{
+    -fx-background-color: white;
+    -fx-background-radius: 25px 0px 0px 25px;
+
+}
+#topBorder{
+
+}
+
+.panel-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px 10px 10px 10px;
+
+
+
+
+}
+.panel-button:focused{
+    -fx-background-color: #2B4EE5;
+}
+.panel-button:hover{
+    -fx-background-color: #1B30AF;
+}
+#searchBar{
+    -fx-background-radius: 8px;
+}
+#userButton{
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+
+}
+#userButton:hover{
+    -fx-background-color: #bbbdcb;
+}

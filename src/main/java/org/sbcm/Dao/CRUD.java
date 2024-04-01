@@ -14,6 +14,9 @@ import java.net.URI;
  */
 
 public interface CRUD<Resource> {
+
+    //String host = "http://172.63.1.147";
+    String host = "http://localhost";
     /***
      * Este método se encarga de mostrar todos los datos que se encuentran en la base de datos
      * mediante conecciones HTTP, las cuales realiza usando GET en el metodo

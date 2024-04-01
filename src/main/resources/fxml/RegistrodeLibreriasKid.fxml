@@ -14,14 +14,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.RegistroDeLibreriasControllerKid">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1001.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.RegistroDeLibreriasControllerKid">
    <children>
-    <AnchorPane layoutX="46.0" layoutY="30.0" minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="805.0">
-         <children>
-          <AnchorPane layoutY="39.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-         </children>
-      </AnchorPane>
-      <TabPane prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="600.0" prefWidth="1002.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab fx:id="InicioKid" text="InicioKid">
                 <content>
@@ -123,6 +118,7 @@
                            </font>
                         </TextField>
                         <DatePicker fx:id="dateKid" layoutX="421.0" layoutY="164.0" prefHeight="30.0" prefWidth="188.0" />
+                        <ImageView fx:id="imageButton" fitHeight="95.0" fitWidth="97.0" layoutX="47.0" layoutY="300.0" onMouseClicked="#bImagen" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
             </content>
@@ -131,7 +127,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="ListKid" layoutY="-3.0" prefHeight="502.0" prefWidth="900.0">
+                        <TableView fx:id="ListKid" layoutY="-3.0" prefHeight="502.0" prefWidth="994.0">
                           <columns>
                             <TableColumn fx:id="idKC" prefWidth="61.0" text="Id" />
                               <TableColumn fx:id="nombreKC" prefWidth="75.0" text="Nombre" />
@@ -142,6 +138,7 @@
                               <TableColumn fx:id="escolaridadKC" prefWidth="106.0" text="Escolaridad" />
                               <TableColumn fx:id="ocupacionKC" prefWidth="98.0" text="Ocupación" />
                               <TableColumn fx:id="nVisitasKC" prefWidth="76.0" text="nVisitas " />
+                              <TableColumn fx:id="actionsKC" prefWidth="75.0" text="Actions" />
                               <TableColumn fx:id="tipoDeVisitanteKC" prefWidth="124.0" text="tipoDeVisitante" />
                           </columns>
                         </TableView>

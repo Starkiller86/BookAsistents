@@ -1,6 +1,7 @@
 package org.sbcm.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,8 +10,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.sbcm.Dao.CRUD;
 import org.sbcm.Dao.KidRegisterdaoImp;
 import org.sbcm.Model.Kid;
@@ -179,6 +182,9 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
     private TableColumn<Kid, Integer>nVisitasKC;
     @FXML
     private TableColumn<Kid, String> tipoDeVisitanteKC;
+    @FXML
+    private TableColumn<Kid, String> actionsKC;
+
     @FXML private Button deleteRegisterRI;
     @FXML private Button upDateRegisterRI;
     @FXML private Button findRegisterRI;
@@ -324,25 +330,28 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
         estRI.setToggleGroup(grupoocupacionK);
         emploRI.setToggleGroup(grupoocupacionK);
         desRI.setToggleGroup(grupoocupacionK);
+
         idKC.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreKC.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         apellidoKC.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         edadKC.setCellValueFactory(new PropertyValueFactory<>("simpleDate"));
         generoKC.setCellValueFactory(new PropertyValueFactory<>("genero"));
-
+        actionsKC.setCellValueFactory(new PropertyValueFactory<>("button"));
         discapacidadKC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));
-
         escolaridadKC.setCellValueFactory(new PropertyValueFactory<>("escolaridad"));
-
         ocupacionKC.setCellValueFactory(new PropertyValueFactory<>("ocupacion"));
-
         nVisitasKC.setCellValueFactory(new PropertyValueFactory<>("nVisitas"));
         tipoDeVisitanteKC.setCellValueFactory(new PropertyValueFactory<>("tipoDeVisitante"));
+
 
         try {
             ListKid.setItems(kidCRUD.getAllResources());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void bImagen(MouseEvent mouseEvent) {
+        System.out.println("Click");
     }
 }

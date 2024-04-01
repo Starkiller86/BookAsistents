@@ -24,7 +24,7 @@ public class PersonalDataKidDaolmp implements CRUD<PersonalDataKid>{
 
     @Override
     public int postResourse(PersonalDataKid personalDataKid) throws Exception {
-        uri = new URI("http://172.63.1.147:4040/sbcm/personalK");
+        uri = new URI(host+":4040/sbcm/personalK");
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");

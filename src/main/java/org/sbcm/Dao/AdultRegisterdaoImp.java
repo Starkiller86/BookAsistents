@@ -26,6 +26,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
     URI uri;
     boolean usingTest = true;
 
+
     /***
      * Este método se encarga de poder devolver todos los registros en la base de datos, este utiliza las variables de conexión HttpURLConnection, las cuales
      * hacen que conecten las bases de datos con el código, es un método que va a devolvder un JSOnArray, es decir todos los registros de la base de datos
@@ -36,7 +37,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
     public ObservableList<Adult> getAllResources() throws Exception {
         /**Uri o (Uniform resource identifier) es un identificador único que se encarga de localizar o identificar algún único recurso, en este caso se utiliza esta Uri,
          * para poder identificar los datos que se encuentran en esa localizacion, haciendo que se guarden en la variable uri, guardando una localizacion de datos.**/
-        uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/adults");
+        uri = new URI(host +":4040/sbcm/registrolibrerias/adults");
 
         /** HttpURLConnection sirve para poder crear una coneccion única con la localización de la base de datos, abriendo una conexión.**/
             connection = (HttpURLConnection) uri.toURL().openConnection();
@@ -114,7 +115,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
     @Override
     public int postResourse(Adult adult) throws Exception {
         {
-            uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/adults");
+            uri = new URI(host +":4040/sbcm/registrolibrerias/adults");
 
             connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("POST");
@@ -161,7 +162,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
 
     @Override
     public Adult getOneResourceById(int id) throws Exception {
-            uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/adults"+id);
+            uri = new URI(host +":4040/sbcm/registrolibrerias/adults"+id);
             if(!usingTest)
                 connection = (HttpURLConnection) uri.toURL().openConnection();
             connection.setRequestMethod("GET");
@@ -197,7 +198,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
 
     @Override
     public void deleteResource(int id) throws Exception {
-        uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/adults/"+id);
+        uri = new URI(host +":4040/sbcm/registrolibrerias/adults/"+id);
 
             connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("DELETE");
@@ -219,7 +220,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
 
     @Override
     public void putResource(Adult adult) throws Exception {
-        uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/adults");
+        uri = new URI(host +":4040/sbcm/registrolibrerias/adults");
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Content-Type", "application/json");
@@ -247,7 +248,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
             //Entonces creamos una nueva cadena donde remplacemos los espacios por %20
             String nameReplace = name.replace(" ", "%20");//Aquí indicamos que remplace todos los espacios vacios con %20
             //Tenemos un uri con el endpoint al que vamos a acceder
-            uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/adults/search/" + nameReplace);
+            uri = new URI(host +":4040/sbcm/registrolibrerias/adults/search/" + nameReplace);
             connection = (HttpURLConnection) uri.toURL().openConnection();
             //ya que tenemos la conexión vamos a darle sus propiedades correspondientes
             //Indicamos que tipo de metodo HTTP es
@@ -296,7 +297,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
 
     @Override
     public void putAssistance(Adult adult) throws Exception {
-        uri = new URI("http://172.63.1.147:4040/sbcm/registrolibrerias/adults/mark");
+        uri = new URI(host +":4040/sbcm/registrolibrerias/adults/mark");
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Content-Type" , "application/json");
