@@ -336,7 +336,6 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
         apellidoKC.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         edadKC.setCellValueFactory(new PropertyValueFactory<>("simpleDate"));
         generoKC.setCellValueFactory(new PropertyValueFactory<>("genero"));
-        actionsKC.setCellValueFactory(new PropertyValueFactory<>("button"));
         discapacidadKC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));
         escolaridadKC.setCellValueFactory(new PropertyValueFactory<>("escolaridad"));
         ocupacionKC.setCellValueFactory(new PropertyValueFactory<>("ocupacion"));
