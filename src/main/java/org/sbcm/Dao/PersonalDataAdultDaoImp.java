@@ -1,6 +1,7 @@
 package org.sbcm.Dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javafx.collections.ObservableList;
 import org.json.JSONObject;
 import org.sbcm.Model.PersonalDataAdult;
@@ -15,7 +16,11 @@ import java.nio.charset.StandardCharsets;
 public class PersonalDataAdultDaoImp implements CRUD<PersonalDataAdult> {
     URI uri;
     HttpURLConnection connection;
-    ObjectMapper mapper = new ObjectMapper();
+
+
+    public PersonalDataAdultDaoImp() {
+        this.mapper.registerModule(new JavaTimeModule());
+    }
 
     @Override
     public ObservableList<PersonalDataAdult> getAllResources() throws Exception {

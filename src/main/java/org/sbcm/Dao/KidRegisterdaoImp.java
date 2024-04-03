@@ -2,6 +2,7 @@ package org.sbcm.Dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.JSONArray;
@@ -15,7 +16,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
-     /**KidRegisterdaolmp es la implementación del CRUD, de tal manera que mediante las conexiones Http, es posible poder utilizar los registros o datos que se
+import java.time.LocalDate;
+
+/**KidRegisterdaolmp es la implementación del CRUD, de tal manera que mediante las conexiones Http, es posible poder utilizar los registros o datos que se
       * encuentran en la base de datos, haciendo que se puedan Crear, Actualizar, Leer y Eliminar cualquier registro mediante las conexiones Http, estos método
       * son los que se implementan con el CRUD y que hacen que se realicen estas acciones con los registros**/
 public class KidRegisterdaoImp implements CRUD<Kid>{
@@ -25,8 +28,11 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
     URI uri;
     boolean usingTest = true;
 
+         public KidRegisterdaoImp() {
+             this.mapper.registerModule(new JavaTimeModule());
+         }
 
-     /***
+         /***
       * Este método se encarga de mostrar todos los registros que se encuentran en la base de datos, es un metodo que devuelve JSONArray como resultado, este
       * metodo hace que se tengan los datos de la base de datos mediante las variables de conexión Http, las cuales hacen que estos datos se conecten con el código
       * @return ListKid es la variable que va a retornar, ya que, ahi se encuentran todos los registros de la base de datos
@@ -59,8 +65,8 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
 
         for (Object o: jsonListKid){
             JSONObject jsonObject = (JSONObject) o;
-            ObjectMapper objectMapper = new ObjectMapper();
-            Kid kid = objectMapper.readValue(jsonObject.toString(), Kid.class);
+
+            Kid kid = mapper.readValue(jsonObject.toString(), Kid.class);
             ListKid.add(kid);
         }
         System.out.println(connection.getHeaderFields());
@@ -80,6 +86,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
 
     @Override
     public int postResourse(Kid kid) throws Exception {
+        kid.setFechaNacimiento(LocalDate.parse(kid.getFechaNacimiento()).plusDays(1).toString());
         uri = new URI(host +":4040/sbcm/registrolibrerias/kids");
 
         connection = (HttpURLConnection) uri.toURL().openConnection();
@@ -88,8 +95,8 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
         connection.setDoOutput(true);
         connection.setRequestProperty("User-Agent","JAVAFX/1.0 SNAPSHOT (Windows 11; x64)");
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        JSONObject jsonKid = new JSONObject(objectMapper.writeValueAsString(kid));
+
+        JSONObject jsonKid = new JSONObject(mapper.writeValueAsString(kid));
         System.out.println(jsonKid.toString(1));
         OutputStream transmisionSalida = connection.getOutputStream();
         byte[] salidaBytes = jsonKid.toString().getBytes(StandardCharsets.UTF_8);
@@ -142,8 +149,8 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
         }
         lecturabuffer.close();
         JSONObject jsonKid = new JSONObject(lineas.toString());
-        ObjectMapper objectMapper = new ObjectMapper();
-        Kid kid = objectMapper.readValue(jsonKid.toString(),Kid.class);
+
+        Kid kid = mapper.readValue(jsonKid.toString(),Kid.class);
         connection.disconnect();
 
 
@@ -183,14 +190,15 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
 
     @Override
     public void putResource(Kid kid) throws Exception {
+        kid.setFechaNacimiento(LocalDate.parse(kid.getFechaNacimiento()).plusDays(1).toString());
         uri = new URI(host +":4040/sbcm/registrolibrerias/kids");
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("User-Agent", "JAVAFX/1.0 SNAPSHOT (Windows 11; x64)");
         connection.setDoOutput(true);
-        ObjectMapper objectMapper = new ObjectMapper();
-        JSONObject jsonKid = new JSONObject(objectMapper.writeValueAsString(kid));
+
+        JSONObject jsonKid = new JSONObject(mapper.writeValueAsString(kid));
         OutputStream transmisionSalida = connection.getOutputStream();
         byte[] salidaBytes = jsonKid.toString().getBytes(StandardCharsets.UTF_8);
         transmisionSalida.write(salidaBytes);
@@ -223,7 +231,7 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
 
         JSONArray consultaArray = new JSONArray(lines.toString());
         ObservableList<Kid> consultaLista = FXCollections.observableArrayList();
-        ObjectMapper mapper = new ObjectMapper();
+
 
         for (Object o: consultaArray){
             JSONObject json = (JSONObject) o;
@@ -237,13 +245,14 @@ public class KidRegisterdaoImp implements CRUD<Kid>{
     }
      @Override
      public void putAssistance(Kid kid) throws Exception {
+         kid.setFechaNacimiento(LocalDate.parse(kid.getFechaNacimiento()).plusDays(1).toString());
         uri = new URI(host +":4040/sbcm/registrolibrerias/kidsregister/mark");
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("User-Agent", "JAVAFX/1.0 SNAPSHOT (Windows 10; x64)");
         connection.setDoOutput(true);
-        ObjectMapper mapper = new ObjectMapper();
+
         JSONObject object = new JSONObject(mapper.writeValueAsString(kid));
         OutputStream transmisionSalida = connection.getOutputStream();
         byte[] salidaBytes = object.toString().getBytes(StandardCharsets.UTF_8);

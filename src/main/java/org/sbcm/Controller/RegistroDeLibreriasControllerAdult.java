@@ -103,7 +103,8 @@ public class RegistroDeLibreriasControllerAdult extends Component implements Ini
         //Le asigno el valor de sus atributos con base a lo que obtenga de la interfaz
         //adulto.setId(Integer.parseInt(nRegistroRA.getText()));
         try {
-            adulto.setFechaNacimiento(Date.from(fechaNacimientoP.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            //adulto.setFechaNacimiento(Date.from(fechaNacimientoP.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            //adulto.setFechaNacimiento(fechaNacimientoP.getValue());
             singleton.setFechaNacimiento(adulto.getFechaNacimiento());
             adulto.setNombre(nombreRA.getText());
             singleton.setNombre(adulto.getNombre());

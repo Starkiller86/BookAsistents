@@ -58,7 +58,7 @@ public class UpdateRegisterWindowAdultController implements Initializable {
             Adult adult = new Adult();
             adult.setNVisitas(Integer.parseInt(noVisitasField.getText())); //Colocamos como valor en cada uno de sus atributos el valor del campo de texto en la interfaz
             adult.setOcupacion(ocupacionField.getText());
-            adult.setFechaNacimiento(Date.from(fechaNacimientoField.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            //adult.setFechaNacimiento(Date.from(fechaNacimientoField.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             adult.setEscolaridad(escolaridadField.getText());
             adult.setGenero(generoFIeld.getText());
             adult.setTipoDeVisitante(tipoVisitanteField.getText());
@@ -103,8 +103,8 @@ public class UpdateRegisterWindowAdultController implements Initializable {
         nombreField.setText(adultSingleton.getNombre());
         apellidoField.setText(adultSingleton.getApellido());
         idField.setText(String.valueOf(adultSingleton.getId()));
-        LocalDate local = adultSingleton.getFechaNacimiento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        fechaNacimientoField.setValue(local);
+        //LocalDate local = adultSingleton.getFechaNacimiento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        //fechaNacimientoField.setValue(adultSingleton.getFechaNacimiento());
         generoFIeld.setText(adultSingleton.getGenero());
         discapacidadField.setText(adultSingleton.getDiscapacidad());
         escolaridadField.setText(adultSingleton.getEscolaridad());

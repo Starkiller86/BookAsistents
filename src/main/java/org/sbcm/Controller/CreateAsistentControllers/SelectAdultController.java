@@ -12,6 +12,7 @@ import org.sbcm.Model.Adult;
 import org.sbcm.Model.SingletonModels.AdultSingleton;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -23,7 +24,7 @@ public class SelectAdultController implements Initializable {
     @FXML
     private TableColumn<Adult, String> discapacidadC;
     @FXML
-    private TableColumn<Adult, Date> fechaNacimientoC;
+    private TableColumn<Adult, String> fechaNacimientoC;
     @FXML
     private TableColumn<Adult, String> escolaridadC;
     @FXML
@@ -94,6 +95,7 @@ public class SelectAdultController implements Initializable {
             alert.setTitle("ERROR");
             alert.setHeaderText("ERROR DE CONEXIÓN");
             alert.setContentText("Los cambios no fueron registrados");
+            alert.showAndWait();
 
         }
         //el nombre completo con los apeidos esta guardado el propiedad nombre, pero necesitamos analizar un momento el servidor
@@ -116,7 +118,7 @@ public class SelectAdultController implements Initializable {
     public void initialize(URL location, ResourceBundle resources){
         apellidoC.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         discapacidadC.setCellValueFactory(new PropertyValueFactory<>("discapacidad"));
-        fechaNacimientoC.setCellValueFactory(new PropertyValueFactory<>("simpleDate"));
+        fechaNacimientoC.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
         escolaridadC.setCellValueFactory(new PropertyValueFactory<>("escolaridad"));
         generoC.setCellValueFactory(new PropertyValueFactory<>("genero"));
         idC.setCellValueFactory(new PropertyValueFactory<>("id"));

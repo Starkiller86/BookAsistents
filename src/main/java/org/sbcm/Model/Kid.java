@@ -16,7 +16,7 @@ public class Kid {
     @JsonProperty("apellido")
     private String apellido;
     @JsonProperty("fechaNacimiento")
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     @JsonProperty("genero")
     private String genero;
     @JsonProperty("escolaridad")
@@ -48,11 +48,11 @@ public class Kid {
         this.simpleDate = simpleDate;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

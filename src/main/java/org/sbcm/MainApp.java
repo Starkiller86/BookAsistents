@@ -11,12 +11,13 @@ import java.io.IOException;
 public class MainApp extends Application {
     @Override
     public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/MainBoard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("");
         stage.setScene(scene);
-        stage.setMinWidth(1280);
-        stage.setMinHeight(695);
+        stage.setMinWidth(1044);
+        stage.setMinHeight(631);
+        stage.centerOnScreen();
         stage.show();
     }
 

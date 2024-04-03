@@ -1,0 +1,20 @@
+.combo-box{
+    -fx-font-size: 15px;
+}
+.combo-box .arrow {
+    -fx-background-color:  #047DD5; /* Cambia el color de la flecha a rojo */
+
+}
+.combo-box .arrow-button{
+    -fx-background-color: transparent;
+}
+.combo-box .list-cell {
+    -fx-text-fill: #b2b2b2; // Morado
+}
+
+.combo-box .list-cell:focused {
+    -fx-text-fill: black; // Morado
+}
+.combo-box:showing .list-cell{
+    -fx-text-fill: black; // Morado
+}

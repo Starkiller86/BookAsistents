@@ -35,21 +35,56 @@
 }
 #userButton:hover{
     -fx-background-color: #bbbdcb;
+    -fx-border-style: solid;
+
+
 }
 #lineTop{
     -fx-border-style: solid;
     -fx-border-width : 2px 0 0 0;
     -fx-border-color : #ECEFFE;
 }
-#tabPane{
-    -fx-tab-min-width : 0px;
-    -fx-tab-min-height: 0px;
-
-    -fx-tab-max-height: 0px;
-    -fx-tab-max-width: 0px;
-}
-.tab-header-area .tab {
-    -fx-padding: 0;
+.tab-header-area {
+    -fx-padding: -1;
     -fx-background-insets: 0;
     -fx-background-color: transparent;
 }
+
+.tab-pane {
+    -fx-tab-min-width: 0;
+    -fx-tab-max-width: 0;
+    -fx-tab-min-height: 0;
+    -fx-tab-max-height: 0;
+
+}
+
+#miGridPane {
+    -fx-border-color: #dadada;
+    -fx-border-radius: 10px;
+}
+
+.combo-box{
+    -fx-font-size: 15px;
+}
+.combo-box .arrow {
+    -fx-background-color:  #047DD5; /* Cambia el color de la flecha a rojo */
+
+}
+.combo-box .arrow-button{
+    -fx-background-color: transparent;
+}
+.combo-box .list-cell {
+    -fx-text-fill: #b2b2b2; // Morado
+}
+
+.combo-box .list-cell:focused {
+    -fx-text-fill: black; // Morado
+}
+.combo-box:showing .list-cell{
+    -fx-text-fill: black; // Morado
+}
+
+#submitButton:hover{
+    -fx-background-color: #c2c8e8;
+}
+

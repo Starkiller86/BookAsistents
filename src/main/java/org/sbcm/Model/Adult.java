@@ -3,6 +3,7 @@ package org.sbcm.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.logging.SimpleFormatter;
 
@@ -17,7 +18,7 @@ public class Adult {
     @JsonProperty("apellido")
     private String apellido;
     @JsonProperty("fechaNacimiento")
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     @JsonProperty("genero")
     private String genero;
     @JsonProperty("escolaridad")
@@ -89,11 +90,14 @@ public class Adult {
     public void setId(int id) {
         this.id = id;
     }
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+
+    public String getFechaNacimiento() {
+        //return LocalDate.parse(this.fechaNacimiento).plusDays(1).toString();
+        return this.fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
+        //this.fechaNacimiento = LocalDate.parse(fechaNacimiento).plusDays(1).toString();
         this.fechaNacimiento = fechaNacimiento;
     }
 

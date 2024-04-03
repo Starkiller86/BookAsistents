@@ -104,7 +104,8 @@ public class RegistroDeLibreriasControllerKid implements Initializable {
             kidSinglenton.setNombre(kid.getNombre());
             kid.setApellido(apellidoRI.getText());
             kidSinglenton.setApellido(kid.getApellido());
-            kid.setFechaNacimiento(Date.from(dateKid.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            //kid.setFechaNacimiento(Date.from(dateKid.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            kid.setFechaNacimiento(dateKid.getValue().toString());
             kidSinglenton.setFechaNacimiento(kid.getFechaNacimiento());
             kid.setGenero(((RadioButton) grupogeneroK.getSelectedToggle()).getText());
             kidSinglenton.setGenero(kid.getGenero());

@@ -1,6 +1,7 @@
 package org.sbcm.Dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.JSONArray;
@@ -14,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.List;
 
 /**AdultRegisterdaolmp es la implementación del CRUD, de tal manera que mediante las conexiones HTTP, es posible poder utilizar los registros o datos que se
@@ -26,6 +28,9 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
     URI uri;
     boolean usingTest = true;
 
+    public AdultRegisterdaoImp() {
+        this.mapper.registerModule(new JavaTimeModule());
+    }
 
     /***
      * Este método se encarga de poder devolver todos los registros en la base de datos, este utiliza las variables de conexión HttpURLConnection, las cuales
@@ -88,8 +93,8 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
         /**Este ciclo foreach se encargara de que todos los objetos contenga JSON en objetos JAVA**/
         for (Object o: jsonListAdult){ //se crea un foreach para poder observar las respuestas JSON.
             JSONObject jsonObject = (JSONObject) o; //se crea un  JSONObject de tal manera que se hace una conversión del objeto(o) a JSONObject.
-            ObjectMapper objectMapper = new ObjectMapper();//se crea un objeto objectMapper
-            Adult adult = objectMapper.readValue(jsonObject.toString(), Adult.class);//en esta línea de código lo que se hara es crear un objeto con el cual con ayuda de objectMapper
+
+            Adult adult = mapper.readValue(jsonObject.toString(), Adult.class);//en esta línea de código lo que se hara es crear un objeto con el cual con ayuda de mapper
             //este lea lo que hay en jsonObject en forma de texto basado en la estructura del objeto Adult.
             ListAdult.add(adult);//se añade lo que se encuentra en adult a ListAdult.
         }
@@ -115,6 +120,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
     @Override
     public int postResourse(Adult adult) throws Exception {
         {
+            adult.setFechaNacimiento(LocalDate.parse(adult.getFechaNacimiento()).plusDays(1).toString());
             uri = new URI(host +":4040/sbcm/registrolibrerias/adults");
 
             connection = (HttpURLConnection) uri.toURL().openConnection();
@@ -123,8 +129,8 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
             connection.setDoOutput(true);
             connection.setRequestProperty("User-Agent","JAVAFX/1.0 SNAPSHOT (Windows 11; x64)");
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            JSONObject jsonAdult = new JSONObject(objectMapper.writeValueAsString(adult));
+
+            JSONObject jsonAdult = new JSONObject(mapper.writeValueAsString(adult));
             OutputStream transmisionSalida = connection.getOutputStream();
             byte[] salidaBytes = jsonAdult.toString().getBytes(StandardCharsets.UTF_8);
             transmisionSalida.write(salidaBytes);
@@ -182,8 +188,8 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
             }
             lecturabuffer.close();
             JSONObject jsonAdult = new JSONObject(lineas.toString());
-            ObjectMapper objectMapper = new ObjectMapper();
-            Adult adult = objectMapper.readValue(jsonAdult.toString(),Adult.class);
+
+            Adult adult = mapper.readValue(jsonAdult.toString(),Adult.class);
             connection.disconnect();
         return adult;
     }
@@ -220,14 +226,15 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
 
     @Override
     public void putResource(Adult adult) throws Exception {
+        adult.setFechaNacimiento(LocalDate.parse(adult.getFechaNacimiento()).plusDays(1).toString());
         uri = new URI(host +":4040/sbcm/registrolibrerias/adults");
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("User-Agent", "JAVAFX/1.0 SNAPSHOT (Windows 11; x64)");
         connection.setDoOutput(true);
-        ObjectMapper objectMapper = new ObjectMapper();
-        JSONObject jsonAdult = new JSONObject(objectMapper.writeValueAsString(adult));
+
+        JSONObject jsonAdult = new JSONObject(mapper.writeValueAsString(adult));
         OutputStream transmisionSalida = connection.getOutputStream();
         byte[] salidaBytes = jsonAdult.toString().getBytes(StandardCharsets.UTF_8);
         transmisionSalida.write(salidaBytes);
@@ -280,8 +287,9 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
             JSONArray arrayCoincidencias = new JSONArray(lines.toString());
             //Creamo la lista observable para almacenar los resultados de la consulta en objetos java que podamos colocar en la tabla
             ObservableList<Adult> listaCoincidencias = FXCollections.observableArrayList();
-            //Neceistamos un objectMapper para mapear los valores de los json en los objetos java
-            ObjectMapper mapper = new ObjectMapper();
+            //Neceistamos un mapper para mapear los valores de los json en los objetos java
+
+            mapper.registerModule(new JavaTimeModule());
             //Creamos un foreach que por cada elemento del array lo colocará de manera ordenada en la lista observable
 
             for (Object o: arrayCoincidencias) {
@@ -297,6 +305,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
 
     @Override
     public void putAssistance(Adult adult) throws Exception {
+        adult.setFechaNacimiento(LocalDate.parse(adult.getFechaNacimiento()).plusDays(1).toString());
         uri = new URI(host +":4040/sbcm/registrolibrerias/adults/mark");
         connection = (HttpURLConnection) uri.toURL().openConnection();
         connection.setRequestMethod("PUT");
@@ -304,7 +313,7 @@ public class AdultRegisterdaoImp implements CRUD<Adult>{
         connection.setRequestProperty("User-Agent" , "JAVAFX/1.0 SNAPSHOT (Windows 10; x64)");
         connection.setDoOutput(true);
 
-        ObjectMapper mapper = new ObjectMapper();
+
         JSONObject json = new JSONObject(mapper.writeValueAsString(adult));
         OutputStream transmisionSalida = connection.getOutputStream();
         byte[] salidaBytes = json.toString().getBytes(StandardCharsets.UTF_8);

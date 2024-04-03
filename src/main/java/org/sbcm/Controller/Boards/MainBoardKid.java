@@ -18,45 +18,34 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.model.Themes;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.sbcm.Dao.AdultRegisterdaoImp;
-import org.sbcm.Dao.CRUD;
-import org.sbcm.Dao.PersonalDataAdultDaoImp;
+import org.sbcm.Dao.*;
 import org.sbcm.MainApp;
 import org.sbcm.Model.Adult;
+import org.sbcm.Model.Kid;
 import org.sbcm.Model.PersonalDataAdult;
+import org.sbcm.Model.PersonalDataKid;
 import org.sbcm.Model.SingletonModels.AdultSingleton;
+import org.sbcm.Model.SingletonModels.KidSinglenton;
 
-import javax.swing.*;
-import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.Inet4Address;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class MainBoard implements Initializable {
+public class MainBoardKid implements Initializable {
     public ComboBox<String> schoolLevel;
     //Cómo nueva ventana principal vamos a necesitar los daos
-    CRUD<Adult> adultCRUD = new AdultRegisterdaoImp();
-    CRUD<PersonalDataAdult> personalCRUD = new PersonalDataAdultDaoImp();
+    CRUD<Kid> kidCRUD = new KidRegisterdaoImp();
+    CRUD<PersonalDataKid> personalCRUD = new PersonalDataKidDaolmp();
     @FXML
     private Button addButton;
     @FXML
@@ -116,32 +105,24 @@ public class MainBoard implements Initializable {
 
 
     @FXML
-    private TableView<Adult> tableList;
+    private TableView<Kid> tableList;
 
     @FXML
-    private TableColumn<Adult,String> idC;
+    private TableColumn<Kid,String> idC;
     @FXML
-    private TableColumn<Adult,String> nombreC ;
+    private TableColumn<Kid,String> nombreC ;
     @FXML
-    private TableColumn<Adult, String> apellidoC;
+    private TableColumn<Kid, String> apellidoC;
     @FXML
-    private TableColumn<Adult, String> tipoVisitanteC;
+    private TableColumn<Kid, String> tipoVisitanteC;
     @FXML
-    private TableColumn<Adult, String> discapacidadC;
+    private TableColumn<Kid, String> discapacidadC;
     @FXML
-    private TableColumn<Adult, String> escolaridadC;
+    private TableColumn<Kid, String> escolaridadC;
     @FXML
-    private TableColumn<Adult, String> fechaC;
+    private TableColumn<Kid, String> fechaC;
 
 
-
-
-
-    @FXML
-    public void action(ActionEvent event){
-
-
-    }
 
 
 
@@ -155,7 +136,7 @@ public class MainBoard implements Initializable {
         escolaridadC.setCellValueFactory(new PropertyValueFactory<>("escolaridad"));
         fechaC.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
         try {
-            tableList.setItems(adultCRUD.getAllResources());
+            tableList.setItems(kidCRUD.getAllResources());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -205,9 +186,9 @@ public class MainBoard implements Initializable {
             else {
 
                 //new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
-                    day.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31");
-                    day.getSelectionModel().select(dayS);
-                    month.getSelectionModel().select(0);
+                day.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31");
+                day.getSelectionModel().select(dayS);
+                month.getSelectionModel().select(0);
 
                 //})).play();
             }
@@ -230,7 +211,7 @@ public class MainBoard implements Initializable {
             }
             else {
                 //new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
-                    year.getSelectionModel().select(100);
+                year.getSelectionModel().select(100);
 
                 //})).play();
 
@@ -245,7 +226,7 @@ public class MainBoard implements Initializable {
                 System.out.println("Index: " + day.getSelectionModel().getSelectedIndex());
             }else if (!day.getItems().isEmpty()){
                 //new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
-                    day.getSelectionModel().select(0);
+                day.getSelectionModel().select(0);
 
                 //})).play();
             }
@@ -253,9 +234,9 @@ public class MainBoard implements Initializable {
         gender.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (!gender.getItems().contains(observable.getValue()) && (gender.getSelectionModel().getSelectedItem() != null)){
                 //new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
-                    //gender.getEditor().setText("");
-                    gender.getSelectionModel().select(0);
-                    gender.getSelectionModel().clearSelection();
+                //gender.getEditor().setText("");
+                gender.getSelectionModel().select(0);
+                gender.getSelectionModel().clearSelection();
                 //})).play();
             }
         });
@@ -298,10 +279,10 @@ public class MainBoard implements Initializable {
 
 
     public void searchAction() throws Exception {
-        AdultSingleton adultSingleton= AdultSingleton.getInstance();//Voy a utilizar el singleton solo para guardar el nombre
-        adultSingleton.setNombre(searchBar.getText());//A pesar de que pedimos nombre completo del lado del servidor lo vamos a interpretar solo como texto
+        KidSinglenton kidSinglenton= KidSinglenton.getInstance();//Voy a utilizar el singleton solo para guardar el nombre
+        kidSinglenton.setNombre(searchBar.getText());//A pesar de que pedimos nombre completo del lado del servidor lo vamos a interpretar solo como texto
         //Aquí generamos la ventana
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VentanasdeAsistencia/SelectAdultInterface.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VentanasdeAsistencia/SelectKidInterface.fxml"));
         Parent root= loader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -311,7 +292,7 @@ public class MainBoard implements Initializable {
         stage.showAndWait();
         //ListAdult.setItems(adultCRUD.getAllResources()); vamos a dejar lo de la tabla para despues
         //Y una vez que la ventana se cierra, ya sea por x o y, vamos a regresar el singleton a null
-        adultSingleton = null;//de esta manera en las demas partes de nuestro codigo donde lo usamos no se verá conflictuado
+        kidSinglenton = null;//de esta manera en las demas partes de nuestro codigo donde lo usamos no se verá conflictuado
         try {
             searchBar.setText("");
         }catch (Exception ignored){
@@ -360,21 +341,21 @@ public class MainBoard implements Initializable {
 
     public void submitAction(ActionEvent event) throws Exception {
 //Primero vamos a crear el objeto en el que vamos a colocar toda la info de la interfaz
-        Adult adulto = new Adult();
-        PersonalDataAdult personalAdult=  new PersonalDataAdult();
-        AdultSingleton singleton = AdultSingleton.getInstance();
+        Kid kid = new Kid();
+        PersonalDataKid personalKid=  new PersonalDataKid();
+        KidSinglenton singleton = KidSinglenton.getInstance();
         //Le asigno el valor de sus atributos con base a lo que obtenga de la interfaz
         //adulto.setId(Integer.parseInt(nRegistroRA.getText()));
         try {
             if (name.getText().isEmpty() ||
-            lastName.getText().isEmpty() ||
-            (day.getSelectionModel().isEmpty() && day.getEditor().getText().isEmpty()) ||
-            (month.getSelectionModel().isEmpty() && month.getEditor().getText().isEmpty()) ||
-            (year.getSelectionModel().isEmpty() && year.getEditor().getText().isEmpty()) ||
-            (gender.getSelectionModel().isEmpty() && gender.getEditor().getText().isEmpty()) ||
-            (disability.getSelectionModel().isEmpty() && disability.getEditor().getText().isEmpty()) ||
-            (schoolLevel.getSelectionModel().isEmpty() && schoolLevel.getEditor().getText().isEmpty()) ||
-            (occupation.getSelectionModel().isEmpty() && occupation.getEditor().getText().isEmpty()))
+                    lastName.getText().isEmpty() ||
+                    (day.getSelectionModel().isEmpty() && day.getEditor().getText().isEmpty()) ||
+                    (month.getSelectionModel().isEmpty() && month.getEditor().getText().isEmpty()) ||
+                    (year.getSelectionModel().isEmpty() && year.getEditor().getText().isEmpty()) ||
+                    (gender.getSelectionModel().isEmpty() && gender.getEditor().getText().isEmpty()) ||
+                    (disability.getSelectionModel().isEmpty() && disability.getEditor().getText().isEmpty()) ||
+                    (schoolLevel.getSelectionModel().isEmpty() && schoolLevel.getEditor().getText().isEmpty()) ||
+                    (occupation.getSelectionModel().isEmpty() && occupation.getEditor().getText().isEmpty()))
             {
                 System.out.println("imprimir: " +day.getValue());
                 throw new Exception("hay campos vacios");
@@ -384,30 +365,30 @@ public class MainBoard implements Initializable {
             String[] parts = birth.split("-");
             String formattedDate = String.format("%s-%02d-%02d", parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
 
-            adulto.setFechaNacimiento(formattedDate);
-            singleton.setFechaNacimiento(adulto.getFechaNacimiento());
-            adulto.setNombre(name.getText());
-            singleton.setNombre(adulto.getNombre());
-            adulto.setApellido(lastName.getText());
-            singleton.setApellido(adulto.getApellido());
-            adulto.setGenero(gender.getValue());
-            singleton.setGenero(adulto.getGenero());
-            adulto.setDiscapacidad(disability.getValue());
-            singleton.setDiscapacidad(adulto.getDiscapacidad());
-            adulto.setEscolaridad(schoolLevel.getValue());
-            singleton.setEscolaridad(adulto.getEscolaridad());
-            adulto.setOcupacion(occupation.getValue());
-            singleton.setOcupacion(adulto.getOcupacion());
-            adulto.setNVisitas(1);
-            singleton.setNVisitas(adulto.getNVisitas());
-            adulto.setTipoDeVisitante("No Frecuente");
-            singleton.setTipoDeVisitante(adulto.getTipoDeVisitante());
-            System.out.println(new ObjectMapper().writeValueAsString(adulto));
+            kid.setFechaNacimiento(formattedDate);
+            singleton.setFechaNacimiento(kid.getFechaNacimiento());
+            kid.setNombre(name.getText());
+            singleton.setNombre(kid.getNombre());
+            kid.setApellido(lastName.getText());
+            singleton.setApellido(kid.getApellido());
+            kid.setGenero(gender.getValue());
+            singleton.setGenero(kid.getGenero());
+            kid.setDiscapacidad(disability.getValue());
+            singleton.setDiscapacidad(kid.getDiscapacidad());
+            kid.setEscolaridad(schoolLevel.getValue());
+            singleton.setEscolaridad(kid.getEscolaridad());
+            kid.setOcupacion(occupation.getValue());
+            singleton.setOcupacion(kid.getOcupacion());
+            kid.setNVisitas(1);
+            singleton.setNVisitas(kid.getNVisitas());
+            kid.setTipoDeVisitante("No Frecuente");
+            singleton.setTipoDeVisitante(kid.getTipoDeVisitante());
+            System.out.println(new ObjectMapper().writeValueAsString(kid));
 
 
-            personalAdult.setDomicilio(address.getText());
-            personalAdult.setNumeroemergencia(emergencyNumber.getText());
-            personalAdult.setNumeropersonal(personalNumber.getText());
+            personalKid.setDomicilio(address.getText());
+            personalKid.setNumeroemergencia(emergencyNumber.getText());
+            personalKid.setNumeropersonal(personalNumber.getText());
 
 
         }catch (Exception e){
@@ -422,15 +403,15 @@ public class MainBoard implements Initializable {
         try{
             //obtenemos el id del adulto que vamos a registrar
             //System.out.println("Fecha de nacimiento" + singleton.getFechaNacimiento().toString());
-            int idadulto = adultCRUD.postResourse(singleton);
-            adulto.setId(idadulto);
-            personalAdult.setIdAdulto(adulto);
+            int idKid = kidCRUD.postResourse(singleton);
+            kid.setId(idKid);
+            personalKid.setIdKid(kid);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Registro Correcto");
             //alert.setHeaderText("El registro se ha realizado correctamente con el ID: " + idadulto);
             alert.showAndWait();
-            if (!(personalAdult.getDomicilio().isEmpty() && personalAdult.getNumeroemergencia().isEmpty() && personalAdult.getNumeropersonal().isEmpty())){
-                int idPersonal = personalCRUD.postResourse(personalAdult);
+            if (!(personalKid.getDomicilio().isEmpty() && personalKid.getNumeroemergencia().isEmpty() && personalKid.getNumeropersonal().isEmpty())){
+                int idPersonal = personalCRUD.postResourse(personalKid);
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert2.setTitle("Registro Correcto");
                 //alert2.setHeaderText("Se ha registrado la información personal con exito con el ID: "+ idPersonal);
@@ -457,7 +438,7 @@ public class MainBoard implements Initializable {
             month.getEditor().setText("");
             year.getSelectionModel().clearSelection();
             year.getEditor().setText("");
-            tableList.setItems(adultCRUD.getAllResources());
+            tableList.setItems(kidCRUD.getAllResources());
 
 
             //Usamos a singleton para usar ese id en otra parte
@@ -494,7 +475,7 @@ public class MainBoard implements Initializable {
 
     public void ExportAction(ActionEvent event) throws Exception {
 
-        List<Adult> listaAdult  = adultCRUD.getAllResources();
+        List<Kid> listaKid  = kidCRUD.getAllResources();
 
         try (Workbook workbook = new XSSFWorkbook()) {
             Sheet sheet = workbook.createSheet("Adultos");
@@ -524,7 +505,7 @@ public class MainBoard implements Initializable {
             headerRow.createCell(8).setCellValue("Numero De Visitas");
             headerRow.createCell(9).setCellValue("Tipo De Visitante");
             int rowIndex = 1;
-            for (Adult persona : listaAdult) {
+            for (Kid persona : listaKid) {
                 Row row = sheet.createRow(rowIndex++);
                 row.createCell(0).setCellValue(persona.getId());
                 row.createCell(1).setCellValue(persona.getNombre());
