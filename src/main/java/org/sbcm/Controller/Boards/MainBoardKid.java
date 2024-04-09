@@ -316,7 +316,7 @@ public class MainBoardKid implements Initializable {
 
                 KeyValue keyValueStart = new KeyValue(leftPanel.prefWidthProperty(), 67, Interpolator.EASE_BOTH);
                 KeyFrame startFrame = new KeyFrame(Duration.ZERO, keyValueStart);
-                KeyValue keyValueEnd = new KeyValue(leftPanel.prefWidthProperty(), 267, Interpolator.EASE_BOTH);
+                KeyValue keyValueEnd = new KeyValue(leftPanel.prefWidthProperty(), 252, Interpolator.EASE_BOTH);
                 KeyFrame endFrame = new KeyFrame(Duration.seconds(0.5), keyValueEnd);
                 timeline.getKeyFrames().addAll(startFrame, endFrame);
                 timeline.play();
@@ -327,7 +327,7 @@ public class MainBoardKid implements Initializable {
                 Timeline timeline = new Timeline();
                 timeline.setCycleCount(1);
 
-                KeyValue keyValueStart = new KeyValue(leftPanel.prefWidthProperty(), 267, Interpolator.EASE_BOTH);
+                KeyValue keyValueStart = new KeyValue(leftPanel.prefWidthProperty(), 252, Interpolator.EASE_BOTH);
                 KeyFrame startFrame = new KeyFrame(Duration.ZERO, keyValueStart);
                 KeyValue keyValueEnd = new KeyValue(leftPanel.prefWidthProperty(), 67, Interpolator.EASE_BOTH);
                 KeyFrame endFrame = new KeyFrame(Duration.seconds(0.5), keyValueEnd);
