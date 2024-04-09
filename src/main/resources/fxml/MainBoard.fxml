@@ -32,46 +32,51 @@
 
 <BorderPane fx:id="principalBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/main-styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.Boards.MainBoard">
    <left>
-      <BorderPane fx:id="leftPanel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="67.0" BorderPane.alignment="TOP_LEFT">
+      <BorderPane fx:id="leftPanel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="252.0" BorderPane.alignment="TOP_LEFT">
          <center>
             <BorderPane prefHeight="651.0" prefWidth="165.0" BorderPane.alignment="TOP_LEFT">
                <top>
                   <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="67.0" BorderPane.alignment="BOTTOM_RIGHT">
                      <HBox prefHeight="34.0" prefWidth="68.0">
                         <children>
-                           <ImageView fitHeight="50.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                           <ImageView fitHeight="55.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../icons/IconsInter/GOMEZ.png" />
+                                 <Image url="@../icons/IconsInter/GOMEZ2.png" />
                               </image>
                               <HBox.margin>
-                                 <Insets left="2.0" top="10.0" />
+                                 <Insets left="4.0" top="10.0" />
                               </HBox.margin>
                            </ImageView>
                            <VBox>
                               <HBox.margin>
-                                 <Insets left="10.0" />
+                                 <Insets left="15.0" />
                               </HBox.margin>
                               <children>
                                  <Label ellipsisString="" prefHeight="16.0" prefWidth="170.0" text="Centro Educativo y " textFill="WHITE">
                                     <font>
-                                       <Font name="Candara Bold" size="20.0" />
+                                       <Font name="Candara" size="18.0" />
                                     </font>
                                  </Label>
                                  <Label ellipsisString="" prefHeight="16.0" prefWidth="170.0" text="Cultural del Estado" textFill="WHITE">
                                     <font>
-                                       <Font name="Candara Bold" size="20.0" />
+                                       <Font name="Candara" size="18.0" />
+                                    </font>
+                                 </Label>
+                                 <Label ellipsisString="" prefHeight="16.0" prefWidth="170.0" text="GOMEZ MORIN" textFill="WHITE">
+                                    <font>
+                                       <Font name="System Bold" size="20.0" />
                                     </font>
                                  </Label>
                               </children>
                            </VBox>
                         </children>
                         <VBox.margin>
-                           <Insets top="16.0" />
+                           <Insets top="5.0" />
                         </VBox.margin>
                      </HBox>
                      <Line endX="267.0" opacity="0.31" stroke="#bcbcbc" strokeWidth="2.0">
                         <VBox.margin>
-                           <Insets top="18.0" />
+                           <Insets top="5.0" />
                         </VBox.margin>
                      </Line>
                      <Button fx:id="homeButton" alignment="TOP_LEFT" ellipsisString="" graphicTextGap="0.0" mnemonicParsing="false" onAction="#menuAction" prefHeight="25.0" prefWidth="245.0" styleClass="panel-button" text="    Home" textFill="WHITE" VBox.vgrow="SOMETIMES">

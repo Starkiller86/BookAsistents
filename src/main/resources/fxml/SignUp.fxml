@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="631.0" prefWidth="1044.0" stylesheets="@../styles/login-styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.Boards.SignUpController">
+   <right>
+      <BorderPane prefHeight="631.0" prefWidth="479.0" style="-fx-background-color: #162891; -fx-background-radius: 30 0 0 0;" BorderPane.alignment="CENTER">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="352.0" fitWidth="385.0" layoutX="55.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/IconsInter/unnamed.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="146.0" fitWidth="250.0" layoutX="123.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/IconsInter/S_Educacion.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </center></BorderPane>
+   </right>
+   <center>
+      <BorderPane prefHeight="631.0" prefWidth="688.0" BorderPane.alignment="CENTER">
+         <center>
+            <GridPane prefHeight="423.0" prefWidth="465.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="447.0" minWidth="10.0" prefWidth="438.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="27.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="56.0" minHeight="0.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="258.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="258.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="258.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="258.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="344.0" minHeight="10.0" prefHeight="137.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <BorderPane.margin>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="150.0" />
+               </BorderPane.margin>
+               <children>
+                  <TextField fx:id="user" promptText="User" style="-fx-background-color: transparent; -fx-border-width: 0 0 2 0; -fx-border-color: #047DD5;" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Candara" size="17.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Sign Up" textFill="#575757">
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Candara Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="password" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0 0 2 0; -fx-border-color: #047DD5;" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Candara" size="17.0" />
+                     </font>
+                  </PasswordField>
+                  <ComboBox fx:id="department" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="150.0" promptText="Department" style="-fx-border-color: #047DD5; -fx-background-color: transparente; -fx-border-width: 0 0 2 0;" styleClass="bor" GridPane.rowIndex="4">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="Adultos" />
+                           <String fx:value="Infantil" />
+                           <String fx:value="Administrador" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+                  <BorderPane GridPane.rowIndex="5">
+                     <left>
+                        <Label fx:id="login" onMouseClicked="#loginClick" prefHeight="21.0" prefWidth="42.0" text="Login" textFill="#005fff" underline="true" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <BorderPane.margin>
+                              <Insets top="20.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </left>
+                     <GridPane.margin>
+                        <Insets top="30.0" />
+                     </GridPane.margin>
+                     <bottom>
+                        <Button fx:id="signButton" alignment="TOP_LEFT" contentDisplay="RIGHT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#signAction" prefHeight="50.0" prefWidth="128.0" style="-fx-background-color: #1B30AF; -fx-background-radius: 10;" text="SIgn Up " textFill="WHITE" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="Candara Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/IconsInter/Enter.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="9.0" top="6.0" />
+                           </padding>
+                           <BorderPane.margin>
+                              <Insets top="30.0" />
+                           </BorderPane.margin>
+                        </Button>
+                     </bottom>
+                  </BorderPane>
+                  <PasswordField fx:id="rPassword" promptText="Repeat Password" style="-fx-background-color: transparent; -fx-border-width: 0 0 2 0; -fx-border-color: #047DD5;" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Candara" size="17.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

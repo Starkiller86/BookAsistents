@@ -113,7 +113,7 @@
                                     <Font size="15.0" />
                                 </font>
                             </Button>
-                            <Button fx:id="exportATabButton" alignment="TOP_LEFT" ellipsisString="" graphicTextGap="0.0" mnemonicParsing="false" onAction="#menuAction" prefHeight="25.0" prefWidth="245.0" styleClass="panel-button" text="    Export Records" textFill="WHITE">
+                            <Button fx:id="exportATabButton" alignment="TOP_LEFT" disable="true" ellipsisString="" graphicTextGap="0.0" mnemonicParsing="false" onAction="#menuAction" prefHeight="25.0" prefWidth="245.0" styleClass="panel-button" text="    Export Records" textFill="WHITE">
                                 <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                         <Image url="@../icons/IconsInter/Send File.png" />

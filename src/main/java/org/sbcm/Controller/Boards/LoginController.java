@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.sbcm.Dao.CRUD;
 import org.sbcm.Dao.UserDaoImp;
@@ -29,6 +30,10 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField user;
+
+
+    @FXML
+    private Label newUser;
 
     private UserDaoImp userCRUD = new UserDaoImp();
 
@@ -64,10 +69,14 @@ public class LoginController implements Initializable {
                     stage.centerOnScreen();
                     stage.show();
                 }else if (user.getDepartment().equals("Administrador")){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Aun no");
-                    alert.setHeaderText("Seguimos trabajando en ello");
-                    alert.setContentText("El martes sin falta");
+                    FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/MainBoardAdmin.fxml"));
+                    Stage stage = (Stage) signButton.getScene().getWindow();
+                    Scene scene = new Scene(fxmlLoader.load());
+                    stage.setScene(scene);
+                    stage.setMinWidth(1280);
+                    stage.setMinHeight(695);
+                    stage.centerOnScreen();
+                    stage.show();
                 }
             }else {
                 Alert alert  = new Alert(Alert.AlertType.ERROR);
@@ -88,6 +97,22 @@ public class LoginController implements Initializable {
         }
 
 
+
+    }
+
+    public void createNewUser(MouseEvent mouseEvent) throws Exception {
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/SignUp.fxml"));
+            Stage stage = (Stage) newUser.getScene().getWindow();
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setScene(scene);
+            stage.setMinWidth(1044);
+            stage.setMinHeight(631);
+            stage.centerOnScreen();
+            stage.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
 
     }
 }

@@ -16,8 +16,8 @@ import java.net.URI;
 
 public interface CRUD<Resource> {
 
-    //String host = "http://172.63.1.147";
-    String host = "http://localhost";
+    String host = "http://172.63.1.147";
+    //String host = "http://localhost";
     ObjectMapper mapper = new ObjectMapper();
     /***
      * Este método se encarga de mostrar todos los datos que se encuentran en la base de datos

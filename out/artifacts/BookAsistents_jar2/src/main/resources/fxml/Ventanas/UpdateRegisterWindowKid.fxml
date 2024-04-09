@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="497.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sbcm.Controller.VentantasControllers.UpdateRegisterWindowKidController">
+   <children>
+      <Label layoutX="163.0" layoutY="14.0" text="Actualizar Datos ">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <GridPane layoutX="69.0" layoutY="80.0" prefHeight="240.0" prefWidth="360.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="142.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="218.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Número de Registro: " />
+            <TextField fx:id="idFieldKid" disable="true" GridPane.columnIndex="1" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Nombre: " GridPane.rowIndex="1" />
+            <TextField fx:id="nombreFieldKid" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Apellido: " GridPane.rowIndex="2" />
+            <TextField fx:id="apellidoFieldKid" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Fecha de Nacimiento: " GridPane.rowIndex="3" />
+            <TextField fx:id="edadFieldKid" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Género: " GridPane.rowIndex="4" />
+            <TextField fx:id="generoFieldKid" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Discapacidad: " GridPane.rowIndex="5" />
+            <TextField fx:id="discapacidadFieldKid" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Escolaridad: " GridPane.rowIndex="6" />
+            <TextField fx:id="escolaridadFieldKid" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Ocupación: " GridPane.rowIndex="7" />
+            <TextField fx:id="ocupacionFieldKid" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="No.Visitas: " GridPane.rowIndex="8" />
+            <TextField fx:id="nVisitasFieldKid" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Tipo de Visitante: " GridPane.rowIndex="9" />
+            <TextField fx:id="tipoDeVisitanteFieldKid" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+         </children>
+      </GridPane>
+       <Button fx:id="buttonActualizarK" layoutX="385.0" layoutY="337.0" mnemonicParsing="false" onAction="#buttonActualizarKidAction" text="Actualizar" />
+      <Button fx:id="buttonCancelarK" layoutX="305.0" layoutY="337.0" mnemonicParsing="false" onAction="#buttonCancelarKAction" text="Cancelar" />
+      <ImageView fitHeight="137.0" fitWidth="157.0" layoutX="-10.0" layoutY="-26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../2.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -9,12 +9,12 @@
     -fx-background-color: transparent;
 }
 .combo-box .list-cell {
-    -fx-text-fill: #b2b2b2; // Morado
+    -fx-text-fill: #b2b2b2;
 }
 
 .combo-box .list-cell:focused {
-    -fx-text-fill: black; // Morado
+    -fx-text-fill: black;
 }
 .combo-box:showing .list-cell{
-    -fx-text-fill: black; // Morado
+    -fx-text-fill: black;
 }

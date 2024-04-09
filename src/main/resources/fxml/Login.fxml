@@ -26,7 +26,7 @@
                <children>
                   <ImageView fitHeight="352.0" fitWidth="385.0" layoutX="55.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/IconsInter/FPGG.png" />
+                        <Image url="@../icons/IconsInter/unnamed.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="146.0" fitWidth="250.0" layoutX="123.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
@@ -104,7 +104,7 @@
                         </Button>
                      </right>
                      <left>
-                        <Label prefHeight="21.0" prefWidth="131.0" text="Create a new user" textFill="#005fff" underline="true" BorderPane.alignment="CENTER">
+                        <Label fx:id="newUser" onMouseClicked="#createNewUser" prefHeight="21.0" prefWidth="131.0" text="Create a new user" textFill="#005fff" underline="true" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="15.0" />
                            </font>

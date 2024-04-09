@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <ScrollPane BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+         <content>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="552.0">
+               <children>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Agency FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Algerian" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Arial Narrow" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Arial Unicode MS" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Barlow Condensed Regular" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Barlow Condensed Black" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Barlow Condensed ExtraBold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Barlow Condensed ExtraLight" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Barlow Condensed Light" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Barlow Condensed Medium" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Barlow Condensed SemiBold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Barlow Condensed Thin" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Baskerville Old Face" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Bauhaus 93" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Blackadder ITC" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Bodoni MT" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Bodoni MT Black" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Bodoni MT Condensed" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Bodoni MT Poster Compressed" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font name="Book Antiqua" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
